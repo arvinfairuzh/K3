@@ -22,9 +22,9 @@
               <!-- FILTER  -->
             </div>
             <div class="panel-body">
-                <table class="table table-hover" id="idTable" style="width: 100%">
+                <table class="table table-hover table-bordered" id="idTable" style="width: 100%">
                   <thead>
-                    <tr>
+                    <tr class="bg-success">
                       <th>No</th>
                       <th>Nip</th><th>Name</th><th>Email</th><th>Password</th><th>Role id</th><th>Desc</th><th>Status</th><th>Created at</th><th>Updated at</th>
                       <th></th>

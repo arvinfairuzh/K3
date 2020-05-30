@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Mei 2020 pada 00.27
--- Versi Server: 5.6.26
+-- Generation Time: May 17, 2020 at 01:14 PM
+-- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `access`
+-- Table structure for table `access`
 --
 
 CREATE TABLE IF NOT EXISTS `access` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `access` (
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `access`
+-- Dumping data for table `access`
 --
 
 INSERT INTO `access` (`id`, `access_control_id`, `role_id`, `status`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `access` (`id`, `access_control_id`, `role_id`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `access_control`
+-- Table structure for table `access_control`
 --
 
 CREATE TABLE IF NOT EXISTS `access_control` (
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `access_control` (
 ) ENGINE=MyISAM AUTO_INCREMENT=308 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `access_control`
+-- Dumping data for table `access_control`
 --
 
 INSERT INTO `access_control` (`id`, `folder`, `class`, `method`, `val`) VALUES
@@ -370,7 +370,7 @@ INSERT INTO `access_control` (`id`, `folder`, `class`, `method`, `val`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `activity`
+-- Table structure for table `activity`
 --
 
 CREATE TABLE IF NOT EXISTS `activity` (
@@ -383,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `activity`
+-- Dumping data for table `activity`
 --
 
 INSERT INTO `activity` (`ip`, `link`, `get`, `post`, `user_id`, `created_at`) VALUES
@@ -417,7 +417,7 @@ INSERT INTO `activity` (`ip`, `link`, `get`, `post`, `user_id`, `created_at`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contohmaster`
+-- Table structure for table `contohmaster`
 --
 
 CREATE TABLE IF NOT EXISTS `contohmaster` (
@@ -432,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `contohmaster` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customer_dnd`
+-- Table structure for table `customer_dnd`
 --
 
 CREATE TABLE IF NOT EXISTS `customer_dnd` (
@@ -448,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `customer_dnd` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data untuk tabel `customer_dnd`
+-- Dumping data for table `customer_dnd`
 --
 
 INSERT INTO `customer_dnd` (`id`, `nama`, `email`, `telp`, `alamat`, `urutan`, `status`, `created_at`, `updated_at`) VALUES
@@ -460,7 +460,7 @@ INSERT INTO `customer_dnd` (`id`, `nama`, `email`, `telp`, `alamat`, `urutan`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `file`
+-- Table structure for table `file`
 --
 
 CREATE TABLE IF NOT EXISTS `file` (
@@ -476,7 +476,7 @@ CREATE TABLE IF NOT EXISTS `file` (
 ) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `file`
+-- Dumping data for table `file`
 --
 
 INSERT INTO `file` (`id`, `name`, `mime`, `dir`, `table`, `table_id`, `status`, `created_at`, `updated_at`) VALUES
@@ -589,7 +589,7 @@ INSERT INTO `file` (`id`, `name`, `mime`, `dir`, `table`, `table_id`, `status`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `form_laporan_bulanan`
+-- Table structure for table `form_laporan_bulanan`
 --
 
 CREATE TABLE IF NOT EXISTS `form_laporan_bulanan` (
@@ -607,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `form_laporan_bulanan` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `form_laporan_bulanan`
+-- Dumping data for table `form_laporan_bulanan`
 --
 
 INSERT INTO `form_laporan_bulanan` (`id`, `lokasi`, `departemen`, `bagian`, `tanggal`, `value`, `id_kabag`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -619,7 +619,7 @@ INSERT INTO `form_laporan_bulanan` (`id`, `lokasi`, `departemen`, `bagian`, `tan
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `form_tindak_lanjut`
+-- Table structure for table `form_tindak_lanjut`
 --
 
 CREATE TABLE IF NOT EXISTS `form_tindak_lanjut` (
@@ -636,7 +636,7 @@ CREATE TABLE IF NOT EXISTS `form_tindak_lanjut` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `form_tindak_lanjut`
+-- Dumping data for table `form_tindak_lanjut`
 --
 
 INSERT INTO `form_tindak_lanjut` (`id`, `id_laporan`, `hasil_temuan`, `ke`, `tindak_lanjut`, `jenis`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -648,7 +648,7 @@ INSERT INTO `form_tindak_lanjut` (`id`, `id_laporan`, `hasil_temuan`, `ke`, `tin
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `grafik`
+-- Table structure for table `grafik`
 --
 
 CREATE TABLE IF NOT EXISTS `grafik` (
@@ -658,7 +658,7 @@ CREATE TABLE IF NOT EXISTS `grafik` (
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `grafik`
+-- Dumping data for table `grafik`
 --
 
 INSERT INTO `grafik` (`id`, `name`, `value`) VALUES
@@ -678,7 +678,7 @@ INSERT INTO `grafik` (`id`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `image`
+-- Table structure for table `image`
 --
 
 CREATE TABLE IF NOT EXISTS `image` (
@@ -687,7 +687,7 @@ CREATE TABLE IF NOT EXISTS `image` (
 ) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `image`
+-- Dumping data for table `image`
 --
 
 INSERT INTO `image` (`id`, `path`) VALUES
@@ -724,153 +724,7 @@ INSERT INTO `image` (`id`, `path`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kecelakaan_detail_ekternal`
---
-
-CREATE TABLE IF NOT EXISTS `kecelakaan_detail_ekternal` (
-  `id` int(11) NOT NULL,
-  `id_kecelakaan` int(11) NOT NULL,
-  `kk_tanggal_jam` varchar(255) NOT NULL,
-  `kk_lokasi` varchar(255) NOT NULL,
-  `kk_penjelasan_kecelakaan` varchar(255) NOT NULL,
-  `kk_gambar_lokasi` varchar(255) NOT NULL,
-  `kk_bagian_tubuh_cedera` varchar(255) NOT NULL,
-  `kk_aktifitas_penderita` varchar(255) NOT NULL,
-  `kk_apabila_1` varchar(255) NOT NULL,
-  `kk_apkh_1` varchar(255) NOT NULL,
-  `kk_tidak_1` varchar(255) NOT NULL,
-  `kk_apkh_2` varchar(255) NOT NULL,
-  `kk_jenis_kendaraan` varchar(255) NOT NULL,
-  `kk_apkh_3` varchar(255) NOT NULL,
-  `kk_ya_3` varchar(255) NOT NULL,
-  `kk_apkh_4` varchar(255) NOT NULL,
-  `kk_tidak_4` varchar(255) NOT NULL,
-  `kk_apkh_5` varchar(255) NOT NULL,
-  `kk_tidak_5` varchar(255) NOT NULL,
-  `wp_apbl_1` varchar(255) NOT NULL,
-  `wp_ya_q1` varchar(255) NOT NULL,
-  `wp_ya_q2` varchar(255) NOT NULL,
-  `wp_ya_q3` varchar(255) NOT NULL,
-  `wp_tidak_q1` varchar(255) NOT NULL,
-  `wp_tidak_q2` varchar(255) NOT NULL,
-  `wp_persyaratan_administrasi` varchar(255) NOT NULL,
-  `wp_masa_aktif_administrasi` varchar(255) NOT NULL,
-  `wp_mengapa` varchar(255) NOT NULL,
-  `wp_bgmn_1` varchar(255) NOT NULL,
-  `wp_usaha_pencegahan_1` varchar(255) NOT NULL,
-  `wp_ya_1` varchar(255) NOT NULL,
-  `wp_apkh_2` varchar(255) NOT NULL,
-  `wp_ya_2` varchar(255) NOT NULL,
-  `sp_apkh_1` varchar(255) NOT NULL,
-  `sp_ya_1` varchar(255) NOT NULL,
-  `pttk_kondisi_lingkungan` varchar(255) NOT NULL,
-  `pttk_apkh_1` varchar(255) NOT NULL,
-  `pttk_kesimpulan` text NOT NULL,
-  `status` enum('ENABLE','DISABLE') DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `kecelakaan_detail_internal`
---
-
-CREATE TABLE IF NOT EXISTS `kecelakaan_detail_internal` (
-  `id` int(11) NOT NULL,
-  `id_kecelakaan` int(11) NOT NULL,
-  `kk_tanggal_jam` varchar(255) NOT NULL,
-  `kk_lokasi` varchar(255) NOT NULL,
-  `kk_penjelasan_kecelakaan` varchar(255) NOT NULL,
-  `kk_gambar_lokasi` varchar(255) NOT NULL,
-  `kk_bagian_tubuh_cedera` varchar(255) NOT NULL,
-  `tw_apkh_1` varchar(255) NOT NULL,
-  `tw_apkh_2` varchar(255) NOT NULL,
-  `tw_apkh_3` varchar(255) NOT NULL,
-  `tw_tidak_q1` varchar(255) NOT NULL,
-  `tw_tidak_q2` varchar(255) NOT NULL,
-  `tw_tidak_q3` varchar(255) NOT NULL,
-  `sp_apkh_1` varchar(255) NOT NULL,
-  `sp_ya_1` varchar(255) NOT NULL,
-  `sp_tidak_1` varchar(255) NOT NULL,
-  `sp_apkh_2` varchar(255) NOT NULL,
-  `sp_tidak_2` varchar(255) NOT NULL,
-  `pk__apkh_1` varchar(255) NOT NULL,
-  `pk_tidak_1` varchar(255) NOT NULL,
-  `pk_apkh_2` varchar(255) NOT NULL,
-  `pk_tidak_2` varchar(255) NOT NULL,
-  `pk_apkh_3` varchar(255) NOT NULL,
-  `pk_tidak_3` varchar(255) NOT NULL,
-  `papd_apkh_1` varchar(255) NOT NULL,
-  `papd_ya_1` varchar(255) NOT NULL,
-  `papd_tidak_1` varchar(255) NOT NULL,
-  `papd_apd` varchar(255) NOT NULL,
-  `papd_apkh_2` varchar(255) NOT NULL,
-  `papd_tidak_2` varchar(255) NOT NULL,
-  `md_gambar_1` varchar(255) NOT NULL,
-  `md_fungsi_alat` varchar(255) NOT NULL,
-  `md_apkh_1` varchar(255) NOT NULL,
-  `md_ya_1` varchar(255) NOT NULL,
-  `md_apkh_2` varchar(255) NOT NULL,
-  `md_apkh_3` varchar(255) NOT NULL,
-  `md_tidak_3` varchar(255) NOT NULL,
-  `md_apkh_4` varchar(255) NOT NULL,
-  `md_tidak_4` varchar(255) NOT NULL,
-  `md_apkh_5` varchar(255) NOT NULL,
-  `md_ya_5` varchar(255) NOT NULL,
-  `snp_apkh_1` varchar(255) NOT NULL,
-  `snp_ya_1` varchar(255) NOT NULL,
-  `snp_tidak_1` varchar(255) NOT NULL,
-  `snp_adakah_1` varchar(255) NOT NULL,
-  `snp_apkh_2` varchar(255) NOT NULL,
-  `snp_tidak_2` varchar(255) NOT NULL,
-  `pttk_kondisi_lingkungan` varchar(255) NOT NULL,
-  `pttk_apkh_1` varchar(255) NOT NULL,
-  `pttk_kesimpulan` varchar(255) NOT NULL,
-  `status` enum('ENABLE','DISABLE') DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `kecelakaan_detail_internal`
---
-
-INSERT INTO `kecelakaan_detail_internal` (`id`, `id_kecelakaan`, `kk_tanggal_jam`, `kk_lokasi`, `kk_penjelasan_kecelakaan`, `kk_gambar_lokasi`, `kk_bagian_tubuh_cedera`, `tw_apkh_1`, `tw_apkh_2`, `tw_apkh_3`, `tw_tidak_q1`, `tw_tidak_q2`, `tw_tidak_q3`, `sp_apkh_1`, `sp_ya_1`, `sp_tidak_1`, `sp_apkh_2`, `sp_tidak_2`, `pk__apkh_1`, `pk_tidak_1`, `pk_apkh_2`, `pk_tidak_2`, `pk_apkh_3`, `pk_tidak_3`, `papd_apkh_1`, `papd_ya_1`, `papd_tidak_1`, `papd_apd`, `papd_apkh_2`, `papd_tidak_2`, `md_gambar_1`, `md_fungsi_alat`, `md_apkh_1`, `md_ya_1`, `md_apkh_2`, `md_apkh_3`, `md_tidak_3`, `md_apkh_4`, `md_tidak_4`, `md_apkh_5`, `md_ya_5`, `snp_apkh_1`, `snp_ya_1`, `snp_tidak_1`, `snp_adakah_1`, `snp_apkh_2`, `snp_tidak_2`, `pttk_kondisi_lingkungan`, `pttk_apkh_1`, `pttk_kesimpulan`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
-(7, 1, '2020-05-21', 'erwerwe', 'sds', '', 'd', 'ya', 'ya', 'tidak', 'd', 'd', 'd', 'tidak', '', 'd', 'tidak', 'd', 'tidak', 'd', 'tidak', 'd', 'tidak', 'd', 'ya', 'd', '', 'dddd', 'tidak', 'dd', '', 'd', 'ya', 'd', 'ya', 'tidak', 'd', 'tidak', 'd', 'ya', 'd', 'tidak', '', 'd', 'd', 'tidak', 'd', '', 'd', 'd', 'ENABLE', '2020-05-26 22:16:34', NULL, 4),
-(8, 1, '2020-05-21', 'erwerwe', 'sds', 'webfile/6950c16c9bcc6995f376b297f16317595540.jpg', 'd', 'ya', 'ya', 'tidak', 'd', 'd', 'd', 'tidak', '', 'd', 'tidak', 'd', 'tidak', 'd', 'tidak', 'd', 'tidak', 'd', 'ya', 'd', '', 'dddd', 'tidak', 'dd', 'webfile/6950c16c9bcc6995f376b297f163175955401.jpg', 'd', 'ya', 'd', 'ya', 'tidak', 'd', 'tidak', 'd', 'ya', 'd', 'tidak', '', 'd', 'd', 'tidak', 'd', '', 'd', 'd', 'ENABLE', '2020-05-26 22:25:35', NULL, 4),
-(9, 1, '2020-05-21', 'erwerwe', 'sds', 'webfile/6950c16c9bcc6995f376b297f163175926508.jpg', 'd', 'ya', 'ya', 'tidak', 'd', 'd', 'd', 'tidak', '', 'd', 'tidak', 'd', 'tidak', 'd', 'tidak', 'd', 'tidak', 'd', 'ya', 'd', '', 'dddd', 'tidak', 'dd', 'webfile/6950c16c9bcc6995f376b297f1631759265081.jpg', 'd', 'ya', 'd', 'ya', 'tidak', 'd', 'tidak', 'd', 'ya', 'd', 'tidak', '', 'd', 'd', 'tidak', 'd', '', 'd', 'd', 'ENABLE', '2020-05-26 22:27:01', NULL, 4),
-(10, 5, '2020-05-07', 'a', 'a', 'webfile/6950c16c9bcc6995f376b297f163175967606.jpg', 'a', 'tidak', 'ya', 'ya', 'a', 'a', 'a', 'tidak', '', 'a', 'tidak', 'a', 'tidak', 'a', 'tidak', 'a', 'tidak', 'a', 'tidak', '', 'a', 'a', 'tidak', 'a', 'webfile/6950c16c9bcc6995f376b297f1631759676061.jpg', 'a', 'ya', 'a', 'tidak', 'tidak', 'a', 'tidak', 'a', 'ya', 'a', 'ya', 'a', '', 'a', 'tidak', 'a', '', 'aaaa', 'metu coab en neh', 'ENABLE', '2020-05-26 22:48:33', NULL, 4);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `kecelakaan_main`
---
-
-CREATE TABLE IF NOT EXISTS `kecelakaan_main` (
-  `id` int(11) NOT NULL,
-  `ip_nama` varchar(255) NOT NULL,
-  `ip_nomor_induk` varchar(255) NOT NULL,
-  `ip_umur` varchar(255) NOT NULL,
-  `ip_alamat` varchar(255) NOT NULL,
-  `ip_dep_birobid` varchar(255) NOT NULL,
-  `ip_bagian_seksi` varchar(255) NOT NULL,
-  `ip_lama_bekerja_unit` varchar(255) NOT NULL,
-  `ip_lama_bekerja_petro` varbinary(255) NOT NULL,
-  `lpp_di_rs_petro` varchar(255) NOT NULL,
-  `lpp_di_rs_luar` varchar(255) NOT NULL,
-  `lpp_istirahat_dokter` varchar(255) NOT NULL,
-  `saran` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `keys`
+-- Table structure for table `keys`
 --
 
 CREATE TABLE IF NOT EXISTS `keys` (
@@ -888,7 +742,7 @@ CREATE TABLE IF NOT EXISTS `keys` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `keys`
+-- Dumping data for table `keys`
 --
 
 INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`, `status`, `created_at`, `updated_at`) VALUES
@@ -897,7 +751,7 @@ INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_privat
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `konfig`
+-- Table structure for table `konfig`
 --
 
 CREATE TABLE IF NOT EXISTS `konfig` (
@@ -910,7 +764,7 @@ CREATE TABLE IF NOT EXISTS `konfig` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `konfig`
+-- Dumping data for table `konfig`
 --
 
 INSERT INTO `konfig` (`id`, `slug`, `value`, `status`, `created_at`, `updated_at`) VALUES
@@ -934,7 +788,7 @@ INSERT INTO `konfig` (`id`, `slug`, `value`, `status`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `konfig_email`
+-- Table structure for table `konfig_email`
 --
 
 CREATE TABLE IF NOT EXISTS `konfig_email` (
@@ -944,7 +798,7 @@ CREATE TABLE IF NOT EXISTS `konfig_email` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `konfig_email`
+-- Dumping data for table `konfig_email`
 --
 
 INSERT INTO `konfig_email` (`ke_id`, `ke_slug`, `ke_content`) VALUES
@@ -957,7 +811,7 @@ INSERT INTO `konfig_email` (`ke_id`, `ke_slug`, `ke_content`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `logs`
+-- Table structure for table `logs`
 --
 
 CREATE TABLE IF NOT EXISTS `logs` (
@@ -974,7 +828,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
 ) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `logs`
+-- Dumping data for table `logs`
 --
 
 INSERT INTO `logs` (`id`, `uri`, `method`, `params`, `api_key`, `ip_address`, `time`, `rtime`, `authorized`, `response_code`) VALUES
@@ -1140,7 +994,7 @@ INSERT INTO `logs` (`id`, `uri`, `method`, `params`, `api_key`, `ip_address`, `t
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log_aktivitas`
+-- Table structure for table `log_aktivitas`
 --
 
 CREATE TABLE IF NOT EXISTS `log_aktivitas` (
@@ -1150,10 +1004,10 @@ CREATE TABLE IF NOT EXISTS `log_aktivitas` (
   `log_action` varchar(500) NOT NULL,
   `log_tablename` varchar(500) NOT NULL,
   `log_jsondata` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=466 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=442 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `log_aktivitas`
+-- Dumping data for table `log_aktivitas`
 --
 
 INSERT INTO `log_aktivitas` (`log_id`, `log_created_at`, `log_created_by`, `log_action`, `log_tablename`, `log_jsondata`) VALUES
@@ -1599,37 +1453,12 @@ INSERT INTO `log_aktivitas` (`log_id`, `log_created_at`, `log_created_by`, `log_
 (438, '2020-05-17 15:59:17', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"form_tindak_lanjut","table_id":3,"status":"ENABLE","created_at":"2020-05-17 15:59:17"}'),
 (439, '2020-05-17 16:00:43', 4, 'insertData', 'form_laporan_bulanan', '{"lokasi":"Pager","tanggal":"2020-05-24","departemen":"1","bagian":"1","value":"[{\\"id_dp\\":\\"1\\",\\"hasil\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"2\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"3\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"4\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"5\\",\\"hasil\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"6\\",\\"hasil\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"7\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"8\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"9\\",\\"hasil\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"10\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"11\\",\\"hasil\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"12\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"13\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"14\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"15\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"16\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"17\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"18\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"19\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"20\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"21\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"22\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"23\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"24\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"25\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"26\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"27\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"28\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"29\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"30\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"31\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"32\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"33\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"34\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"35\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"36\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"37\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"38\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"39\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"40\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"41\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"42\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"43\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"44\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id_dp\\":\\"45\\",\\"hasil\\":\\"Tidak\\",\\"keterangan\\":\\"\\"}]","created_by":"4","created_at":"2020-05-17 16:00:43","status":"ENABLE"}'),
 (440, '2020-05-17 16:00:43', 4, 'insertData', 'form_tindak_lanjut', '{"id_laporan":4,"jenis":"","hasil_temuan":"","ke":"","tindak_lanjut":"","created_at":"2020-05-17 16:00:43","status":"ENABLE","created_by":"4"}'),
-(441, '2020-05-17 16:00:43', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"form_tindak_lanjut","table_id":4,"status":"ENABLE","created_at":"2020-05-17 16:00:43"}'),
-(442, '2020-05-19 13:49:23', 4, 'updateData', 'report', '{"id":"3","name":"Statistik","query":"SELECT date_format(pembayaran_spp.bulan, ''%M %Y'') as bulan, a.belum_bayar, c.sudah_bayar, b.belum_validasi, d.sudah_validasi\\r\\nFROM pembayaran_spp\\r\\nLEFT JOIN\\r\\n\\t(\\r\\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_bayar\\r\\n        FROM pembayaran_spp\\r\\n        WHERE pembayaran_spp.tanggal_pembayaran = ''0000-00-00 00:00:00''\\r\\n        GROUP BY pembayaran_spp.bulan\\r\\n        ) a\\r\\nON pembayaran_spp.bulan = a.bulan\\r\\nLEFT JOIN\\r\\n\\t(\\r\\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_validasi\\r\\n        FROM pembayaran_spp\\r\\n        WHERE pembayaran_spp.tanggal_validasi = ''0000-00-00 00:00:00''\\r\\n        GROUP BY pembayaran_spp.bulan\\r\\n        ) b\\r\\nON pembayaran_spp.bulan = b.bulan\\r\\nLEFT JOIN\\r\\n\\t(\\r\\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_bayar\\r\\n        FROM pembayaran_spp\\r\\n        WHERE pembayaran_spp.tanggal_pembayaran != ''0000-00-00 00:00:00''\\r\\n        GROUP BY pembayaran_spp.bulan\\r\\n        ) c\\r\\nON pembayaran_spp.bulan = c.bulan\\r\\nLEFT JOIN\\r\\n\\t(\\r\\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_validasi\\r\\n        FROM pembayaran_spp\\r\\n        WHERE pembayaran_spp.tanggal_validasi != ''0000-00-00 00:00:00''\\r\\n        GROUP BY pembayaran_spp.bulan\\r\\n        ) d\\r\\nON pembayaran_spp.bulan = d.bulan\\r\\nGROUP BY pembayaran_spp.bulan","header":"[\\"bulan\\",\\"belum_bayar\\",\\"belum_validasi\\",\\"sudah_bayar\\",\\"sudah_validasi\\"]","status":"ENABLE","created_at":"2020-01-07 13:56:11","updated_at":"2020-01-07 13:58:08"}'),
-(443, '2020-05-19 13:51:05', 4, 'updateData', 'role', '{"id":"7","role":"SI","status":"ENABLE","menu":"[\\"1\\"]","created_at":"2018-10-24 10:29:54","updated_at":"2020-02-21 15:15:39"}'),
-(444, '2020-05-19 14:30:25', 4, 'updateData', 'menu_master', '{"id":"36","name":"Kecelakaan Kerja","icon":"fa fa-plus-circle","link":"master\\/kecelakaan_kerja","urutan":"8","parent":"33","notif":"","status":"ENABLE","created_at":"2020-05-19 14:25:25","updated_at":null}'),
-(445, '2020-05-19 14:31:06', 4, 'updateData', 'role', '{"id":"0","role":"Admin","status":"ENABLE","menu":"[\\"1\\",\\"33\\",\\"34\\",\\"16\\",\\"28\\",\\"29\\",\\"30\\",\\"31\\",\\"35\\"]","created_at":"2018-10-12 17:03:59","updated_at":"2020-05-17 14:22:11"}'),
-(446, '2020-05-26 15:16:41', 4, 'updateData', 'menu_master', '{"id":"36","name":"Kecelakaan Kerja","icon":"fa fa-plus-circle","link":"master\\/kecelakaan_kerja","urutan":"8","parent":"0","notif":"","status":"ENABLE","created_at":"2020-05-19 14:25:25","updated_at":"2020-05-19 14:30:25"}'),
-(447, '2020-05-26 15:17:52', 4, 'updateData', 'menu_master', '{"id":"33","name":"Pegawai","icon":"fa fa-users","link":"master\\/pegawai","urutan":"1","parent":"0","notif":"","status":"ENABLE","created_at":"2020-05-14 15:41:19","updated_at":null}'),
-(448, '2020-05-26 15:18:11', 4, 'updateData', 'menu_master', '{"id":"36","name":"Kecelakaan Kerja","icon":"fa fa-plus-circle","link":"master\\/Kecelakaan_detail_ekternal","urutan":"8","parent":"0","notif":"","status":"ENABLE","created_at":"2020-05-19 14:25:25","updated_at":"2020-05-26 15:16:41"}'),
-(449, '2020-05-26 15:18:57', 4, 'updateData', 'menu_master', '{"id":"36","name":"Kecelakaan Kerja","icon":"fa fa-plus-circle","link":"master\\/Kecelakaan_detail_ekternal","urutan":"7","parent":"0","notif":"","status":"ENABLE","created_at":"2020-05-19 14:25:25","updated_at":"2020-05-26 15:18:11"}'),
-(450, '2020-05-26 15:20:23', 4, 'updateData', 'menu_master', '{"id":"36","name":"Kecelakaan Kerja","icon":"fa fa-plus-circle","link":"master\\/Kecelakaan_detail_ekternal","urutan":"7","parent":"0","notif":"","status":"ENABLE","created_at":"2020-05-19 14:25:25","updated_at":"2020-05-26 15:18:57"}'),
-(451, '2020-05-26 15:20:44', 4, 'updateData', 'role', '{"id":"0","role":"Admin","status":"ENABLE","menu":"[\\"1\\",\\"33\\",\\"34\\",\\"16\\",\\"28\\",\\"29\\",\\"30\\",\\"31\\",\\"35\\",\\"36\\"]","created_at":"2018-10-12 17:03:59","updated_at":"2020-05-19 14:31:06"}'),
-(452, '2020-05-26 15:21:31', 4, 'updateData', 'role', '{"id":"0","role":"Admin","status":"ENABLE","menu":"[\\"1\\",\\"34\\",\\"33\\",\\"16\\",\\"28\\",\\"29\\",\\"30\\",\\"31\\",\\"35\\",\\"36\\",\\"37\\"]","created_at":"2018-10-12 17:03:59","updated_at":"2020-05-26 15:20:44"}'),
-(453, '2020-05-26 15:21:55', 4, 'updateData', 'menu_master', '{"id":"37","name":"Kecelakaan Kerja Internal","icon":"fa fa-plus-circle","link":"master\\/Kecelakaan_detail_ekternal","urutan":"0","parent":"36","notif":"","status":"ENABLE","created_at":"2020-05-26 15:19:28","updated_at":null}'),
-(454, '2020-05-26 22:10:18', 4, 'insertData', 'kecelakaan_detail_internal', '{"id_kecelakaan":"1","kk_tanggal_jam":"2020-05-21","kk_lokasi":"erwerwe","kk_penjelasan_kecelakaan":"sds","kk_bagian_tubuh_cedera":"d","tw_apkh_1":"ya","tw_apkh_2":"ya","tw_apkh_3":"tidak","tw_tidak_q1":"d","tw_tidak_q2":"d","tw_tidak_q3":"d","sp_apkh_1":"tidak","sp_ya_1":"","sp_tidak_1":"d","sp_apkh_2":"tidak","sp_tidak_2":"d","pk__apkh_1":"tidak","pk_tidak_1":"d","pk_apkh_2":"tidak","pk_tidak_2":"d","pk_apkh_3":"tidak","pk_tidak_3":"d","papd_apkh_1":"ya","papd_ya_1":"d","papd_tidak_1":"","papd_apd":"dddd","papd_apkh_2":"tidak","papd_tidak_2":"dd","md_fungsi_alat":"d","md_apkh_1":"ya","md_ya_1":"d","md_apkh_2":"ya","md_apkh_3":"tidak","md_tidak_3":"d","md_apkh_4":"tidak","md_tidak_4":"d","md_apkh_5":"ya","md_ya_5":"d","snp_apkh_1":"tidak","snp_ya_1":"","snp_tidak_1":"d","snp_adakah_1":"d","snp_apkh_2":"tidak","snp_tidak_2":"d","pttk_kondisi_lingkungan":"","pttk_apkh_1":"d","pttk_kesimpulan":"d","created_by":"4","created_at":"2020-05-26 22:10:18","status":"ENABLE"}'),
-(455, '2020-05-26 22:10:20', 4, 'insertData', 'kecelakaan_detail_internal', '{"id_kecelakaan":"1","kk_tanggal_jam":"2020-05-21","kk_lokasi":"erwerwe","kk_penjelasan_kecelakaan":"sds","kk_bagian_tubuh_cedera":"d","tw_apkh_1":"ya","tw_apkh_2":"ya","tw_apkh_3":"tidak","tw_tidak_q1":"d","tw_tidak_q2":"d","tw_tidak_q3":"d","sp_apkh_1":"tidak","sp_ya_1":"","sp_tidak_1":"d","sp_apkh_2":"tidak","sp_tidak_2":"d","pk__apkh_1":"tidak","pk_tidak_1":"d","pk_apkh_2":"tidak","pk_tidak_2":"d","pk_apkh_3":"tidak","pk_tidak_3":"d","papd_apkh_1":"ya","papd_ya_1":"d","papd_tidak_1":"","papd_apd":"dddd","papd_apkh_2":"tidak","papd_tidak_2":"dd","md_fungsi_alat":"d","md_apkh_1":"ya","md_ya_1":"d","md_apkh_2":"ya","md_apkh_3":"tidak","md_tidak_3":"d","md_apkh_4":"tidak","md_tidak_4":"d","md_apkh_5":"ya","md_ya_5":"d","snp_apkh_1":"tidak","snp_ya_1":"","snp_tidak_1":"d","snp_adakah_1":"d","snp_apkh_2":"tidak","snp_tidak_2":"d","pttk_kondisi_lingkungan":"","pttk_apkh_1":"d","pttk_kesimpulan":"d","created_by":"4","created_at":"2020-05-26 22:10:20","status":"ENABLE"}'),
-(456, '2020-05-26 22:15:16', 4, 'insertData', 'kecelakaan_detail_internal', '{"id_kecelakaan":"1","kk_tanggal_jam":"2020-05-21","kk_lokasi":"erwerwe","kk_penjelasan_kecelakaan":"sds","kk_bagian_tubuh_cedera":"d","tw_apkh_1":"ya","tw_apkh_2":"ya","tw_apkh_3":"tidak","tw_tidak_q1":"d","tw_tidak_q2":"d","tw_tidak_q3":"d","sp_apkh_1":"tidak","sp_ya_1":"","sp_tidak_1":"d","sp_apkh_2":"tidak","sp_tidak_2":"d","pk__apkh_1":"tidak","pk_tidak_1":"d","pk_apkh_2":"tidak","pk_tidak_2":"d","pk_apkh_3":"tidak","pk_tidak_3":"d","papd_apkh_1":"ya","papd_ya_1":"d","papd_tidak_1":"","papd_apd":"dddd","papd_apkh_2":"tidak","papd_tidak_2":"dd","md_fungsi_alat":"d","md_apkh_1":"ya","md_ya_1":"d","md_apkh_2":"ya","md_apkh_3":"tidak","md_tidak_3":"d","md_apkh_4":"tidak","md_tidak_4":"d","md_apkh_5":"ya","md_ya_5":"d","snp_apkh_1":"tidak","snp_ya_1":"","snp_tidak_1":"d","snp_adakah_1":"d","snp_apkh_2":"tidak","snp_tidak_2":"d","pttk_kondisi_lingkungan":"","pttk_apkh_1":"d","pttk_kesimpulan":"d","created_by":"4","created_at":"2020-05-26 22:15:16","status":"ENABLE"}'),
-(457, '2020-05-26 22:15:16', 4, 'insertData', 'kk_gambar_lokasi', '{"id":"","name":"6950c16c9bcc6995f376b297f163175955404.jpg","mime":"image\\/jpeg","dir":"webfile\\/6950c16c9bcc6995f376b297f163175955404.jpg","table":"kecelakaan_detail_internal","table_id":5,"status":"ENABLE","created_at":"2020-05-26 22:15:16"}'),
-(458, '2020-05-26 22:15:26', 4, 'insertData', 'kecelakaan_detail_internal', '{"id_kecelakaan":"1","kk_tanggal_jam":"2020-05-21","kk_lokasi":"erwerwe","kk_penjelasan_kecelakaan":"sds","kk_bagian_tubuh_cedera":"d","tw_apkh_1":"ya","tw_apkh_2":"ya","tw_apkh_3":"tidak","tw_tidak_q1":"d","tw_tidak_q2":"d","tw_tidak_q3":"d","sp_apkh_1":"tidak","sp_ya_1":"","sp_tidak_1":"d","sp_apkh_2":"tidak","sp_tidak_2":"d","pk__apkh_1":"tidak","pk_tidak_1":"d","pk_apkh_2":"tidak","pk_tidak_2":"d","pk_apkh_3":"tidak","pk_tidak_3":"d","papd_apkh_1":"ya","papd_ya_1":"d","papd_tidak_1":"","papd_apd":"dddd","papd_apkh_2":"tidak","papd_tidak_2":"dd","md_fungsi_alat":"d","md_apkh_1":"ya","md_ya_1":"d","md_apkh_2":"ya","md_apkh_3":"tidak","md_tidak_3":"d","md_apkh_4":"tidak","md_tidak_4":"d","md_apkh_5":"ya","md_ya_5":"d","snp_apkh_1":"tidak","snp_ya_1":"","snp_tidak_1":"d","snp_adakah_1":"d","snp_apkh_2":"tidak","snp_tidak_2":"d","pttk_kondisi_lingkungan":"","pttk_apkh_1":"d","pttk_kesimpulan":"d","created_by":"4","created_at":"2020-05-26 22:15:26","status":"ENABLE"}'),
-(459, '2020-05-26 22:15:26', 4, 'insertData', 'kk_gambar_lokasi', '{"id":"","name":"6950c16c9bcc6995f376b297f163175929822.jpg","mime":"image\\/jpeg","dir":"webfile\\/6950c16c9bcc6995f376b297f163175929822.jpg","table":"kecelakaan_detail_internal","table_id":6,"status":"ENABLE","created_at":"2020-05-26 22:15:26"}'),
-(460, '2020-05-26 22:16:34', 4, 'insertData', 'kecelakaan_detail_internal', '{"id_kecelakaan":"1","kk_tanggal_jam":"2020-05-21","kk_lokasi":"erwerwe","kk_penjelasan_kecelakaan":"sds","kk_bagian_tubuh_cedera":"d","tw_apkh_1":"ya","tw_apkh_2":"ya","tw_apkh_3":"tidak","tw_tidak_q1":"d","tw_tidak_q2":"d","tw_tidak_q3":"d","sp_apkh_1":"tidak","sp_ya_1":"","sp_tidak_1":"d","sp_apkh_2":"tidak","sp_tidak_2":"d","pk__apkh_1":"tidak","pk_tidak_1":"d","pk_apkh_2":"tidak","pk_tidak_2":"d","pk_apkh_3":"tidak","pk_tidak_3":"d","papd_apkh_1":"ya","papd_ya_1":"d","papd_tidak_1":"","papd_apd":"dddd","papd_apkh_2":"tidak","papd_tidak_2":"dd","md_fungsi_alat":"d","md_apkh_1":"ya","md_ya_1":"d","md_apkh_2":"ya","md_apkh_3":"tidak","md_tidak_3":"d","md_apkh_4":"tidak","md_tidak_4":"d","md_apkh_5":"ya","md_ya_5":"d","snp_apkh_1":"tidak","snp_ya_1":"","snp_tidak_1":"d","snp_adakah_1":"d","snp_apkh_2":"tidak","snp_tidak_2":"d","pttk_kondisi_lingkungan":"","pttk_apkh_1":"d","pttk_kesimpulan":"d","created_by":"4","created_at":"2020-05-26 22:16:34","status":"ENABLE"}');
-INSERT INTO `log_aktivitas` (`log_id`, `log_created_at`, `log_created_by`, `log_action`, `log_tablename`, `log_jsondata`) VALUES
-(461, '2020-05-26 22:16:34', 4, 'insertData', 'kk_gambar_lokasi', '{"id":"","name":"6950c16c9bcc6995f376b297f163175930995.jpg","mime":"image\\/jpeg","dir":"webfile\\/6950c16c9bcc6995f376b297f163175930995.jpg","table":"kecelakaan_detail_internal","table_id":7,"status":"ENABLE","created_at":"2020-05-26 22:16:34"}'),
-(462, '2020-05-26 22:25:35', 4, 'insertData', 'kecelakaan_detail_internal', '{"id_kecelakaan":"1","kk_tanggal_jam":"2020-05-21","kk_lokasi":"erwerwe","kk_penjelasan_kecelakaan":"sds","kk_bagian_tubuh_cedera":"d","tw_apkh_1":"ya","tw_apkh_2":"ya","tw_apkh_3":"tidak","tw_tidak_q1":"d","tw_tidak_q2":"d","tw_tidak_q3":"d","sp_apkh_1":"tidak","sp_ya_1":"","sp_tidak_1":"d","sp_apkh_2":"tidak","sp_tidak_2":"d","pk__apkh_1":"tidak","pk_tidak_1":"d","pk_apkh_2":"tidak","pk_tidak_2":"d","pk_apkh_3":"tidak","pk_tidak_3":"d","papd_apkh_1":"ya","papd_ya_1":"d","papd_tidak_1":"","papd_apd":"dddd","papd_apkh_2":"tidak","papd_tidak_2":"dd","md_fungsi_alat":"d","md_apkh_1":"ya","md_ya_1":"d","md_apkh_2":"ya","md_apkh_3":"tidak","md_tidak_3":"d","md_apkh_4":"tidak","md_tidak_4":"d","md_apkh_5":"ya","md_ya_5":"d","snp_apkh_1":"tidak","snp_ya_1":"","snp_tidak_1":"d","snp_adakah_1":"d","snp_apkh_2":"tidak","snp_tidak_2":"d","pttk_kondisi_lingkungan":"","pttk_apkh_1":"d","pttk_kesimpulan":"d","created_by":"4","created_at":"2020-05-26 22:25:35","status":"ENABLE","kk_gambar_lokasi":"webfile\\/6950c16c9bcc6995f376b297f16317595540.jpg","md_gambar_1":"webfile\\/6950c16c9bcc6995f376b297f163175955401.jpg"}'),
-(463, '2020-05-26 22:27:01', 4, 'insertData', 'kecelakaan_detail_internal', '{"id_kecelakaan":"1","kk_tanggal_jam":"2020-05-21","kk_lokasi":"erwerwe","kk_penjelasan_kecelakaan":"sds","kk_bagian_tubuh_cedera":"d","tw_apkh_1":"ya","tw_apkh_2":"ya","tw_apkh_3":"tidak","tw_tidak_q1":"d","tw_tidak_q2":"d","tw_tidak_q3":"d","sp_apkh_1":"tidak","sp_ya_1":"","sp_tidak_1":"d","sp_apkh_2":"tidak","sp_tidak_2":"d","pk__apkh_1":"tidak","pk_tidak_1":"d","pk_apkh_2":"tidak","pk_tidak_2":"d","pk_apkh_3":"tidak","pk_tidak_3":"d","papd_apkh_1":"ya","papd_ya_1":"d","papd_tidak_1":"","papd_apd":"dddd","papd_apkh_2":"tidak","papd_tidak_2":"dd","md_fungsi_alat":"d","md_apkh_1":"ya","md_ya_1":"d","md_apkh_2":"ya","md_apkh_3":"tidak","md_tidak_3":"d","md_apkh_4":"tidak","md_tidak_4":"d","md_apkh_5":"ya","md_ya_5":"d","snp_apkh_1":"tidak","snp_ya_1":"","snp_tidak_1":"d","snp_adakah_1":"d","snp_apkh_2":"tidak","snp_tidak_2":"d","pttk_kondisi_lingkungan":"","pttk_apkh_1":"d","pttk_kesimpulan":"d","created_by":"4","created_at":"2020-05-26 22:27:01","status":"ENABLE","kk_gambar_lokasi":"webfile\\/6950c16c9bcc6995f376b297f163175926508.jpg","md_gambar_1":"webfile\\/6950c16c9bcc6995f376b297f1631759265081.jpg"}'),
-(464, '2020-05-26 22:48:06', 4, 'insertData', 'tabel_main', 'null'),
-(465, '2020-05-26 22:48:33', 4, 'insertData', 'kecelakaan_detail_internal', '{"kk_tanggal_jam":"2020-05-07","kk_lokasi":"a","kk_penjelasan_kecelakaan":"a","kk_bagian_tubuh_cedera":"a","tw_apkh_1":"tidak","tw_apkh_2":"ya","tw_apkh_3":"ya","tw_tidak_q1":"a","tw_tidak_q2":"a","tw_tidak_q3":"a","sp_apkh_1":"tidak","sp_ya_1":"","sp_tidak_1":"a","sp_apkh_2":"tidak","sp_tidak_2":"a","pk__apkh_1":"tidak","pk_tidak_1":"a","pk_apkh_2":"tidak","pk_tidak_2":"a","pk_apkh_3":"tidak","pk_tidak_3":"a","papd_apkh_1":"tidak","papd_ya_1":"","papd_tidak_1":"a","papd_apd":"a","papd_apkh_2":"tidak","papd_tidak_2":"a","md_fungsi_alat":"a","md_apkh_1":"ya","md_ya_1":"a","md_apkh_2":"tidak","md_apkh_3":"tidak","md_tidak_3":"a","md_apkh_4":"tidak","md_tidak_4":"a","md_apkh_5":"ya","md_ya_5":"a","snp_apkh_1":"ya","snp_ya_1":"a","snp_tidak_1":"","snp_adakah_1":"a","snp_apkh_2":"tidak","snp_tidak_2":"a","pttk_kondisi_lingkungan":"","pttk_apkh_1":"aaaa","pttk_kesimpulan":"metu coab en neh","id_kecelakaan":5,"created_by":"4","created_at":"2020-05-26 22:48:33","status":"ENABLE","kk_gambar_lokasi":"webfile\\/6950c16c9bcc6995f376b297f163175967606.jpg","md_gambar_1":"webfile\\/6950c16c9bcc6995f376b297f1631759676061.jpg"}');
+(441, '2020-05-17 16:00:43', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"form_tindak_lanjut","table_id":4,"status":"ENABLE","created_at":"2020-05-17 16:00:43"}');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log_backupdb`
+-- Table structure for table `log_backupdb`
 --
 
 CREATE TABLE IF NOT EXISTS `log_backupdb` (
@@ -1642,7 +1471,7 @@ CREATE TABLE IF NOT EXISTS `log_backupdb` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `log_backupdb`
+-- Dumping data for table `log_backupdb`
 --
 
 INSERT INTO `log_backupdb` (`bdb_id`, `bdb_file`, `bdb_size`, `bdb_sizedisplay`, `bdb_created_at`, `bdb_created_by`) VALUES
@@ -1657,7 +1486,7 @@ INSERT INTO `log_backupdb` (`bdb_id`, `bdb_file`, `bdb_size`, `bdb_sizedisplay`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_bagian`
+-- Table structure for table `master_bagian`
 --
 
 CREATE TABLE IF NOT EXISTS `master_bagian` (
@@ -1670,7 +1499,7 @@ CREATE TABLE IF NOT EXISTS `master_bagian` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_bagian`
+-- Dumping data for table `master_bagian`
 --
 
 INSERT INTO `master_bagian` (`id`, `nama`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -1685,7 +1514,7 @@ INSERT INTO `master_bagian` (`id`, `nama`, `status`, `created_at`, `updated_at`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_daftar_periksa`
+-- Table structure for table `master_daftar_periksa`
 --
 
 CREATE TABLE IF NOT EXISTS `master_daftar_periksa` (
@@ -1699,7 +1528,7 @@ CREATE TABLE IF NOT EXISTS `master_daftar_periksa` (
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_daftar_periksa`
+-- Dumping data for table `master_daftar_periksa`
 --
 
 INSERT INTO `master_daftar_periksa` (`id`, `kategori`, `nama`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -1752,7 +1581,7 @@ INSERT INTO `master_daftar_periksa` (`id`, `kategori`, `nama`, `status`, `create
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_daftar_periksa_kat`
+-- Table structure for table `master_daftar_periksa_kat`
 --
 
 CREATE TABLE IF NOT EXISTS `master_daftar_periksa_kat` (
@@ -1765,7 +1594,7 @@ CREATE TABLE IF NOT EXISTS `master_daftar_periksa_kat` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_daftar_periksa_kat`
+-- Dumping data for table `master_daftar_periksa_kat`
 --
 
 INSERT INTO `master_daftar_periksa_kat` (`id`, `nama`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -1778,7 +1607,7 @@ INSERT INTO `master_daftar_periksa_kat` (`id`, `nama`, `status`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_departemen`
+-- Table structure for table `master_departemen`
 --
 
 CREATE TABLE IF NOT EXISTS `master_departemen` (
@@ -1791,7 +1620,7 @@ CREATE TABLE IF NOT EXISTS `master_departemen` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_departemen`
+-- Dumping data for table `master_departemen`
 --
 
 INSERT INTO `master_departemen` (`id`, `nama`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -1806,7 +1635,7 @@ INSERT INTO `master_departemen` (`id`, `nama`, `status`, `created_at`, `updated_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_jabatan`
+-- Table structure for table `master_jabatan`
 --
 
 CREATE TABLE IF NOT EXISTS `master_jabatan` (
@@ -1819,7 +1648,7 @@ CREATE TABLE IF NOT EXISTS `master_jabatan` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_jabatan`
+-- Dumping data for table `master_jabatan`
 --
 
 INSERT INTO `master_jabatan` (`id`, `nama`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -1832,7 +1661,7 @@ INSERT INTO `master_jabatan` (`id`, `nama`, `status`, `created_at`, `updated_at`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_kompartemen`
+-- Table structure for table `master_kompartemen`
 --
 
 CREATE TABLE IF NOT EXISTS `master_kompartemen` (
@@ -1845,7 +1674,7 @@ CREATE TABLE IF NOT EXISTS `master_kompartemen` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_kompartemen`
+-- Dumping data for table `master_kompartemen`
 --
 
 INSERT INTO `master_kompartemen` (`id`, `nama`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -1862,7 +1691,7 @@ INSERT INTO `master_kompartemen` (`id`, `nama`, `status`, `created_at`, `updated
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_shift`
+-- Table structure for table `master_shift`
 --
 
 CREATE TABLE IF NOT EXISTS `master_shift` (
@@ -1875,7 +1704,7 @@ CREATE TABLE IF NOT EXISTS `master_shift` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_shift`
+-- Dumping data for table `master_shift`
 --
 
 INSERT INTO `master_shift` (`id`, `nama`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -1888,7 +1717,7 @@ INSERT INTO `master_shift` (`id`, `nama`, `status`, `created_at`, `updated_at`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu_master`
+-- Table structure for table `menu_master`
 --
 
 CREATE TABLE IF NOT EXISTS `menu_master` (
@@ -1902,30 +1731,27 @@ CREATE TABLE IF NOT EXISTS `menu_master` (
   `status` enum('ENABLE','DISABLE') DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `menu_master`
+-- Dumping data for table `menu_master`
 --
 
 INSERT INTO `menu_master` (`id`, `name`, `icon`, `link`, `urutan`, `parent`, `notif`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Dashboard', 'mdi mdi-monitor-dashboard', '', '1', '0', NULL, 'ENABLE', '2019-01-17 14:33:33', NULL),
-(33, 'Pegawai', 'fa fa-users', 'master/pegawai', '7', '0', '', 'ENABLE', '2020-05-14 15:41:19', '2020-05-26 15:17:52'),
+(33, 'Pegawai', 'fa fa-users', 'master/pegawai', '1', '0', '', 'ENABLE', '2020-05-14 15:41:19', NULL),
 (16, 'Pengaturan', 'fa fa-th', '#', '7', '0', '', 'ENABLE', '2020-01-10 09:27:29', '2020-05-14 14:59:47'),
 (28, 'Jabatan', 'fa fa-circle', 'master/master_jabatan', '0', '16', '', 'ENABLE', '2020-05-14 15:00:22', NULL),
 (29, 'Shift', 'fa fa-circle', 'master/master_shift', '0', '16', '', 'ENABLE', '2020-05-14 15:00:22', NULL),
 (30, 'Departemen', 'fa fa-circle', 'master/master_departemen', '0', '16', '', 'ENABLE', '2020-05-14 15:00:22', NULL),
 (31, 'Kompartemen', 'fa fa-circle', 'master/master_kompartemen', '0', '16', '', 'ENABLE', '2020-05-14 15:00:22', NULL),
 (34, 'Safety Patrol', 'fa fa-refresh', 'master/form_laporan_bulanan', '2', '0', '', 'ENABLE', '2020-05-17 13:22:09', NULL),
-(35, 'Bagian', 'fa fa-circle', 'master/master_bagian', '3', '16', '', 'ENABLE', '2020-05-17 14:22:02', NULL),
-(36, 'Kecelakaan Kerja', 'fa fa-plus-circle', '#', '7', '0', '', 'ENABLE', '2020-05-19 14:25:25', '2020-05-26 15:20:23'),
-(37, 'Kecelakaan Kerja Internal', 'fa fa-plus-circle', 'master/Kecelakaan_detail_internal', '0', '36', '', 'ENABLE', '2020-05-26 15:19:28', '2020-05-26 15:21:55'),
-(38, 'Kecelakaan Kerja Ekternal', 'fa fa-plus-circle', 'master/Kecelakaan_detail_ekternal', '0', '36', '', 'ENABLE', '2020-05-26 15:21:16', NULL);
+(35, 'Bagian', 'fa fa-circle', 'master/master_bagian', '3', '16', '', 'ENABLE', '2020-05-17 14:22:02', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE IF NOT EXISTS `pegawai` (
@@ -1945,7 +1771,7 @@ CREATE TABLE IF NOT EXISTS `pegawai` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id`, `nip`, `nama`, `id_shift`, `id_departemen`, `id_bagian`, `id_kompartemen`, `id_jabatan`, `id_role`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
@@ -1957,7 +1783,7 @@ INSERT INTO `pegawai` (`id`, `nip`, `nama`, `id_shift`, `id_departemen`, `id_bag
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `report`
+-- Table structure for table `report`
 --
 
 CREATE TABLE IF NOT EXISTS `report` (
@@ -1971,18 +1797,18 @@ CREATE TABLE IF NOT EXISTS `report` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `report`
+-- Dumping data for table `report`
 --
 
 INSERT INTO `report` (`id`, `name`, `query`, `header`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Users', 'SELECT * FROM user', '["nip","name","email","password","role_id","desc","status","created_at","updated_at"]', 'ENABLE', '2019-03-13 09:57:07', '2019-03-19 17:13:35'),
 (2, 'Customer', 'SELECT customer.*,file.dir FROM customer LEFT JOIN file ON file.table_id = customer.id and file.table= ''customer''', '["nama","email","telp","alamat","status","dir"]', 'ENABLE', '2019-03-25 10:47:39', '2019-07-01 09:01:19'),
-(3, 'Statistik', 'SELECT date_format(pembayaran_spp.bulan, ''%M %Y'') as bulan, a.belum_bayar, c.sudah_bayar, b.belum_validasi, d.sudah_validasi\r\nFROM pembayaran_spp\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_bayar\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_pembayaran = ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) a\r\nON pembayaran_spp.bulan = a.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_validasi\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_validasi = ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) b\r\nON pembayaran_spp.bulan = b.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_bayar\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_pembayaran != ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) c\r\nON pembayaran_spp.bulan = c.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_validasi\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_validasi != ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) d\r\nON pembayaran_spp.bulan = d.bulan\r\nGROUP BY pembayaran_spp.bulan', '["bulan","belum_bayar","belum_validasi","sudah_bayar","sudah_validasi"]', 'DISABLE', '2020-01-07 13:56:11', '2020-01-07 13:58:08');
+(3, 'Statistik', 'SELECT date_format(pembayaran_spp.bulan, ''%M %Y'') as bulan, a.belum_bayar, c.sudah_bayar, b.belum_validasi, d.sudah_validasi\r\nFROM pembayaran_spp\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_bayar\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_pembayaran = ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) a\r\nON pembayaran_spp.bulan = a.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_validasi\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_validasi = ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) b\r\nON pembayaran_spp.bulan = b.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_bayar\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_pembayaran != ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) c\r\nON pembayaran_spp.bulan = c.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_validasi\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_validasi != ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) d\r\nON pembayaran_spp.bulan = d.bulan\r\nGROUP BY pembayaran_spp.bulan', '["bulan","belum_bayar","belum_validasi","sudah_bayar","sudah_validasi"]', 'ENABLE', '2020-01-07 13:56:11', '2020-01-07 13:58:08');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
@@ -1995,24 +1821,24 @@ CREATE TABLE IF NOT EXISTS `role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `role`, `status`, `menu`, `created_at`, `updated_at`) VALUES
-(0, 'Admin', 'ENABLE', '["1","34","33","16","28","29","30","31","35","36","37","38"]', '2018-10-12 17:03:59', '2020-05-26 15:21:31'),
+(0, 'Admin', 'ENABLE', '["1","33","34","16","28","29","30","31","35"]', '2018-10-12 17:03:59', '2020-05-17 14:22:11'),
 (1, 'SR', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-02-21 15:15:39'),
 (2, 'Pengawas SR', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-02-21 15:15:39'),
 (3, 'Sekretaris SP2K3', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-02-21 15:15:39'),
 (4, 'Kabag K3', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-02-21 15:15:39'),
 (5, 'Kabag Terkait', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-02-21 15:15:39'),
 (6, 'SE', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-02-21 15:15:39'),
-(7, 'SI', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-05-19 13:51:05'),
+(7, 'SI', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-02-21 15:15:39'),
 (8, 'Ketua SP2K3', 'ENABLE', '["1"]', '2018-10-24 10:29:54', '2020-02-21 15:15:39');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `site`
+-- Table structure for table `site`
 --
 
 CREATE TABLE IF NOT EXISTS `site` (
@@ -2026,7 +1852,7 @@ CREATE TABLE IF NOT EXISTS `site` (
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `site`
+-- Dumping data for table `site`
 --
 
 INSERT INTO `site` (`id`, `code`, `site`, `name`, `status`, `created_at`, `updated_at`) VALUES
@@ -2052,7 +1878,7 @@ INSERT INTO `site` (`id`, `code`, `site`, `name`, `status`, `created_at`, `updat
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -2070,7 +1896,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `id_detail`, `nip`, `name`, `email`, `password`, `role_id`, `desc`, `status`, `created_at`, `updated_at`) VALUES
@@ -2135,24 +1961,6 @@ ALTER TABLE `grafik`
 -- Indexes for table `image`
 --
 ALTER TABLE `image`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `kecelakaan_detail_ekternal`
---
-ALTER TABLE `kecelakaan_detail_ekternal`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `kecelakaan_detail_internal`
---
-ALTER TABLE `kecelakaan_detail_internal`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `kecelakaan_main`
---
-ALTER TABLE `kecelakaan_main`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2319,21 +2127,6 @@ ALTER TABLE `grafik`
 ALTER TABLE `image`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
--- AUTO_INCREMENT for table `kecelakaan_detail_ekternal`
---
-ALTER TABLE `kecelakaan_detail_ekternal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `kecelakaan_detail_internal`
---
-ALTER TABLE `kecelakaan_detail_internal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `kecelakaan_main`
---
-ALTER TABLE `kecelakaan_main`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `keys`
 --
 ALTER TABLE `keys`
@@ -2357,7 +2150,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=466;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=442;
 --
 -- AUTO_INCREMENT for table `log_backupdb`
 --
@@ -2402,7 +2195,7 @@ ALTER TABLE `master_shift`
 -- AUTO_INCREMENT for table `menu_master`
 --
 ALTER TABLE `menu_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `pegawai`
 --
