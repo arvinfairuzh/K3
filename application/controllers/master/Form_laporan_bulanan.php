@@ -359,15 +359,9 @@ class Form_laporan_bulanan extends MY_Controller
 		header('Location: ' . base_url('master/form_laporan_bulanan/edit/' . $form_laporan_bulanan['id']));
 	}
 
-
-
 	public function status($id, $status)
-
 	{
-
 		$this->mymodel->updateData('form_laporan_bulanan', array('status' => $status), array('id' => $id));
-
-
 		redirect('master/Form_laporan_bulanan');
 	}
 }
