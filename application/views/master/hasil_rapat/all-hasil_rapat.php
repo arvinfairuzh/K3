@@ -8,7 +8,7 @@
 
     <h1>
 
-      Master Bagian
+      Hasil Rapat
 
       <small>Data</small>
 
@@ -20,7 +20,7 @@
 
       <li><a href="#">Master</a></li>
 
-      <li class="#">Master Bagian</li>
+      <li class="#">Hasil Rapat</li>
 
       <li class="active">Data</li>
 
@@ -60,12 +60,12 @@
 
               <div class="col-md-6">
 
-                <div class="pull-right">
-                  <a href="javascript::void(0)" onclick="create()">
+                <div class="pull-right"> <a href="<?= base_url('master/Hasil_rapat/create') ?>">
 
                     <button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Data</button>
 
                   </a>
+
                 </div>
 
               </div>
@@ -112,46 +112,14 @@
 
 <!-- /.content-wrapper -->
 
-<div class="modal fade bd-example-modal-sm" tabindex="-1" master_bagian="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-form">
 
-  <div class="modal-dialog modal-md">
-
-    <div class="modal-content">
-
-
-      <div class="modal-header">
-
-        <h5 class="modal-title" id="title-form"></h5>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-          <span aria-hidden="true">&times;</span>
-
-        </button>
-
-      </div>
-
-      <div class="modal-body">
-        <div id="load-form"></div>
-
-      </div>
-
-
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<div class="modal fade bd-example-modal-sm" tabindex="-1" master_bagian="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-delete">
+<div class="modal fade bd-example-modal-sm" tabindex="-1" hasil_rapat="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-delete">
 
   <div class="modal-dialog modal-sm">
 
     <div class="modal-content">
 
-      <form id="upload-delete" action="<?= base_url('master/Master_bagian/delete') ?>">
+      <form id="upload-delete" action="<?= base_url('master/Hasil_rapat/delete') ?>">
 
         <div class="modal-header">
 
@@ -205,7 +173,7 @@
 
       </div>
 
-      <form action="<?= base_url('fitur/impor/master_bagian') ?>" method="POST" enctype="multipart/form-data">
+      <form action="<?= base_url('fitur/impor/hasil_rapat') ?>" method="POST" enctype="multipart/form-data">
 
 
 
@@ -250,7 +218,7 @@
 
       '     <tr class="bg-success">' +
 
-      '       <th style="width:20px">No</th>' + '<th>Id Departemen</th>' + '<th>Nama</th>' + '       <th style="width:150px">Status</th>' +
+      '       <th style="width:20px">No</th>' + '<th>Jadwal</th>' + '<th>Pimpinan Sidang</th>' + '<th>Tanggal</th>' + '<th>Jam Mulai</th>' + '<th>Jam Selesai</th>' + '<th>Lokasi</th>' + '<th>Notulis</th>' + '       <th style="width:150px">Status</th>' +
 
       '       <th style="width:150px"></th>' +
 
@@ -303,7 +271,7 @@
       serverSide: true,
 
       ajax: {
-        "url": "<?= base_url('master/Master_bagian/json?status=') ?>" + status,
+        "url": "<?= base_url('master/Hasil_rapat/json?status=') ?>" + status,
         "type": "POST"
       },
 
@@ -313,9 +281,19 @@
           "data": "id",
           "orderable": false
         }, {
-          "data": "id_departemen"
+          "data": "id_jadwal"
         }, {
-          "data": "nama"
+          "data": "pimpinan_sidang"
+        }, {
+          "data": "tanggal"
+        }, {
+          "data": "jam_mulai"
+        }, {
+          "data": "jam_selesai"
+        }, {
+          "data": "lokasi"
+        }, {
+          "data": "id_notulis"
         },
 
         {
@@ -338,13 +316,13 @@
       columnDefs: [
 
         {
-          targets: [3],
+          targets: [8],
 
           render: function(data, type, row, meta) {
 
             if (row['status'] == 'ENABLE') {
 
-              var htmls = '<a href="<?= base_url('master/Master_bagian/status/') ?>' + row['id'] + '/DISABLE">' +
+              var htmls = '<a href="<?= base_url('master/Hasil_rapat/status/') ?>' + row['id'] + '/DISABLE">' +
 
                 '    <button type="button" class="btn btn-sm btn-sm btn-success"><i class="fa fa-home"></i> ENABLE</button>' +
 
@@ -352,7 +330,7 @@
 
             } else {
 
-              var htmls = '<a href="<?= base_url('master/Master_bagian/status/') ?>' + row['id'] + '/ENABLE">' +
+              var htmls = '<a href="<?= base_url('master/Hasil_rapat/status/') ?>' + row['id'] + '/ENABLE">' +
 
                 '    <button type="button" class="btn btn-sm btn-sm btn-danger"><i class="fa fa-home"></i> DISABLE</button>' +
 
@@ -400,35 +378,21 @@
 
   function edit(id) {
 
-    // location.href = "<?= base_url('master/Master_bagian/edit/') ?>"+id;
-    $("#load-form").html('loading...');
-
-    $("#modal-form").modal();
-    $("#title-form").html('Edit Data');
-    $("#load-form").load("<?= base_url('master/Master_bagian/edit/') ?>" + id);
+    location.href = "<?= base_url('master/Hasil_rapat/edit/') ?>" + id;
 
   }
 
-  function create() {
-    $("#load-form").html('loading...');
+  function cetak(id) {
 
-    // location.href = "<?= base_url('master/Master_bagian/edit/') ?>"+id;
-    $("#modal-form").modal();
-    $("#title-form").html('Create Data');
-    $("#load-form").load("<?= base_url('master/Master_bagian/create/') ?>");
+    window.open("<?= base_url('master/Hasil_rapat/cetak/') ?>" + id);
 
   }
-
-
-
 
   function hapus(id) {
 
     $("#modal-delete").modal('show');
 
     $("#delete-input").val(id);
-
-
 
   }
 

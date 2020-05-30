@@ -4,7 +4,7 @@
 
 
 
-class Pegawai extends MY_Controller
+class Master_jadwal_rapat extends MY_Controller
 {
 
 
@@ -22,18 +22,18 @@ class Pegawai extends MY_Controller
 
 	{
 
-		$data['page_name'] = "pegawai";
+		$data['page_name'] = "master_jadwal_rapat";
 
-		$this->template->load('template/template', 'master/pegawai/all-pegawai', $data);
+		$this->template->load('template/template', 'master/master_jadwal_rapat/all-master_jadwal_rapat', $data);
 	}
 
 	public function create()
 
 	{
 
-		$data['page_name'] = "pegawai";
+		$data['page_name'] = "master_jadwal_rapat";
 
-		$this->template->load('template/template', 'master/pegawai/add-pegawai', $data);
+		$this->template->load('template/template', 'master/master_jadwal_rapat/add-master_jadwal_rapat', $data);
 	}
 
 	public function validate()
@@ -42,17 +42,12 @@ class Pegawai extends MY_Controller
 
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
 
-		$this->form_validation->set_rules(
-			'dt[nip]',
-			'<strong>NIK</strong>',
-			'required|is_unique[pegawai.nip]',
-			array(
-				'required'      => 'You have not provided %s.',
-				'is_unique'     => 'This %s already exists.'
-			)
-		);
 		$this->form_validation->set_rules('dt[nama]', '<strong>Nama</strong>', 'required');
-		$this->form_validation->set_rules('dt[id_role]', '<strong>Id Role</strong>', 'required');
+		$this->form_validation->set_rules('dt[tanggal]', '<strong>Tanggal</strong>', 'required');
+		$this->form_validation->set_rules('dt[jam_mulai]', '<strong>Jam Mulai</strong>', 'required');
+		$this->form_validation->set_rules('dt[jam_selesai]', '<strong>Jam Selesai</strong>', 'required');
+		$this->form_validation->set_rules('dt[lokasi]', '<strong>Lokasi</strong>', 'required');
+		$this->form_validation->set_rules('dt[id_ketua]', '<strong>Id Ketua</strong>', 'required');
 	}
 
 
@@ -78,7 +73,7 @@ class Pegawai extends MY_Controller
 
 			$dt['status'] = "ENABLE";
 
-			$str = $this->mymodel->insertData('pegawai', $dt);
+			$str = $this->mymodel->insertData('master_jadwal_rapat', $dt);
 
 			$last_id = $this->db->insert_id();
 			if (!empty($_FILES['file']['name'])) {
@@ -114,7 +109,7 @@ class Pegawai extends MY_Controller
 
 						'dir' => $dir . $file['file_name'],
 
-						'table' => 'pegawai',
+						'table' => 'master_jadwal_rapat',
 
 						'table_id' => $last_id,
 
@@ -140,7 +135,7 @@ class Pegawai extends MY_Controller
 
 					'dir' => '',
 
-					'table' => 'pegawai',
+					'table' => 'master_jadwal_rapat',
 
 					'table_id' => $last_id,
 
@@ -174,17 +169,12 @@ class Pegawai extends MY_Controller
 
 		header('Content-Type: application/json');
 
-		$this->datatables->select('pegawai.id,nip,master_bagian.nama as bagian,pegawai.nama,master_shift.nama as shift,master_departemen.nama as departemen,master_kompartemen.nama as kompartemen,master_jabatan.nama as jabatan,role.role as role,pegawai.id_bagian,pegawai.id_shift,pegawai.id_departemen,pegawai.id_kompartemen,pegawai.id_shift,pegawai.id_role,pegawai.status');
+		$this->datatables->select('master_jadwal_rapat.id,master_jadwal_rapat.nama,tanggal,jam_mulai,jam_selesai,lokasi,pegawai.nama as id_ketua,master_jadwal_rapat.status');
 
-		$this->datatables->where('pegawai.status', $status);
+		$this->datatables->where('master_jadwal_rapat.status', $status);
 
-		$this->datatables->from('pegawai');
-		$this->datatables->join('master_departemen', 'pegawai.id_departemen = master_departemen.id', 'left');
-		$this->datatables->join('master_kompartemen', 'pegawai.id_kompartemen = master_kompartemen.id', 'left');
-		$this->datatables->join('master_shift', 'pegawai.id_shift = master_shift.id', 'left');
-		$this->datatables->join('master_jabatan', 'pegawai.id_jabatan = master_jabatan.id', 'left');
-		$this->datatables->join('master_bagian', 'pegawai.id_bagian = master_bagian.id', 'left');
-		$this->datatables->join('role', 'pegawai.id_role = role.id', 'left');
+		$this->datatables->from('master_jadwal_rapat');
+		$this->datatables->join('pegawai', 'master_jadwal_rapat.id_ketua = pegawai.id', 'left');
 
 		if ($status == "ENABLE") {
 
@@ -201,11 +191,11 @@ class Pegawai extends MY_Controller
 
 	{
 
-		$data['pegawai'] = $this->mymodel->selectDataone('pegawai', array('id' => $id));
-		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'pegawai'));
-		$data['page_name'] = "pegawai";
+		$data['master_jadwal_rapat'] = $this->mymodel->selectDataone('master_jadwal_rapat', array('id' => $id));
+		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'master_jadwal_rapat'));
+		$data['page_name'] = "master_jadwal_rapat";
 
-		$this->template->load('template/template', 'master/pegawai/edit-pegawai', $data);
+		$this->template->load('template/template', 'master/master_jadwal_rapat/edit-master_jadwal_rapat', $data);
 	}
 
 
@@ -217,10 +207,6 @@ class Pegawai extends MY_Controller
 	{
 
 		$this->validate();
-
-
-
-
 
 		if ($this->form_validation->run() == FALSE) {
 
@@ -260,7 +246,7 @@ class Pegawai extends MY_Controller
 
 						'dir' => $dir . $file['file_name'],
 
-						'table' => 'pegawai',
+						'table' => 'master_jadwal_rapat',
 
 						'table_id' => $id,
 
@@ -268,7 +254,7 @@ class Pegawai extends MY_Controller
 
 					);
 
-					$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'pegawai'));
+					$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'master_jadwal_rapat'));
 
 					@unlink($file['dir']);
 
@@ -290,7 +276,7 @@ class Pegawai extends MY_Controller
 
 					$dt['updated_at'] = date("Y-m-d H:i:s");
 
-					$str =  $this->mymodel->updateData('pegawai', $dt, array('id' => $id));
+					$str =  $this->mymodel->updateData('master_jadwal_rapat', $dt, array('id' => $id));
 
 					return $str;
 				}
@@ -302,7 +288,7 @@ class Pegawai extends MY_Controller
 
 				$dt['updated_at'] = date("Y-m-d H:i:s");
 
-				$str = $this->mymodel->updateData('pegawai', $dt, array('id' => $id));
+				$str = $this->mymodel->updateData('master_jadwal_rapat', $dt, array('id' => $id));
 
 				return $str;
 			}
@@ -316,15 +302,15 @@ class Pegawai extends MY_Controller
 	{
 
 		$id = $this->input->post('id', TRUE);
-		$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'pegawai'));
+		$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'master_jadwal_rapat'));
 
 		@unlink($file['dir']);
 
-		$this->mymodel->deleteData('file',  array('table_id' => $id, 'table' => 'pegawai'));
+		$this->mymodel->deleteData('file',  array('table_id' => $id, 'table' => 'master_jadwal_rapat'));
 
 
 
-		$str = $this->mymodel->deleteData('pegawai',  array('id' => $id));
+		$str = $this->mymodel->deleteData('master_jadwal_rapat',  array('id' => $id));
 		return $str;
 	}
 
@@ -334,10 +320,10 @@ class Pegawai extends MY_Controller
 
 	{
 
-		$this->mymodel->updateData('pegawai', array('status' => $status), array('id' => $id));
+		$this->mymodel->updateData('master_jadwal_rapat', array('status' => $status), array('id' => $id));
 
 
-		redirect('master/Pegawai');
+		redirect('master/Master_jadwal_rapat');
 	}
 }
 

@@ -12,6 +12,36 @@
 
                 <div class="show_error"></div><div class="form-group">
 
+                      <label for="form-id_departemen">Id Departemen</label>
+
+                      <select style='width:100%' name="dt[id_departemen]" class="form-control select2">
+
+                        <?php 
+
+                        $master_departemen = $this->mymodel->selectWhere('master_departemen',null);
+
+                        foreach ($master_departemen as $master_departemen_record) {
+
+                          $text="";
+
+                          if($master_departemen_record['id']==$master_bagian['id_departemen']){
+
+                            $text = "selected";
+
+                          }
+
+
+
+                          echo "<option value=".$master_departemen_record['id']." ".$text." >".$master_departemen_record['nama']."</option>";
+
+                        }
+
+                        ?>
+
+                      </select>
+
+                  </div><div class="form-group">
+
                       <label for="form-nama">Nama</label>
 
                       <input type="text" class="form-control" id="form-nama" placeholder="Masukan Nama" name="dt[nama]" value="<?= $master_bagian['nama'] ?>">

@@ -49,15 +49,6 @@
                   <input type="hidden" class="form-control" id="form-bagian" placeholder="Masukan bagian" name="dt[bagian]" value="<?= $_SESSION['id_bagian'] ?>">
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="form-group col-md-12">
-                  <p>Distribusi ke :</p>
-                  <p>1. Manager Ybs</p>
-                  <p>2. Sekretaris SP2K3 Ybs</p>
-                  <p>3. Kabag K3</p>
-                  <p>4. Simpanan</p>
-                </div>
-              </div>
               <div class="col-md-12">
                 <div class="form-group col-md-12">
                   <div class="table-responsive">

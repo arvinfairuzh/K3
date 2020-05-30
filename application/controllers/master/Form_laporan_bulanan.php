@@ -83,6 +83,9 @@ class Form_laporan_bulanan extends MY_Controller
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
+
+			$kabag = $this->mymodel->selectDataOne("pegawai", array('id_bagian' => $_SESSION['id_bagian'], 'id_role' => 3));
+			$dt['id_kabag'] = $kabag['id'];
 			$str = $this->mymodel->insertData('form_laporan_bulanan', $dt);
 			$last_id = $this->db->insert_id();
 
@@ -148,13 +151,18 @@ class Form_laporan_bulanan extends MY_Controller
 			$status = 'ENABLE';
 		}
 		header('Content-Type: application/json');
-		$this->datatables->select('form_laporan_bulanan.id,lokasi,master_departemen.nama as departemen,master_bagian.nama as bagian,tanggal,value,id_kabag,form_laporan_bulanan.status,form_laporan_bulanan.created_by');
+		$this->datatables->select('form_laporan_bulanan.id,lokasi,master_departemen.nama as departemen,master_bagian.nama as bagian,tanggal,value,kabag.nama as id_kabag,form_laporan_bulanan.status,sr.nama as created_by');
 		$this->datatables->where('form_laporan_bulanan.status', $status);
 		$this->datatables->from('form_laporan_bulanan');
 		$this->datatables->join('master_departemen', 'form_laporan_bulanan.departemen = master_departemen.id', 'left');
 		$this->datatables->join('master_bagian', 'form_laporan_bulanan.bagian = master_bagian.id', 'left');
+		$this->datatables->join('pegawai sr', 'form_laporan_bulanan.created_by = sr.id', 'left');
+		$this->datatables->join('pegawai kabag', 'form_laporan_bulanan.id_kabag = kabag.id', 'left');
 		if ($status == "ENABLE") {
-			$this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button></div>', 'id');
+			$this->datatables->add_column('view', '<div class="btn-group">
+			<button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button>
+			<button type="button" class="btn btn-sm btn-info" onclick="cetak($1)" style="margin-left: 5px;"><i class="fa fa-print"></i> Print</button>
+			</div>', 'id');
 		} else {
 			$this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button><button type="button" onclick="hapus($1)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Hapus</button></div>', 'id');
 		}
@@ -274,18 +282,73 @@ class Form_laporan_bulanan extends MY_Controller
 		}
 	}
 
+	public function detail($id)
+	{
+		$data['form_laporan_bulanan'] = $this->mymodel->selectDataone('form_laporan_bulanan', array('id' => $id));
+		$data['form_tindak_lanjut'] = $this->mymodel->selectWhere('form_tindak_lanjut', array('id_laporan' => $id));
+		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'form_laporan_bulanan'));
+		$master_departemen = $this->mymodel->selectDataOne('master_departemen', array('id' => $data['form_laporan_bulanan']['departemen']));
+		$master_bagian = $this->mymodel->selectDataOne('master_bagian', array('id' => $data['form_laporan_bulanan']['bagian']));
+		$data['sr'] = $this->mymodel->selectDataOne('pegawai', array('id' => $data['form_laporan_bulanan']['created_by']));
+		$data['kabag'] = $this->mymodel->selectDataOne('pegawai', array('id' => $data['form_laporan_bulanan']['id_kabag']));
+		$data['bagian'] = $master_bagian['nama'];
+		$data['departemen'] = $master_departemen['nama'];
 
+		$data['page_name'] = "form_laporan_bulanan";
+
+		$this->template->load('template/template', 'master/form_laporan_bulanan/detail-form_laporan_bulanan', $data);
+	}
+
+	public function cetak($id)
+	{
+		$data['form_laporan_bulanan'] = $this->mymodel->selectDataone('form_laporan_bulanan', array('id' => $id));
+		$data['form_tindak_lanjut'] = $this->mymodel->selectWhere('form_tindak_lanjut', array('id_laporan' => $id));
+		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'form_laporan_bulanan'));
+		$master_departemen = $this->mymodel->selectDataOne('master_departemen', array('id' => $data['form_laporan_bulanan']['departemen']));
+		$master_bagian = $this->mymodel->selectDataOne('master_bagian', array('id' => $data['form_laporan_bulanan']['bagian']));
+		$data['sr'] = $this->mymodel->selectDataOne('pegawai', array('id' => $data['form_laporan_bulanan']['created_by']));
+		$data['kabag'] = $this->mymodel->selectDataOne('pegawai', array('id' => $data['form_laporan_bulanan']['id_kabag']));
+		$data['bagian'] = $master_bagian['nama'];
+		$data['departemen'] = $master_departemen['nama'];
+
+		$data['page_name'] = "form_laporan_bulanan";
+
+		$this->load->view('master/form_laporan_bulanan/cetak-form_laporan_bulanan', $data);
+	}
+
+
+	public function validasi($id)
+	{
+		$form_laporan_bulanan = $this->mymodel->selectDataone('form_laporan_bulanan', array('id' => $id));
+		$data['id'] = $form_laporan_bulanan['id'];
+		$data['page_name'] = "form_laporan_bulanan";
+
+		$this->load->view('master/form_laporan_bulanan/modal', $data);
+	}
+
+	public function validasi_act($id, $status)
+	{
+		if ($status == 'terima') {
+			if ($_SESSION['role_id'] == 1) {
+				$dt['status_bulanan'] = 3;
+			} else if ($_SESSION['role_id'] == 3) {
+				$dt['status_bulanan'] = 1;
+			}
+		} else {
+			if ($_SESSION['role_id'] == 1) {
+				$dt['status_bulanan'] = 2;
+			}
+		}
+		$str = $this->db->update('form_laporan_bulanan', $dt, array('id' => $id));
+		header('Location: ' . base_url('master/form_laporan_bulanan/'));
+	}
 
 	public function delete()
 	{
 		$id = $this->input->post('id', TRUE);
-		$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'form_laporan_bulanan'));
-
-		@unlink($file['dir']);
-
-		$this->mymodel->deleteData('file',  array('table_id' => $id, 'table' => 'form_laporan_bulanan'));
-		$str = $this->mymodel->deleteData('form_laporan_bulanan',  array('id' => $id));
-		return $str;
+		$dt['status'] = 'DISABLE';
+		$str = $this->db->update('form_laporan_bulanan', $dt, array('id' => $id));
+		header('Location: ' . base_url('master/form_laporan_bulanan/'));
 	}
 
 	public function delete_temuan($id)

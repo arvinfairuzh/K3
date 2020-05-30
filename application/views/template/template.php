@@ -35,7 +35,7 @@ if ($this->session->userdata('session_sop') == "") {
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/css/skins/_all-skins.min.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="<?= base_url('assets/') ?>bower_components/morris.js/morris.css">
+  <!-- <link rel="stylesheet" href="<?= base_url('assets/') ?>bower_components/morris.js/morris.css"> -->
   <!-- jvectormap -->
   <link rel="stylesheet" href="<?= base_url('assets/') ?>bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
@@ -45,15 +45,16 @@ if ($this->session->userdata('session_sop') == "") {
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-  <link href="<?= FAVICON ?>" rel=icon type=image/png> <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+  <link href="<?= FAVICON ?>" rel=icon type=image/png> 
+  <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
 
-  <!-- <style type="text/css">
+  <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Poppins:300,400,500,600,700|Raleway:300,400,500,600,700');
     body{
       font-family: Montserrat;
     }
 
-  </style> -->
+  </style>
 
   <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> -->
   <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/css/main.css">
@@ -107,12 +108,12 @@ if ($this->session->userdata('session_sop') == "") {
 
     idleLogout();
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script> -->
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 
   <style>
     .ui-autocomplete {
@@ -332,222 +333,7 @@ if ($this->session->userdata('session_sop') == "") {
 
 
 
-          <!-- ================================================================== -->
-
-          <li class="header">NAVIGATION MENU</li>
-          <li class="">
-            <a href="<?= base_url('assets/') ?>" target="_blank">
-              <i class="fa  fa-globe"></i> <span>Template Admin LTE</span>
-              <!-- <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span> -->
-            </a>
-          </li>
-          <li class="">
-            <a href="<?= base_url('crud-ajax') ?>">
-              <i class="mdi mdi-database-check"></i> <span>Template CRUD Ajax</span>
-              <!-- <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span> -->
-            </a>
-          </li>
-          <li class="">
-            <a href="<?= base_url('crud') ?>">
-              <i class="mdi mdi-cellphone-settings-variant"></i> <span>CRUD Generator</span>
-              <!-- <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span> -->
-            </a>
-          </li>
-          <li class="">
-            <a href="<?= base_url('dropdown') ?>">
-              <i class="mdi mdi-message-settings-variant"></i> <span>Dropdown Generator</span>
-              <!-- <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span> -->
-            </a>
-          </li>
-          <li class="">
-            <a href="<?= base_url('master/report') ?>">
-              <i class="mdi mdi-file"></i> <span>Report Generator</span>
-              <!-- <span class="pull-right-container">
-              <small class="label pull-right bg-green">on develop</small>
-            </span> -->
-            </a>
-          </li>
-          <li class="treeview ">
-            <a href="#">
-              <i class="fa fa-info"></i> <span>Role Permmision</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="">
-                <a href="<?= base_url('access/') ?>">
-                  <i class="mdi mdi-account-network"></i> <span>Access Control</span>
-                  <!-- <span class="pull-right-container">
-                  <small class="label pull-right bg-green">new</small>
-                </span> -->
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('master/menu_master') ?>">
-                  <i class="mdi mdi-folder-network"></i> <span>Master Menu</span>
-
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('master/role') ?>">
-                  <i class="fa fa-info"></i> <span>Role</span>
-
-                </a>
-              </li>
-            </ul>
-          </li>
-
-
-          <li class="">
-            <a href="<?= base_url('home/chart') ?>">
-              <i class="fa fa-bar-chart"></i> <span>Chart</span>
-
-            </a>
-          </li>
-          <li class="treeview ">
-            <a href="#">
-              <i class="mdi mdi-folder-account"></i> <span>Master</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li>
-                <a href="<?= base_url('master/site') ?>"><i class="mdi mdi-checkbox-multiple-blank-circle"></i> Example
-                  <span class="pull-right-container">
-                    <small class="label pull-right bg-green">Serverside</small>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="<?= base_url('master/site/site_custom') ?>"><i class="mdi mdi-checkbox-multiple-blank-circle"></i> Example
-                  <span class="pull-right-container">
-                    <small class="label pull-right bg-green">Custom</small>
-                  </span>
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('master/user') ?>"><i class="mdi mdi-human-child"></i> User</a>
-              </li>
-
-            </ul>
-          </li>
-
-          <li class="treeview ">
-            <a href="#">
-              <i class="mdi mdi-printer"></i> <span>Export Document</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-
-              <li class="">
-                <a href="<?= base_url('page/landscape') ?>" target="_blank"><i class="mdi mdi-crop-landscape"></i> Landscape</a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('page/portrait') ?>" target="_blank"><i class="mdi mdi-crop-portrait"></i> Portrait</a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('fitur/toPdf') ?>" target="_blank"><i class="mdi mdi-crop-portrait"></i> PDF</a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('tes/tesMpdf') ?>" target="_blank"><i class="mdi mdi-crop-portrait"></i> MPDF</a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('tes/tesHpdf') ?>" target="_blank"><i class="mdi mdi-crop-portrait"></i> HTML 2 PDF</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="">
-            <a href="<?= base_url('backupdb') ?>">
-              <i class="fa fa-hdd-o"></i> <span>Backup Database</span>
-
-            </a>
-          </li>
-
-          <li class="">
-            <a href="<?= base_url('sendemail') ?>">
-              <i class="fa fa-envelope"></i> <span>Send Email</span>
-
-            </a>
-          </li>
-
-
-          <li class="">
-            <a href="<?= base_url('log_aktivitas') ?>">
-              <i class="fa fa-history"></i> <span>Log Aktivitas</span>
-
-            </a>
-          </li>
-
-          <li class="treeview ">
-            <a href="#">
-              <i class="fa fa-cogs"></i> <span>Library and Config</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="">
-                <a href="<?= base_url('master/konfig') ?>">
-                  <i class="mdi mdi-cogs"></i> <span>Application</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('debug/validation-form') ?>">
-                  <i class="fa fa-bell"></i> <span>Form Validation</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('UploadImage') ?>">
-                  <i class="mdi mdi-cloud-upload-outline"></i> <span>Image Upload</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('uploader') ?>">
-                  <i class="fa fa-upload"></i> <span>Uploader</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('apiDoc') ?>" target="_blank">
-                  <i class="mdi mdi-phone"></i> <span>ApiDoc.js</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="https://cdn.materialdesignicons.com/3.0.39/" target="_blank">
-                  <i class="mdi mdi-material-design"></i> <span>MDI Icon</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('tinymce') ?>" target="_blank">
-                  <i class="fa fa-book"></i> <span>Tinymce</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('tablednd') ?>" target="">
-                  <i class="fa fa-hand-paper-o"></i> <span>Table Drag And Drop</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="<?= base_url('form-input') ?>" target="">
-                  <i class="fa fa-list-alt"></i> <span>Form Input</span>
-                </a>
-              </li>
-
-
-            </ul>
-          </li>
+          
 
         </ul>
       </section>
@@ -574,13 +360,13 @@ if ($this->session->userdata('session_sop') == "") {
     $.widget.bridge('uibutton', $.ui.button);
   </script>
   <!-- Canvas JS -->
-  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
   <!-- Bootstrap 3.3.7 -->
   <script src="<?= base_url('assets/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Morris.js charts -->
   <script src="<?= base_url('assets/') ?>bower_components/select2/dist/js/select2.full.min.js"></script>
   <script src="<?= base_url('assets/') ?>bower_components/raphael/raphael.min.js"></script>
-  <script src="<?= base_url('assets/') ?>bower_components/morris.js/morris.min.js"></script>
+  <!-- <script src="<?= base_url('assets/') ?>bower_components/morris.js/morris.min.js"></script> -->
   <!-- Sparkline -->
   <script src="<?= base_url('assets/') ?>bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
   <!-- jvectormap -->
@@ -603,7 +389,7 @@ if ($this->session->userdata('session_sop') == "") {
   <!-- AdminLTE App -->
   <script src="<?= base_url('assets/') ?>dist/js/adminlte.min.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="<?= base_url('assets/') ?>dist/js/pages/dashboard.js"></script>
+  <!-- <script src="<?= base_url('assets/') ?>dist/js/pages/dashboard.js"></script> -->
   <!-- AdminLTE for demo purposes -->
   <script src="<?= base_url('assets/') ?>dist/js/demo.js"></script>
   <script type="text/javascript">

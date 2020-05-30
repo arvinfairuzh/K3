@@ -1,176 +1,312 @@
 <!-- Content Wrapper. Contains page content -->
-<form method="POST" action="<?= base_url('master/Pegawai/update') ?>" id="upload-create" enctype="multipart/form-data">
-  <input type="hidden" name="id" value="<?= $pegawai['id'] ?>">
-  <div class="show_error"></div>
-  <div class="form-group">
+<style>
+  #hidden_div_1,
+  #hidden_div_2,
+  #hidden_div_3,
+  #hidden_div_4,
+  #hidden_div_5 {
+    display: none;
+  }
+</style>
 
-    <label for="form-NIK">NIK</label>
+<div class="content-wrapper">
 
-    <input type="text" class="form-control" id="form-NIK" placeholder="Masukan NIK" name="dt[nip]" value="<?= $pegawai['nip'] ?>">
+  <!-- Content Header (Page header) -->
 
-  </div>
-  <div class="form-group">
+  <section class="content-header">
 
-    <label for="form-nama">Nama</label>
+    <h1>
 
-    <input type="text" class="form-control" id="form-nama" placeholder="Masukan Nama" name="dt[nama]" value="<?= $pegawai['nama'] ?>">
+      Pegawai
 
-  </div>
-  <div class="form-group">
+      <small>Edit</small>
 
-    <label for="form-id_shift">Shift</label>
+    </h1>
 
-    <select style='width:100%' name="dt[id_shift]" class="form-control select2">
+    <ol class="breadcrumb">
 
-      <?php
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 
-      $master_shift = $this->mymodel->selectWhere('master_shift', null);
+      <li><a href="#">Master</a></li>
 
-      foreach ($master_shift as $master_shift_record) {
+      <li class="#">Pegawai</li>
 
-        $text = "";
+      <li class="active">Edit</li>
 
-        if ($master_shift_record['id'] == $pegawai['id_shift']) {
+    </ol>
 
-          $text = "selected";
-        }
+  </section>
 
+  <!-- Main content -->
 
+  <section class="content">
 
-        echo "<option value=" . $master_shift_record['id'] . " " . $text . " >" . $master_shift_record['nama'] . "</option>";
-      }
+    <form method="POST" action="<?= base_url('master/Pegawai/update') ?>" id="upload-create" enctype="multipart/form-data">
 
-      ?>
+      <input type="hidden" name="id" value="<?= $pegawai['id'] ?>">
 
-    </select>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-header">
+              <h5 class="box-title">
+                Edit Pegawai
+              </h5>
+            </div>
+            <div class="box-body">
+              <div class="show_error"></div>
+              <div class="form-group">
 
-  </div>
-  <div class="form-group">
-    <label for="form-id_departemen">Departemen</label>
-    <select style='width:100%' name="dt[id_departemen]" class="form-control select2">
-      <?php
-      $master_departemen = $this->mymodel->selectWhere('master_departemen', null);
-      foreach ($master_departemen as $master_departemen_record) {
-        $text = "";
-        if ($master_departemen_record['id'] == $pegawai['id_departemen']) {
-          $text = "selected";
-        }
-        echo "<option value=" . $master_departemen_record['id'] . " " . $text . " >" . $master_departemen_record['nama'] . "</option>";
-      }
-      ?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="form-id_bagian">Bagian</label>
-    <select style='width:100%' name="dt[id_bagian]" class="form-control select2">
-      <?php
-      $master_bagian = $this->mymodel->selectWhere('master_bagian', null);
-      foreach ($master_bagian as $master_bagian_record) {
-        $text = "";
-        if ($master_bagian_record['id'] == $pegawai['id_bagian']) {
-          $text = "selected";
-        }
-        echo "<option value=" . $master_bagian_record['id'] . " " . $text . " >" . $master_bagian_record['nama'] . "</option>";
-      }
-      ?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="form-id_kompartemen">Kompartemen</label>
-    <select style='width:100%' name="dt[id_kompartemen]" class="form-control select2">
-      <?php
-      $master_kompartemen = $this->mymodel->selectWhere('master_kompartemen', null);
-      foreach ($master_kompartemen as $master_kompartemen_record) {
-        $text = "";
-        if ($master_kompartemen_record['id'] == $pegawai['id_kompartemen']) {
-          $text = "selected";
-        }
-        echo "<option value=" . $master_kompartemen_record['id'] . " " . $text . " >" . $master_kompartemen_record['nama'] . "</option>";
-      }
-      ?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="form-id_jabatan">Jabatan</label>
-    <select style='width:100%' name="dt[id_jabatan]" class="form-control select2">
-      <?php
-      $master_jabatan = $this->mymodel->selectWhere('master_jabatan', null);
-      foreach ($master_jabatan as $master_jabatan_record) {
-        $text = "";
-        if ($master_jabatan_record['id'] == $pegawai['id_jabatan']) {
-          $text = "selected";
-        }
-        echo "<option value=" . $master_jabatan_record['id'] . " " . $text . " >" . $master_jabatan_record['nama'] . "</option>";
-      }
-      ?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="form-id_role">Hak Akses</label>
-    <select style='width:100%' name="dt[id_role]" class="form-control select2">
-      <?php
-      $role = $this->mymodel->selectWhere('role', null);
-      foreach ($role as $role_record) {
-        $text = "";
-        if ($role_record['id'] == $pegawai['id_role']) {
-          $text = "selected";
-        }
-        echo "<option value=" . $role_record['id'] . " " . $text . " >" . $role_record['role'] . "</option>";
-      }
-      ?>
-    </select>
-  </div><?php
+                <label for="form-nip">NIK</label>
 
-        if ($file['dir'] != "") {
+                <input type="text" class="form-control" id="form-nip" placeholder="Masukan NIK" name="dt[nip]" value="<?= $pegawai['nip'] ?>">
 
-          $types = explode("/", $file['mime']);
+              </div>
+              <div class="form-group">
 
-          if ($types[0] == "image") {
+                <label for="form-nama">Nama</label>
 
-            ?>
+                <input type="text" class="form-control" id="form-nama" placeholder="Masukan Nama" name="dt[nama]" value="<?= $pegawai['nama'] ?>">
 
-      <img src="<?= base_url($file['dir']) ?>" style="width: 200px" class="img img-thumbnail">
+              </div>
+              <div class="form-group">
 
-      <br>
+                <label for="form-id_role">Role</label>
+                <select style='width:100%' id="role" name="dt[id_role]" class="form-control select2">
+                  <?php
+                  $role = $this->mymodel->selectWhere('role', null);
+                  foreach ($role as $role_record) {
+                    $text = "";
+                    if ($role_record['id'] == $pegawai['id_role']) {
+                      $text = "selected";
+                    }
+                    echo "<option value=" . $role_record['id'] . " " . $text . " >" . $role_record['role'] . "</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group" id="hidden_div_1">
 
-    <?php } else { ?>
+                <label for="form-id_shift">Shift</label>
+                <select style='width:100%' name="dt[id_shift]" class="form-control select2">
+                  <?php
+                  $master_shift = $this->mymodel->selectWhere('master_shift', null);
+                  foreach ($master_shift as $master_shift_record) {
+                    $text = "";
+                    if ($master_shift_record['id'] == $pegawai['id_shift']) {
+                      $text = "selected";
+                    }
+                    echo "<option value=" . $master_shift_record['id'] . " " . $text . " >" . $master_shift_record['nama'] . "</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group" id="hidden_div_2">
 
+                <label for="form-id_kompartemen">Kompartemen</label>
+                <select style='width:100%' id="kompartemen" name="dt[id_kompartemen]" class="form-control select2">
+                  <?php
+                  $master_kompartemen = $this->mymodel->selectWhere('master_kompartemen', null);
+                  foreach ($master_kompartemen as $master_kompartemen_record) {
+                    $text = "";
+                    if ($master_kompartemen_record['id'] == $pegawai['id_kompartemen']) {
+                      $text = "selected";
+                    }
+                    echo "<option value=" . $master_kompartemen_record['id'] . " " . $text . " >" . $master_kompartemen_record['nama'] . "</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group" id="hidden_div_3">
 
+                <label for="form-id_departemen">Departemen</label>
+                <select style='width:100%' id="departemen" name="dt[id_departemen]" class="form-control select2">
+                  <?php
+                  $master_departemen = $this->mymodel->selectWhere('master_departemen', null);
+                  foreach ($master_departemen as $master_departemen_record) {
+                    $text = "";
+                    if ($master_departemen_record['id'] == $pegawai['id_departemen']) {
+                      $text = "selected";
+                    }
+                    echo "<option value=" . $master_departemen_record['id'] . " " . $text . " >" . $master_departemen_record['nama'] . "</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group" id="hidden_div_4">
 
-      <i class="fa fa-file fa-5x text-danger"></i>
+                <label for="form-id_bagian">Bagian</label>
+                <select style='width:100%' id="bagian" name="dt[id_bagian]" class="form-control select2">
+                  <?php
+                  $master_bagian = $this->mymodel->selectWhere('master_bagian', null);
+                  foreach ($master_bagian as $master_bagian_record) {
+                    $text = "";
+                    if ($master_bagian_record['id'] == $pegawai['id_bagian']) {
+                      $text = "selected";
+                    }
+                    echo "<option value=" . $master_bagian_record['id'] . " " . $text . " >" . $master_bagian_record['nama'] . "</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group" id="hidden_div_5">
 
-      <br>
-
-      <a href="<?= base_url($file['dir']) ?>" target="_blank"><i class="fa fa-download"></i> <?= $file['name'] ?></a>
-
-      <br>
-
-      <br>
-
-    <?php } ?>
-
-  <?php } ?><div class="form-group">
-
-    <label for="form-file">Foto</label>
-
-    <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file">
-
-  </div>
-  <hr>
-
-  <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>
-
-  <button type="reset" class="btn btn-danger"><i class="fa fa-refresh"></i> Reset</button>
-
-
-
-
-</form>
-
+                <label for="form-id_jabatan">Jabatan</label>
+                <select style='width:100%' name="dt[id_jabatan]" class="form-control select2">
+                  <?php
+                  $master_jabatan = $this->mymodel->selectWhere('master_jabatan', null);
+                  foreach ($master_jabatan as $master_jabatan_record) {
+                    $text = "";
+                    if ($master_jabatan_record['id'] == $pegawai['id_jabatan']) {
+                      $text = "selected";
+                    }
+                    echo "<option value=" . $master_jabatan_record['id'] . " " . $text . " >" . $master_jabatan_record['nama'] . "</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+              <?php
+              if ($file['dir'] != "") {
+                $types = explode("/", $file['mime']);
+                if ($types[0] == "image") {
+                  ?>
+                  <img src="<?= base_url($file['dir']) ?>" style="width: 200px" class="img img-thumbnail">
+                  <br>
+                <?php } else { ?>
+                  <i class="fa fa-file fa-5x text-danger"></i>
+                  <br>
+                  <a href="<?= base_url($file['dir']) ?>" target="_blank"><i class="fa fa-download"></i> <?= $file['name'] ?></a>
+                  <br>
+                  <br>
+                <?php } ?>
+              <?php } ?>
+              <div class="form-group">
+                <label for="form-file">File</label>
+                <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file">
+              </div>
+            </div>
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>
+              <button type="reset" class="btn btn-danger"><i class="fa fa-refresh"></i> Reset</button>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </form>
+  </section>
+  <!-- /.content -->
+</div>
 
 <!-- /.content-wrapper -->
 
 <script type="text/javascript">
+  function showDiv(value) {
+    if (value == 0) {
+      document.getElementById('hidden_div_1').style.display = 'none';
+      document.getElementById('hidden_div_2').style.display = 'none';
+      document.getElementById('hidden_div_3').style.display = 'none';
+      document.getElementById('hidden_div_4').style.display = 'none';
+      document.getElementById('hidden_div_5').style.display = 'none';
+    } else if (value == 2) {
+      document.getElementById('hidden_div_1').style.display = 'none';
+      document.getElementById('hidden_div_2').style.display = 'block';
+      document.getElementById('hidden_div_3').style.display = 'none';
+      document.getElementById('hidden_div_4').style.display = 'none';
+      document.getElementById('hidden_div_5').style.display = 'block';
+    } else if (value == 4) {
+      document.getElementById('hidden_div_1').style.display = 'none';
+      document.getElementById('hidden_div_2').style.display = 'block';
+      document.getElementById('hidden_div_3').style.display = 'block';
+      document.getElementById('hidden_div_4').style.display = 'none';
+      document.getElementById('hidden_div_5').style.display = 'block';
+    } else if (value == 3) {
+      document.getElementById('hidden_div_1').style.display = 'none';
+      document.getElementById('hidden_div_2').style.display = 'block';
+      document.getElementById('hidden_div_3').style.display = 'block';
+      document.getElementById('hidden_div_4').style.display = 'block';
+      document.getElementById('hidden_div_5').style.display = 'block';
+    } else {
+      document.getElementById('hidden_div_1').style.display = 'block';
+      document.getElementById('hidden_div_2').style.display = 'block';
+      document.getElementById('hidden_div_3').style.display = 'block';
+      document.getElementById('hidden_div_4').style.display = 'block';
+      document.getElementById('hidden_div_5').style.display = 'block';
+    }
+  }
+
+  $("#role").change(function() {
+    showDiv($("#role").val());
+  });
+
+  showDiv($("#role").val());
+  
+  function get_departemen(id_kompartemen) {
+    console.log(id_kompartemen);
+    if (id_kompartemen) {
+      $.ajax({
+        url: "<?= base_url() ?>ajax/get_departemen/" + id_kompartemen,
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          $("#departemen").empty();
+          if (!$.trim(data)) {
+            $("#departemen").append('<option value="">Data Tidak Ditemukan</option>');
+          } else {
+            $.each(data, function(key, value) {
+              $("#departemen").append('<option value="' +
+                value.id + '">' + value.nama +
+                '</option>');
+            });
+          }
+          get_bagian($("#departemen").val());
+        }
+      });
+    } else {
+      $("#departemen").empty();
+      $("#departemen").append('<option value="">-Mohon Pilih pic Terlebih Dahulu-</option>');
+    }
+  }
+
+  function get_bagian(id_departemen) {
+    console.log(id_departemen);
+    if (id_departemen) {
+      $.ajax({
+        url: "<?= base_url() ?>ajax/get_bagian/" + id_departemen,
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          $("#bagian").empty();
+          if (!$.trim(data)) {
+            $("#bagian").append('<option value="">Data Tidak Ditemukan</option>');
+          } else {
+            $.each(data, function(key, value) {
+              $("#bagian").append('<option value="' +
+                value.id + '">' + value.nama +
+                '</option>');
+            });
+          }
+        }
+      });
+    } else {
+      $("#bagian").empty();
+      $("#bagian").append('<option value="">-Mohon Pilih pic Terlebih Dahulu-</option>');
+    }
+  }
+
+  $("#kompartemen").change(function() {
+    get_departemen($("#kompartemen").val());
+    get_bagian($("#departemen").val());
+  });
+  $("#departemen").change(function() {
+    get_bagian($("#departemen").val());
+  });
+
   $("#upload-create").submit(function() {
 
     var form = $(this);
@@ -211,10 +347,7 @@
 
           setTimeout(function() {
 
-            // window.location.href = "<?= base_url('master/Pegawai') ?>";
-            $("#load-table").html('');
-            loadtable($("#select-status").val());
-            $("#modal-form").modal('hide');
+            window.location.href = "<?= base_url('master/Pegawai') ?>";
 
           }, 1000);
 

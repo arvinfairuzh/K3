@@ -60,20 +60,11 @@
 
               <div class="col-md-6">
 
-                <div class="pull-right"> <a href="javascript::void(0)" onclick="create()">
+                <div class="pull-right"> <a href="<?= base_url('master/Pegawai/create') ?>">
 
                     <button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Data</button>
 
                   </a>
-
-
-                  <a href="<?= base_url('fitur/ekspor/pegawai') ?>" target="_blank">
-
-                    <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-file-excel-o"></i> Ekspor Data</button>
-
-                  </a>
-
-                  <button type="button" class="btn btn-sm btn-info" onclick="$('#modal-impor').modal()"><i class="fa fa-file-excel-o"></i> Import Data</button>
 
                 </div>
 
@@ -120,38 +111,6 @@
 </div>
 
 <!-- /.content-wrapper -->
-
-<div class="modal fade bd-example-modal-sm" tabindex="-1" pegawai="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-form">
-
-  <div class="modal-dialog modal-md">
-
-    <div class="modal-content">
-
-
-      <div class="modal-header">
-
-        <h5 class="modal-title" id="title-form"></h5>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-          <span aria-hidden="true">&times;</span>
-
-        </button>
-
-      </div>
-
-      <div class="modal-body">
-        <div id="load-form"></div>
-
-      </div>
-
-
-
-    </div>
-
-  </div>
-
-</div>
 
 
 <div class="modal fade bd-example-modal-sm" tabindex="-1" pegawai="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-delete">
@@ -259,7 +218,7 @@
 
       '     <tr class="bg-success">' +
 
-      '       <th style="width:20px">No</th>' + '<th>NIK</th>' + '<th>Nama</th>' + '<th>Shift</th>' + '<th>Departemen</th>' + '<th>Bagian</th>' + '<th>Kompartemen</th>' + '<th>Jabatan</th>' + '<th>Hak Akses</th>' + '       <th style="width:150px">Status</th>' +
+      '       <th style="width:20px">No</th>' + '<th>NIK</th>' + '<th>Nama</th>' + '<th>Shift</th>' + '<th>Kompartemen</th>' + '<th>Departemen</th>' + '<th>Bagian</th>' + '<th>Jabatan</th>' + '<th>Role</th>' + '       <th style="width:150px">Status</th>' +
 
       '       <th style="width:150px"></th>' +
 
@@ -326,31 +285,80 @@
         }, {
           "data": "nama"
         }, {
-          "data": "id_shift"
+          "data": "shift"
         }, {
-          "data": "id_departemen"
+          "data": "kompartemen"
         }, {
-          "data": "id_bagian"
+          "data": "departemen"
         }, {
-          "data": "id_kompartemen"
+          "data": "bagian"
         }, {
-          "data": "id_jabatan"
+          "data": "jabatan"
         }, {
-          "data": "id_role"
+          "data": "role"
         },
 
         {
           "data": "status"
         },
+
         {
           "data": "view",
+
           "orderable": false
+
         }
+
       ],
+
       order: [
         [1, 'asc']
       ],
-      columnDefs: [
+
+      columnDefs: [{
+          targets: [3],
+          render: function(data, type, row, meta) {
+            if (row['id_role'] == 1) {
+              var htmls = row['shift'];
+            } else {
+              var htmls = "<span class='badge badge-pill badge-secondary'>Tidak Tersedia</span>"
+            }
+            return htmls;
+          }
+        },
+        {
+          targets: [4],
+          render: function(data, type, row, meta) {
+            if (row['id_role'] != 0) {
+              var htmls = row['kompartemen'];
+            } else {
+              var htmls = "<span class='badge badge-pill badge-secondary'>Tidak Tersedia</span>"
+            }
+            return htmls;
+          }
+        },
+        {
+          targets: [5],
+          render: function(data, type, row, meta) {
+            if (row['id_role'] != 0 && row['id_role'] != 2) {
+              var htmls = row['departemen'];
+            } else {
+              var htmls = "<span class='badge badge-pill badge-secondary'>Tidak Tersedia</span>"
+            }
+            return htmls;
+          }
+        },
+        {
+          targets: [6],
+          render: function(data, type, row, meta) {
+            if (row['id_role'] != 0 && row['id_role'] != 2 && row['id_role'] != 4) {
+              var htmls = row['bagian'];
+            } else {
+              var htmls = "<span class='badge badge-pill badge-secondary'>Tidak Tersedia</span>"
+            }
+            return htmls;
+          }
+        },
         {
           targets: [9],
           render: function(data, type, row, meta) {
@@ -359,24 +367,30 @@
                 '    <button type="button" class="btn btn-sm btn-sm btn-success"><i class="fa fa-home"></i> ENABLE</button>' +
                 '</a>';
             } else {
-
               var htmls = '<a href="<?= base_url('master/Pegawai/status/') ?>' + row['id'] + '/ENABLE">' +
-
                 '    <button type="button" class="btn btn-sm btn-sm btn-danger"><i class="fa fa-home"></i> DISABLE</button>' +
-
                 '</a>';
             }
             return htmls;
           }
         }
+
       ],
+
       rowCallback: function(row, data, iDisplayIndex) {
+
         var info = this.fnPagingInfo();
+
         var page = info.iPage;
+
         var length = info.iLength;
+
         var index = page * length + (iDisplayIndex + 1);
+
         $('td:eq(0)', row).html(index);
+
       }
+
     });
 
   }
@@ -391,27 +405,9 @@
 
   function edit(id) {
 
-    // location.href = "<?= base_url('master/Pegawai/edit/') ?>"+id;
-    $("#load-form").html('loading...');
-
-    $("#modal-form").modal();
-    $("#title-form").html('Edit Data');
-    $("#load-form").load("<?= base_url('master/Pegawai/edit/') ?>" + id);
+    location.href = "<?= base_url('master/Pegawai/edit/') ?>" + id;
 
   }
-
-  function create() {
-    $("#load-form").html('loading...');
-
-    // location.href = "<?= base_url('master/Pegawai/edit/') ?>"+id;
-    $("#modal-form").modal();
-    $("#title-form").html('Create Data');
-    $("#load-form").load("<?= base_url('master/Pegawai/create/') ?>");
-
-  }
-
-
-
 
   function hapus(id) {
 

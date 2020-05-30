@@ -1,49 +1,37 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Home extends MY_Controller {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-	public function index()
-	{
-		$data['page_name'] = "home";
-		$this->template->load('template/template','template/index',$data);
-		
-	}
-
-    function chart($value='')
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+class Home extends MY_Controller
+{
+    public function __construct()
     {
-        $data['page_name'] = "chart";
-        $this->template->load('template/template','chartscanvasjs/index',$data);
+        parent::__construct();
     }
-
-
-
-    function get_autocomplete(){
-        if (isset($_GET['term'])) {
-        	$this->db->like('name',$_GET['term'],'both');
-            $result = $this->mymodel->selectWhere('user',null);
-            if (count($result) > 0) {
-            foreach ($result as $row)
-                $arr_result[] = [
-                				'id'=>$row['id'],
-                				'label'=>$row['name']
-                				];
-
-                echo json_encode($arr_result);
-            }
-        }
-    }
-
-
-    public function tes()
+    public function index()
     {
-        echo "'".$this->template->sonDecode('V7-BW2sw1V5UHGX51TW3mmm1s87WfWK0-3_tBBlBpbU~')."'";
-        
+        $month = date('Y-m');
+        $year = date('Y');
+        $data['chart'] = $this->mymodel->selectWithQuery("SELECT 
+        DATE_FORMAT(tanggal, '%Y-%m-%d') as date, 
+        COUNT(id) as value 
+        FROM form_laporan_bulanan
+        WHERE DATE_FORMAT(tanggal, '%Y-%m') = '$month'
+        GROUP BY DATE_FORMAT(tanggal, '%Y-%m-%d')");
+
+        $data['chart_2'] = $this->mymodel->selectWithQuery("SELECT 
+        DATE_FORMAT(tanggal, '%M %Y') as date, 
+        COUNT(id) as value 
+        FROM hasil_rapat
+        WHERE DATE_FORMAT(tanggal, '%Y') = '$year'
+        GROUP BY DATE_FORMAT(tanggal, '%M %Y')");
+
+        $data['data1'] = $this->mymodel->selectWithQuery("SELECT COUNT(id) as value FROM pegawai");
+
+        $data['data2'] = $this->mymodel->selectWithQuery("SELECT COUNT(id) as value FROM form_laporan_bulanan");
+
+        $data['data3'] = $this->mymodel->selectWithQuery("SELECT COUNT(id) as value FROM hasil_rapat");
+
+        $data['page_name'] = "home";
+        $this->template->load('template/template', 'template/index', $data);
     }
-
-   
-
 }
 /* End of file Home.php */
 /* Location: ./application/controllers/Home.php */

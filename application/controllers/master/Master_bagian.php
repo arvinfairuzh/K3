@@ -42,7 +42,8 @@
 
 			$this->form_validation->set_error_delimiters('<li>', '</li>');
 
-	$this->form_validation->set_rules('dt[nama]', '<strong>Nama</strong>', 'required');
+	$this->form_validation->set_rules('dt[id_departemen]', '<strong>Id Departemen</strong>', 'required');
+$this->form_validation->set_rules('dt[nama]', '<strong>Nama</strong>', 'required');
 	}
 
 
@@ -177,7 +178,7 @@
 
 			header('Content-Type: application/json');
 
-	        $this->datatables->select('id,nama,status');
+	        $this->datatables->select('id,id_departemen,nama,status');
 
 	        $this->datatables->where('status',$status);
 
