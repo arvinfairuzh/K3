@@ -368,7 +368,7 @@
                                 <textarea  class="form-control" id="form-snp_ya_1"  name="dt[snp_ya_1]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo14" style="display:none">
-                                <label for="form-snp_tidak_1">Apakah prosedur/instruksi kerja perlu diperbaiki ? Jelaskan.</label>
+                                <label for="form-snp_tidak_1">Apakah prosedur/instruksi kerja perlu dibuat ? Jelaskan.</label>
                                 <textarea  class="form-control" id="form-snp_tidak_1"  name="dt[snp_tidak_1]"></textarea>
                             </div>
                             <div class="form-group">

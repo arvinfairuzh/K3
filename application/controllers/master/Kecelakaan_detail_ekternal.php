@@ -156,6 +156,27 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 		$this->template->load('template/template', 'master/kecelakaan_detail_ekternal/edit-kecelakaan_detail_ekternal', $data);
 	}
 
+	public function detail($id)
+	{
+		$data['kecelakaan_main'] = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$datamain = $data['kecelakaan_main'];
+		$data['kecelakaan_detail_ekternal'] = $this->mymodel->selectDataone('kecelakaan_detail_ekternal', array('id_kecelakaan' => $datamain['id']));
+
+		$data['page_name'] = "kecelakaan_detail_ekternal";
+
+		$this->template->load('template/template', 'master/kecelakaan_detail_ekternal/detail-kecelakaan_detail_ekternal', $data);
+	}
+
+	public function cetak($id)
+	{
+		$data['kecelakaan_main'] = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$datamain = $data['kecelakaan_main'];
+		$data['kecelakaan_detail_ekternal'] = $this->mymodel->selectDataone('kecelakaan_detail_ekternal', array('id_kecelakaan' => $datamain['id']));
+
+		$data['page_name'] = "kecelakaan_detail_ekternal";
+
+		$this->load->view('master/kecelakaan_detail_ekternal/cetak-kecelakaan_detail_ekternal', $data);
+	}
 
 
 

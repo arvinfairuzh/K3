@@ -402,7 +402,7 @@
                                 <input type="text" class="form-control" id="form-wp_tidak_q1" placeholder="Masukan Wp Tidak Q1" name="dt[wp_tidak_q1]" value="<?= $kecelakaan_detail_ekternal['wp_tidak_q1'] ?>">
                             </div>
                             <div class="form-group" id="ifNo7" style="display:none">
-                                <label for="form-wp_tidak_q2">Mengapa hal tersebut dilakukan ?</label>
+                                <label for="form-wp_tidak_q2">Siapa yang memperintahkan ?</label>
                                 <input type="text" class="form-control" id="form-wp_tidak_q2" placeholder="Masukan Wp Tidak Q2" name="dt[wp_tidak_q2]" value="<?= $kecelakaan_detail_ekternal['wp_tidak_q2'] ?>">
                             </div>
                             <div class="form-group">
@@ -415,7 +415,7 @@
                                 $simper1 = 'unchecked';
                                 $stnk = 'unchecked';
 
-                                $selected_radio = $kecelakaan_detail_internal['pttk_kondisi_lingkungan'];
+                                $selected_radio = $kecelakaan_detail_internal['wp_persyaratan_administrasi'];
                                 if ($selected_radio == 'simpol') {
                                     $simpol = 'checked';
                                 } else if ($selected_radio == 'simper') {
@@ -520,7 +520,7 @@
                                 $jalanmacet = 'unchecked';
                                 $lainya = 'unchecked';
 
-                                $selected_radio = $kecelakaan_detail_internal['pttk_kondisi_lingkungan'];
+                                $selected_radio = $kecelakaan_detail_ekternal['pttk_kondisi_lingkungan'];
                                 if ($selected_radio == 'Hujan') {
                                     $hujan = 'checked';
                                 } else if ($selected_radio == 'Licin') {

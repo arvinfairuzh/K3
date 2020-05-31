@@ -239,6 +239,27 @@ class Kecelakaan_detail_internal extends MY_Controller
 
 		$this->template->load('template/template', 'master/kecelakaan_detail_internal/edit-kecelakaan_detail_internal', $data);
 	}
+	public function detail($id)
+	{
+		$data['kecelakaan_main'] = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$datamain = $data['kecelakaan_main'];
+		$data['kecelakaan_detail_internal'] = $this->mymodel->selectDataone('kecelakaan_detail_internal', array('id_kecelakaan' => $datamain['id']));
+
+		$data['page_name'] = "kecelakaan_detail_internal";
+
+		$this->template->load('template/template', 'master/kecelakaan_detail_internal/detail-kecelakaan_detail_internal', $data);
+	}
+
+	public function cetak($id)
+	{
+		$data['kecelakaan_main'] = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$datamain = $data['kecelakaan_main'];
+		$data['kecelakaan_detail_internal'] = $this->mymodel->selectDataone('kecelakaan_detail_internal', array('id_kecelakaan' => $datamain['id']));
+
+		$data['page_name'] = "kecelakaan_detail_internal";
+
+		$this->load->view('master/kecelakaan_detail_internal/cetak-kecelakaan_detail_internal', $data);
+	}
 
 
 	public function delete()
