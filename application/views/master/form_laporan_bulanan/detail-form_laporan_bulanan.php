@@ -26,14 +26,14 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Form Laporan Bulanan
-            <small>Edit</small>
+            Laporan Bulanan
+            <small>Detail</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Master</a></li>
-            <li class="#">Form Laporan Bulanan</li>
-            <li class="active">Edit</li>
+            <li class="#">Laporan Bulanan</li>
+            <li class="active">Detail</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -47,10 +47,29 @@
                             <h4><b>DAFTAR PERIKSA (CHECKLIST) SAFETY PATROL OLEH SAFETY REPRESENTATIIVE ATAU SUB P2K3</b></h4>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
-                            <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
                             <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
-                            <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                            <?php
+                            if ($_SESSION['role_id'] == 1) {
+                                if ($form_laporan_bulanan['status_bulanan'] == 1) {
+                                    ?>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                <?php
+                                    }
+                                    ?>
+                                <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
+                                <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                                <?php
+                                } else if ($_SESSION['role_id'] == 3) {
+                                    if ($form_laporan_bulanan['status_bulanan'] == 0 || $form_laporan_bulanan['status_bulanan'] == 2) {
+                                        ?>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                <?php
+                                    }
+                                    ?>
+                                <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="box-body">
@@ -209,7 +228,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="bg-info">
                                                 <th>NO.</th>
                                                 <th>HASIL TEMUAN</th>
                                                 <th>TEMUAN BERULANG KE</th>
@@ -225,16 +244,15 @@
                                                 $id_hasil_temuan = $ht['id'];
                                                 $kode_hasil_temuan = $ht['kode'];
                                                 $hasil_temuan = $ht['nama'];
-                                                $form_tindak_lanjut = $this->mymodel->selectWithQuery("SELECT * FROM form_tindak_lanjut WHERE jenis = '$kode_hasil_temuan'");
+                                                $id_laporan = $form_laporan_bulanan['id'];
+                                                $form_tindak_lanjut = $this->mymodel->selectWithQuery("SELECT * FROM form_tindak_lanjut WHERE jenis = '$kode_hasil_temuan' AND id_laporan = $id_laporan");
+                                                $kosong = '';
+                                                if (!$form_tindak_lanjut) {
+                                                    $kosong = '(Kosong)';
+                                                }
                                                 ?>
                                                 <tr>
-                                                    <th colspan="2"><?= $hasil_temuan ?></th>
-                                                    <td>
-                                                        <?= $ftl['ke'] ?>
-                                                    </td>
-                                                    <td>
-                                                        <?= $ftl['tindak_lanjut'] ?></textarea>
-                                                    </td>
+                                                    <th colspan="4"><?= $hasil_temuan ?> <?= $kosong ?></th>
                                                 </tr>
                                                 <?php
                                                     $no = 0;
@@ -250,6 +268,12 @@
                                                             <?= $ftl['ke'] ?>
                                                         </td>
                                                         <td>
+                                                            <?php
+                                                                    if ($ftl['gambar'] != "") {
+                                                                        ?>
+                                                                <img src="<?= base_url($ftl['gambar']) ?>" style="width: 200px" class="img img-thumbnail">
+                                                                <br>
+                                                            <?php } ?>
                                                             <?= $ftl['tindak_lanjut'] ?></textarea>
                                                         </td>
                                                     </tr>

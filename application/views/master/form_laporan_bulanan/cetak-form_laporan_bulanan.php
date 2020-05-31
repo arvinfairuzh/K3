@@ -215,16 +215,15 @@
                         $id_hasil_temuan = $ht['id'];
                         $kode_hasil_temuan = $ht['kode'];
                         $hasil_temuan = $ht['nama'];
-                        $form_tindak_lanjut = $this->mymodel->selectWithQuery("SELECT * FROM form_tindak_lanjut WHERE jenis = '$kode_hasil_temuan'");
+                        $id_laporan = $form_laporan_bulanan['id'];
+                        $form_tindak_lanjut = $this->mymodel->selectWithQuery("SELECT * FROM form_tindak_lanjut WHERE jenis = '$kode_hasil_temuan' AND id_laporan = $id_laporan");
+                        $kosong = '';
+                        if (!$form_tindak_lanjut) {
+                            $kosong = '(Kosong)';
+                        }
                         ?>
                         <tr>
-                            <th colspan="2"><?= $hasil_temuan ?></th>
-                            <td>
-                                <?= $ftl['ke'] ?>
-                            </td>
-                            <td>
-                                <?= $ftl['tindak_lanjut'] ?></textarea>
-                            </td>
+                            <th colspan="4"><?= $hasil_temuan ?> <?= $kosong ?></th>
                         </tr>
                         <?php
                             $no = 0;
@@ -240,6 +239,12 @@
                                     <?= $ftl['ke'] ?>
                                 </td>
                                 <td>
+                                    <?php
+                                            if ($ftl['gambar'] != "") {
+                                                ?>
+                                        <img src="<?= base_url($ftl['gambar']) ?>" style="width: 200px" class="img img-thumbnail">
+                                        <br>
+                                    <?php } ?>
                                     <?= $ftl['tindak_lanjut'] ?></textarea>
                                 </td>
                             </tr>

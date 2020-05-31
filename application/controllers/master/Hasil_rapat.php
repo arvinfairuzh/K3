@@ -223,6 +223,15 @@ class Hasil_rapat extends MY_Controller
 		}
 	}
 
+	public function detail($id)
+	{
+		$data['hasil_rapat'] = $this->mymodel->selectDataone('hasil_rapat', array('id' => $id));
+		$data['master_jadwal_rapat'] = $this->mymodel->selectDataone('master_jadwal_rapat', array('id' => $data['hasil_rapat']['id_jadwal']));
+		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'hasil_rapat'));
+		$data['page_name'] = "hasil_rapat";
+
+		$this->template->load('template/template', 'master/hasil_rapat/detail-hasil_rapat', $data);
+	}
 
 	public function cetak($id)
 	{
@@ -247,28 +256,43 @@ class Hasil_rapat extends MY_Controller
 		$this->load->view('master/hasil_rapat/cetak-hasil_rapat', $data);
 	}
 
+	public function validasi($id)
+	{
+		$hasil_rapat = $this->mymodel->selectDataone('hasil_rapat', array('id' => $id));
+		$data['id'] = $hasil_rapat['id'];
+		$data['page_name'] = "hasil_rapat";
+
+		$this->load->view('master/hasil_rapat/modal', $data);
+	}
+
+	public function validasi_act($id, $status)
+	{
+		if ($status == 'terima') {
+			if ($_SESSION['role_id'] == 2) {
+				$dt['status_sidang'] = 2;
+			} else if ($_SESSION['role_id'] == 3) {
+				$dt['status_sidang'] = 0;
+			}
+		} else {
+			if ($_SESSION['role_id'] == 2) {
+				$dt['status_sidang'] = 1;
+			}
+		}
+		$str = $this->db->update('hasil_rapat', $dt, array('id' => $id));
+		header('Location: ' . base_url('master/hasil_rapat/'));
+	}
 
 	public function delete()
-
 	{
-
 		$id = $this->input->post('id', TRUE);
-		$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'hasil_rapat'));
-
-		@unlink($file['dir']);
-
-		$this->mymodel->deleteData('file',  array('table_id' => $id, 'table' => 'hasil_rapat'));
-
-
-
-		$str = $this->mymodel->deleteData('hasil_rapat',  array('id' => $id));
-		return $str;
+		$dt['status'] = 'DISABLE';
+		$str = $this->db->update('hasil_rapat', $dt, array('id' => $id));
+		header('Location: ' . base_url('master/hasil_rapat/'));
 	}
 
 
 
 	public function status($id, $status)
-
 	{
 
 		$this->mymodel->updateData('hasil_rapat', array('status' => $status), array('id' => $id));

@@ -1,100 +1,67 @@
 <!-- Content Wrapper. Contains page content -->
-
 <div class="content-wrapper">
-
     <!-- Content Header (Page header) -->
-
     <section class="content-header">
-
         <h1>
-
             Kecelakaan Detail Internal
-
             <small>Edit</small>
-
         </h1>
-
         <ol class="breadcrumb">
-
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-
             <li><a href="#">Master</a></li>
-
             <li class="#">Kecelakaan Detail Internal</li>
-
             <li class="active">Edit</li>
-
         </ol>
-
     </section>
-
     <!-- Main content -->
-
     <section class="content">
-
         <form method="POST" action="<?= base_url('master/Kecelakaan_detail_internal/update') ?>" id="upload-create" enctype="multipart/form-data">
-
-            <input type="hidden" name="id" value="<?= $kecelakaan_detail_internal['id'] ?>">
-
-
-
-
-
+            <input type="hidden" name="id" value="<?= $kecelakaan_main['id'] ?>">
             <div class="row">
-
                 <div class="col-xs-12">
-
                     <div class="box">
-
                         <!-- /.box-header -->
-
                         <div class="box-header">
-
                             <h5 class="box-title">
-
                                 Edit Kecelakaan Detail Internal
-
                             </h5>
-
                         </div>
-
                         <div class="box-body">
-
                             <div class="show_error"></div>
                             <div class="form-group">
                                 <label for="form-id_kecelakaan" style="font-size:20px">IDENTITAS PENDERITA</label>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nama</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" value="<?= $kecelakaan_detail_internal['pk__apkh_1'] ?>">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" value="<?= $kecelakaan_main['ip_nama'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nomor Induk</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" value="<?= $kecelakaan_main['ip_nomor_induk'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Umur</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_umur]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_umur]" value="<?= $kecelakaan_main['ip_umur'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Alamat</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_alamat]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_alamat]" value="<?= $kecelakaan_main['ip_alamat'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Dep/Biro/Bid</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]" value="<?= $kecelakaan_main['ip_dep_birobid'] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Bagian/Seksi</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]" value="<?= $kecelakaan_main['ip_bagian_seksi'] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Lama bekerja di unit tersebut</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_lama_bekerja_unit]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_lama_bekerja_unit]" value="<?= $kecelakaan_main['ip_lama_bekerja_unit'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Lama Bekerja di PT Petrokimia Gresik</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_lama_bekerja_petro]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_lama_bekerja_petro]" value="<?= $kecelakaan_main['ip_lama_bekerja_petro'] ?>">
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -910,6 +877,20 @@
             document.getElementById("ifNo15").style.display = 'none';
         }
     }
+    yesnoCheck();
+    yesnoCheck1();
+    yesnoCheck2();
+    yesnoCheck3();
+    yesnoCheck4();
+    yesnoCheck5();
+    yesnoCheck6();
+    yesnoCheck7();
+    yesnoCheck8();
+    yesnoCheck9();
+    yesnoCheck10();
+    yesnoCheck11();
+    yesnoCheck12();
+    yesnoCheck13();
 </script>
 <script type="text/javascript">
     $("#upload-create").submit(function() {

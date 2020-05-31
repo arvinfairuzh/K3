@@ -57,7 +57,6 @@ class Form_laporan_bulanan extends MY_Controller
 			$hasil_temuan = $_POST['hasil_temuan'];
 			$ke = $_POST['ke'];
 			$tindak_lanjut = $_POST['tindak_lanjut'];
-			$files = $_FILES['file'];
 			$count_jenis_temuan = count($jenis_temuan);
 
 			for ($i = 0; $i < $count_id_dp; $i++) {
@@ -99,46 +98,26 @@ class Form_laporan_bulanan extends MY_Controller
 				$dta['status'] = "ENABLE";
 				$dta['created_by'] = $_SESSION['id'];
 
-				$this->mymodel->insertData('form_tindak_lanjut', $dta);
-				$last_id_tl = $this->db->insert_id();
-
-				if (!empty($files[$i]['name'])) {
+				$upload = '';
+				if (!empty($_FILES['file']['name'][$i])) {
+					$path = $_SERVER['DOCUMENT_ROOT'] . "/k3/webfile/tindak_lanjut/";
 					$dir  = "webfile/tindak_lanjut/";
-					$config['upload_path']          = $dir;
-					$config['allowed_types']        = '*';
-					$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
-					$this->load->library('upload', $config);
-					if (!$this->upload->do_upload('file')) {
-						$error = $this->upload->display_errors();
-						$this->alert->alertdanger($error);
-					} else {
-						$file = $this->upload->data();
-						$data = array(
-							'id' => '',
-							'name' => $file['file_name'],
-							'mime' => $file['file_type'],
-							'dir' => $dir . $file['file_name'],
-							'table' => 'form_tindak_lanjut',
-							'table_id' => $last_id_tl,
-							'status' => 'ENABLE',
-							'created_at' => date('Y-m-d H:i:s')
-						);
-						$str = $this->mymodel->insertData('file', $data);
-					}
-				} else {
-					$data = array(
-						'id' => '',
-						'name' => '',
-						'mime' => '',
-						'dir' => '',
-						'table' => 'form_tindak_lanjut',
-						'table_id' => $last_id,
-						'status' => 'ENABLE',
-						'created_at' => date('Y-m-d H:i:s')
-					);
+					// $path = base_url()."webfile/document/my_document-$last_agenda/";
+					// print_r($path);
+					// die();
 
-					$str = $this->mymodel->insertData('file', $data);
+					$file_ext = $_FILES['file']['name'][$i];
+					$ext = pathinfo($file_ext, PATHINFO_EXTENSION);
+					$file_name = 'ftl-' . $last_id . '.' . $ext;
+					$file_size = $_FILES['file']['size'][$i];
+					$file_tmp = $_FILES['file']['tmp_name'][$i];
+					$file_type = $_FILES['file']['type'][$i];
+
+					move_uploaded_file($file_tmp, $path . $file_name);
+					$upload = $dir . $file_name;
 				}
+				$dta['gambar'] = $upload;
+				$this->mymodel->insertData('form_tindak_lanjut', $dta);
 			}
 			$this->alert->alertsuccess('Success Send Data');
 		}
@@ -195,12 +174,14 @@ class Form_laporan_bulanan extends MY_Controller
 			$hasil = $_POST['hasil'];
 			$keterangan = $_POST['keterangan'];
 			$count_id_dp = count($id_dp);
+			$id_tl = $_POST['id_tl'];
 			$jenis_temuan = $_POST['jenis_temuan'];
 			$hasil_temuan = $_POST['hasil_temuan'];
 			$ke = $_POST['ke'];
 			$tindak_lanjut = $_POST['tindak_lanjut'];
-			$files = $_FILES['file'];
 			$count_jenis_temuan = count($jenis_temuan);
+			// print_r($files['name']);
+			// die();
 
 			// print_r($hasil);
 			for ($i = 0; $i < $count_id_dp; $i++) {
@@ -225,60 +206,42 @@ class Form_laporan_bulanan extends MY_Controller
 			// die();
 			$dt['value'] = $datajson;
 			$dt['updated_at'] = date('Y-m-d H:i:s');
-			$str = $this->mymodel->updateData('form_laporan_bulanan', $dt, array('id' => $id));
+			$str = $this->db->update('form_laporan_bulanan', $dt, array('id' => $id));
 
-			$this->db->delete('form_tindak_lanjut', array('id_laporan' => $id));
 			for ($i = 0; $i < $count_jenis_temuan; $i++) {
-				$dta['id_laporan'] = $id;
+				$form_tindak_lanjut = $this->mymodel->selectDataone('form_tindak_lanjut', array('id' => $id_tl[$i]));
 				$dta['jenis'] = $jenis_temuan[$i];
 				$dta['hasil_temuan'] = $hasil_temuan[$i];
 				$dta['ke'] = $ke[$i];
 				$dta['tindak_lanjut'] = $tindak_lanjut[$i];
-				$dta['created_at'] = date('Y-m-d H:i:s');
-				$dta['status'] = "ENABLE";
-				$dta['created_by'] = $_SESSION['id'];
-
-				$this->mymodel->insertData('form_tindak_lanjut', $dta);
-				$last_id_tl = $this->db->insert_id();
-
-				if (!empty($files[$i]['name'])) {
+				$dta['updated_at'] = date('Y-m-d H:i:s');
+				if ($_FILES['file']['name'][$i]) {
+					echo 'oke';
+					$path = $_SERVER['DOCUMENT_ROOT'] . "/k3/webfile/tindak_lanjut/";
 					$dir  = "webfile/tindak_lanjut/";
-					$config['upload_path']          = $dir;
-					$config['allowed_types']        = '*';
-					$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
-					$this->load->library('upload', $config);
-					if (!$this->upload->do_upload('file')) {
-						$error = $this->upload->display_errors();
-						$this->alert->alertdanger($error);
-					} else {
-						$file = $this->upload->data();
-						$data = array(
-							'id' => '',
-							'name' => $file['file_name'],
-							'mime' => $file['file_type'],
-							'dir' => $dir . $file['file_name'],
-							'table' => 'form_tindak_lanjut',
-							'table_id' => $last_id_tl,
-							'status' => 'ENABLE',
-							'created_at' => date('Y-m-d H:i:s')
-						);
-						$str = $this->mymodel->insertData('file', $data);
-					}
-				} else {
-					$data = array(
-						'id' => '',
-						'name' => '',
-						'mime' => '',
-						'dir' => '',
-						'table' => 'form_tindak_lanjut',
-						'table_id' => $id,
-						'status' => 'ENABLE',
-						'created_at' => date('Y-m-d H:i:s')
-					);
+					// $path = base_url()."webfile/document/my_document-$last_agenda/";
+					// print_r($path);
+					// die();
 
-					$str = $this->mymodel->insertData('file', $data);
+					$file_ext = $_FILES['file']['name'][$i];
+					$ext = pathinfo($file_ext, PATHINFO_EXTENSION);
+					$file_name = 'ftl-' . $id_tl[$i] . '.' . $ext;
+					$file_size = $_FILES['file']['size'][$i];
+					$file_tmp = $_FILES['file']['tmp_name'][$i];
+					$file_type = $_FILES['file']['type'][$i];
+
+					move_uploaded_file($file_tmp, $path . $file_name);
+					$upload = $dir . $file_name;
+					$dta['gambar'] = $upload;
+				} else {
+					$dta['gambar'] = $form_tindak_lanjut['gambar'];
 				}
+
+				// print_r($dta['gambar']);
+				$this->db->update('form_tindak_lanjut', $dta, array('id' => $id_tl[$i]));
 			}
+			// die();
+			$this->alert->alertsuccess('Success Send Data');
 		}
 	}
 

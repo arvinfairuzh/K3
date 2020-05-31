@@ -1,89 +1,58 @@
 <!-- Content Wrapper. Contains page content -->
-
 <div class="content-wrapper">
-
     <!-- Content Header (Page header) -->
-
     <section class="content-header">
-
         <h1>
-
             Kecelakaan Detail Internal
-
             <small>Tambah</small>
-
         </h1>
-
         <ol class="breadcrumb">
-
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-
             <li><a href="#">Master</a></li>
-
             <li class="#">Kecelakaan Detail Internal</li>
-
             <li class="active">Tambah</li>
-
         </ol>
-
     </section>
-
     <!-- Main content -->
-
     <section class="content">
-
         <form method="POST" action="<?= base_url('master/Kecelakaan_detail_internal/store') ?>" id="upload-create" enctype="multipart/form-data">
-
-
-
             <div class="row">
-
                 <div class="col-xs-12">
-
                     <div class="box">
-
                         <!-- /.box-header -->
-
                         <div class="box-header">
-
                             <h5 class="box-title">
-
                                 Tambah Kecelakaan Detail Internal
-
                             </h5>
-
                         </div>
-
                         <div class="box-body">
-
                             <div class="show_error"></div>
-
                             <div class="form-group">
                                 <label for="form-id_kecelakaan" style="font-size:20px">IDENTITAS PENDERITA</label>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nama</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" value="<?= $sr['nama'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nomor Induk</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" value="<?= $sr['nip'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Umur</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_umur]">
+                                <input type="number" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_umur]">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Alamat</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_alamat]">
+                                <textarea class="form-control" id="form-kk_tanggal_jam" name="dta[ip_alamat]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Dep/Biro/Bid</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]" value="<?= $departemen['nama'] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Bagian/Seksi</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]" value="<?= $bagian['nama'] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Lama bekerja di unit tersebut</label>
@@ -99,11 +68,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Tanggal & Jam</label>
-                                <input type="date" class="form-control" id="form-kk_tanggal_jam"  name="dt[kk_tanggal_jam]">
+                                <input type="date" class="form-control" id="form-kk_tanggal_jam" name="dt[kk_tanggal_jam]">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_lokasi">Lokasi</label>
-                                <input type="text" class="form-control" id="form-kk_lokasi"  name="dt[kk_lokasi]">
+                                <input type="text" class="form-control" id="form-kk_lokasi" name="dt[kk_lokasi]">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_penjelasan_kecelakaan">Jelaskan bagaimana kecelakaan terjadi</label>
@@ -115,8 +84,8 @@
                                 <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="kk_gambar_lokasi">
                             </div>
                             <div class="form-group">
-                                <label for="form-kk_bagian_tubuh_cedera">Bagian tubuh uang cedera</label>
-                                <input type="text" class="form-control" id="form-kk_bagian_tubuh_cedera"  name="dt[kk_bagian_tubuh_cedera]">
+                                <label for="form-kk_bagian_tubuh_cedera">Bagian tubuh yang cedera</label>
+                                <input type="text" class="form-control" id="form-kk_bagian_tubuh_cedera" name="dt[kk_bagian_tubuh_cedera]">
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -164,15 +133,15 @@
                             </div>
                             <div class="form-group" id="ifNo" style="display:none">
                                 <label for="form-tw_tidak_q1">Mengapa Melakukan tugas tersebut ?</label>
-                                <textarea class="form-control" id="form-tw_tidak_q1"  name="dt[tw_tidak_q1]"></textarea>
+                                <textarea class="form-control" id="form-tw_tidak_q1" name="dt[tw_tidak_q1]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo1" style="display:none">
                                 <label for="form-tw_tidak_q2">Siapa yang seharusnya melakukan tugas/kegiatan tersebut ?</label>
-                                <textarea class="form-control" id="form-tw_tidak_q2"  name="dt[tw_tidak_q2]"></textarea>
+                                <textarea class="form-control" id="form-tw_tidak_q2" name="dt[tw_tidak_q2]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo2" style="display:none">
                                 <label for="form-tw_tidak_q3">Siapa yang memerintah penderita melakukan pekerjaan tersebut ?</label>
-                                <textarea class="form-control" id="form-tw_tidak_q3"  name="dt[tw_tidak_q3]"></textarea>
+                                <textarea class="form-control" id="form-tw_tidak_q3" name="dt[tw_tidak_q3]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -188,11 +157,11 @@
                             </div>
                             <div class="form-group" id="ifYes3" style="display:none">
                                 <label for="form-sp_ya_1">Instruksi apa yang telah diberikan kepada penderita ?</label>
-                                <textarea  class="form-control" id="form-sp_ya_1" placeholder="Masukan Sp Ya 1" name="dt[sp_ya_1]"></textarea>
+                                <textarea class="form-control" id="form-sp_ya_1" placeholder="Masukan Sp Ya 1" name="dt[sp_ya_1]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo3" style="display:none">
                                 <label for="form-sp_tidak_1">Dimana atasan penderita berada ?</label>
-                                <textarea  class="form-control" id="form-sp_tidak_1" placeholder="Masukan Sp Tidak 1" name="dt[sp_tidak_1]"></textarea>
+                                <textarea class="form-control" id="form-sp_tidak_1" placeholder="Masukan Sp Tidak 1" name="dt[sp_tidak_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-sp_apkh_2">Apakah tugas tersebut dilakukan sesai dengan instruksi kerja atau praktek kerja yang biasa dilakukan ?</label><br>
@@ -204,7 +173,7 @@
                             </div>
                             <div class="form-group" id="ifNo4" style="display:none">
                                 <label for="form-sp_tidak_2">Mengapa hal tersebut harus dilakukan ?</label>
-                                <textarea  class="form-control" id="form-sp_tidak_2" placeholder="Masukan Sp Tidak 2" name="dt[sp_tidak_2]"></textarea>
+                                <textarea class="form-control" id="form-sp_tidak_2" placeholder="Masukan Sp Tidak 2" name="dt[sp_tidak_2]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -220,7 +189,7 @@
                             </div>
                             <div class="form-group" id="ifNo5" style="display:none">
                                 <label for="form-pk_tidak_1">Pelatihan apa yang diperlukan ?</label>
-                                <textarea  class="form-control" id="form-pk_tidak_1" placeholder="Masukan Pk Tidak 1" name="dt[pk_tidak_1]"></textarea>
+                                <textarea class="form-control" id="form-pk_tidak_1" placeholder="Masukan Pk Tidak 1" name="dt[pk_tidak_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-pk_apkh_2">Apakah karyawan tersebut telah terbiasa dengan jenis pekerjaan/peralatan/bahan yang ditangani ?</label>
@@ -232,7 +201,7 @@
                             </div>
                             <div class="form-group" id="ifNo6" style="display:none">
                                 <label for="form-pk_tidak_2">Pengetahuan/keterampilan apa yang diperlukan ?</label>
-                                <textarea  class="form-control" id="form-pk_tidak_2" placeholder="Masukan Pk Tidak 2" name="dt[pk_tidak_2]"></textarea>
+                                <textarea class="form-control" id="form-pk_tidak_2" placeholder="Masukan Pk Tidak 2" name="dt[pk_tidak_2]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-pk_apkh_3">Apakah karyawan tersebut telah dilatih untuk melakukan pekerjaan tersebut dengan aman ?</label>
@@ -244,7 +213,7 @@
                             </div>
                             <div class="form-group" id="ifNo7" style="display:none">
                                 <label for="form-pk_tidak_3">Training K3 apa yang dapat dilakukan untuk mencegah terjadinya kembali kecelakaan kerja tersebut ?</label>
-                                <textarea  class="form-control" id="form-pk_tidak_3" name="dt[pk_tidak_3]"></textarea>
+                                <textarea class="form-control" id="form-pk_tidak_3" name="dt[pk_tidak_3]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -260,15 +229,15 @@
                             </div>
                             <div class="form-group" id="ifYes8" style="display:none">
                                 <label for="form-papd_ya_1">Alat pelindung diri apa yang digunakan saat itu ?</label>
-                                <textarea class="form-control" id="form-papd_ya_1"  name="dt[papd_ya_1]"></textarea>
+                                <textarea class="form-control" id="form-papd_ya_1" name="dt[papd_ya_1]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo8" style="display:none">
                                 <label for="form-papd_tidak_1">Mengapa alat pelindung diri tidak digunakan ?</label>
-                                <textarea  class="form-control" id="form-papd_tidak_1"  name="dt[papd_tidak_1]"></textarea>
+                                <textarea class="form-control" id="form-papd_tidak_1" name="dt[papd_tidak_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-papd_apd">Alat pelindung diri apa yang sesuai dengan pekerjaan tersebut ?</label>
-                                <textarea  class="form-control" id="form-papd_apd"  name="dt[papd_apd]"></textarea>
+                                <textarea class="form-control" id="form-papd_apd" name="dt[papd_apd]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-papd_apkh_2">Apakah cara penggunaan alat pelindung diri sudah tepat dan benar ?</label>
@@ -280,7 +249,7 @@
                             </div>
                             <div class="form-group" id="ifNo9" style="display:none">
                                 <label for="form-papd_tidak_2">Mengapa alat pelindung diri tidak digunakan dengan benar ?</label>
-                                <textarea class="form-control" id="form-papd_tidak_2"  name="dt[papd_tidak_2]"></textarea>
+                                <textarea class="form-control" id="form-papd_tidak_2" name="dt[papd_tidak_2]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -293,7 +262,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-md_fungsi_alat">Pada kondisi normal apa fungsi alat tersebut(dimana alat/peralatan tersebut) ?</label>
-                                <textarea  class="form-control" id="form-md_fungsi_alat"  name="dt[md_fungsi_alat]"></textarea>
+                                <textarea class="form-control" id="form-md_fungsi_alat" name="dt[md_fungsi_alat]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-md_apkh_1">Apakah perubahan/modifikasi yang telah dibuat pada alat tersebut ?</label>
@@ -305,7 +274,7 @@
                             </div>
                             <div class="form-group" id="ifNo10" style="display:none">
                                 <label for="form-md_ya_1">Jelaskan :</label>
-                                <textarea class="form-control" id="form-md_ya_1"  name="dt[md_ya_1]"></textarea>
+                                <textarea class="form-control" id="form-md_ya_1" name="dt[md_ya_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-md_apkh_2">Adakah peralatan untuk mengendalikan keadaan emergency(emergency stop pull card switch dll) ?</label>
@@ -325,7 +294,7 @@
                             </div>
                             <div class="form-group" id="ifNo11" style="display:none">
                                 <label for="form-md_tidak_3">Bagaimana untuk pengamanannya ?</label>
-                                <textarea class="form-control" id="form-md_tidak_3"  name="dt[md_tidak_3]"></textarea>
+                                <textarea class="form-control" id="form-md_tidak_3" name="dt[md_tidak_3]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-md_apkh_4">Apakah pengontrol operasi, pipa-pipa, tangki-tangki di berikan tanda yang cukup jelas ?</label>
@@ -337,7 +306,7 @@
                             </div>
                             <div class="form-group" id="ifNo12" style="display:none">
                                 <label for="form-md_tidak_4">Beri alasan mengapa tidak ditandai dengan jelas ?</label>
-                                <textarea class="form-control" id="form-md_tidak_4"  name="dt[md_tidak_4]"></textarea>
+                                <textarea class="form-control" id="form-md_tidak_4" name="dt[md_tidak_4]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-md_apkh_5">Apakah perlu menggunakan Safety Tag/ atau Locked out sistem ?</label>
@@ -349,7 +318,7 @@
                             </div>
                             <div class="form-group" id="ifNo13" style="display:none">
                                 <label for="form-md_ya_5">Apakah telah dipergunakan sebagaimana mestinya seperti tersebut pada prosedur Keselamatan Kerja tentang Safety Tag dan Locked Out Sistem ?</label>
-                                <textarea class="form-control" id="form-md_ya_5"  name="dt[md_ya_5]"></textarea>
+                                <textarea class="form-control" id="form-md_ya_5" name="dt[md_ya_5]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -365,15 +334,15 @@
                             </div>
                             <div class="form-group" id="ifYes14" style="display:none">
                                 <label for="form-snp_ya_1">Apakah prosedur/instruksi kerja perlu diperbaiki ? Jelaskan.</label>
-                                <textarea  class="form-control" id="form-snp_ya_1"  name="dt[snp_ya_1]"></textarea>
+                                <textarea class="form-control" id="form-snp_ya_1" name="dt[snp_ya_1]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo14" style="display:none">
                                 <label for="form-snp_tidak_1">Apakah prosedur/instruksi kerja perlu diperbaiki ? Jelaskan.</label>
-                                <textarea  class="form-control" id="form-snp_tidak_1"  name="dt[snp_tidak_1]"></textarea>
+                                <textarea class="form-control" id="form-snp_tidak_1" name="dt[snp_tidak_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-snp_adakah_1">Adakah suatu sistem untuk mengamati bahwa prosedur atau instruksi yang ditetapkan telah diikuti ?</label>
-                                <textarea  class="form-control" id="form-snp_adakah_1"  name="dt[snp_adakah_1]"></textarea>
+                                <textarea class="form-control" id="form-snp_adakah_1" name="dt[snp_adakah_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-snp_apkh_2">Apakah Surat Ijin Keselamatan Kerja telah dibuat dan dilaksanakan ?</label>
@@ -387,7 +356,7 @@
                             </div>
                             <div class="form-group" id="ifNo15" style="display:none">
                                 <label for="form-snp_tidak_2">Mengapa tidak dibuat dan tidak dilaksanakan ?</label>
-                                <textarea  class="form-control" id="form-snp_tidak_2" placeholder="Masukan Snp Tidak 2" name="dt[snp_tidak_2]"></textarea>
+                                <textarea class="form-control" id="form-snp_tidak_2" placeholder="Masukan Snp Tidak 2" name="dt[snp_tidak_2]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -482,60 +451,31 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-pttk_apkh_1">Apakah keadaan tersebut di atas merupakan faktor dominan terjadinya kecelakaan ? Jelaskan.</label>
-                                <textarea  class="form-control" id="form-pttk_apkh_1"  name="dt[pttk_apkh_1]"></textarea>
+                                <textarea class="form-control" id="form-pttk_apkh_1" name="dt[pttk_apkh_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-pttk_kesimpulan">Buatlah dan Jelaskan kesimpulan mengenai penyebab kecelakaan, persyaratan yang harus di penuhi oleh korban dan kondisi lain yang ada hubungannya dengan kejadian kecelakaan.</label>
                                 <textarea name="dt[pttk_kesimpulan]" class="form-control"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
-                            <div class="form-group">
-                                <label for="form-id_kecelakaan" style="font-size:20px">SARAN</label>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="dta[saran]" class="form-control"></textarea>
-                            </div>
                             <div class="show_error"></div>
                         </div>
-
                         <div class="box-footer">
-
                             <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>
-
                             <button type="reset" class="btn btn-danger"><i class="fa fa-refresh"></i> Reset</button>
-
-
-
                         </div>
-
                         <!-- /.box-body -->
-
                     </div>
-
                     <!-- /.box -->
-
-
-
                     <!-- /.box -->
-
                 </div>
-
                 <!-- /.col -->
-
             </div>
-
             <!-- /.row -->
-
         </form>
-
-
-
     </section>
-
     <!-- /.content -->
-
 </div>
-
 <!-- /.content-wrapper -->
 <script type="text/javascript">
     function yesnoCheck() {

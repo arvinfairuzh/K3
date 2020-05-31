@@ -2,42 +2,41 @@
 
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Laporan_bulanan extends MY_Controller
+class Laporan_risalah_sidang extends MY_Controller
 {
 
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('Report_laporan_bulanan', 'rLaporan_bulanan');
+    $this->load->model('Report_laporan_risalah_sidang', 'rLaporan_risalah_sidang');
   }
 
   public function index()
   {
-    $data['page_name'] = "Report Laporan_bulanan";
-    $this->template->load('template/template', 'master/form_laporan_bulanan/all-form_laporan_bulanan', $data);
+    $data['page_name'] = "Report Laporan_risalah_sidang";
+    $this->template->load('template/template', 'report/laporan_risalah_sidang/all', $data);
   }
 
 
   function ajaxAll()
   {
-    $list = $this->rLaporan_bulanan->get_datatables();
+    $list = $this->rLaporan_risalah_sidang->get_datatables();
     $data = array();
     $i = 1;
     foreach ($list as $u) {
       $row = array();
 
       $row[] = $i;
-      $row[] = $u->lokasi;
-      $row[] = $u->departemen;
-      $row[] = $u->bagian;
+      $row[] = $u->id_jadwal;
+      $row[] = $u->pimpinan_sidang;
       $row[] = $u->tanggal;
-      $row[] = $u->id_kabag;
-      $row[] = $u->created_by;
-      if ($u->status_bulanan == 0) {
+      $row[] = $u->jam_mulai;
+      $row[] = $u->jam_selesai;
+      $row[] = $u->lokasi;
+      $row[] = $u->id_notulis;
+      if ($u->status_sidang == 0) {
         $badge_color = 'bg-yellow';
-      } else if ($u->status_bulanan == 1) {
-        $badge_color = 'bg-blue';
-      } else if ($u->status_bulanan == 2) {
+      } else if ($u->status_sidang == 1) {
         $badge_color = 'bg-red';
       } else {
         $badge_color = 'bg-green';
@@ -52,8 +51,8 @@ class Laporan_bulanan extends MY_Controller
 
     $output = array(
       "draw" => $_POST['draw'],
-      "recordsTotal" => $this->rLaporan_bulanan->count_all(),
-      "recordsFiltered" => $this->rLaporan_bulanan->count_filtered(),
+      "recordsTotal" => $this->rLaporan_risalah_sidang->count_all(),
+      "recordsFiltered" => $this->rLaporan_risalah_sidang->count_filtered(),
       "data" => $data
     );
 
@@ -63,21 +62,21 @@ class Laporan_bulanan extends MY_Controller
 
   function getExcel()
   {
-    $list = $this->rLaporan_bulanan->get_data();
+    $list = $this->rLaporan_risalah_sidang->get_data();
     $data = array();
     $i = 1;
     foreach ($list as $u) {
 
 
 
-      $data[] = array($i, $u->lokasi, $u->departemen, $u->bagian, $u->tanggal, $u->id_kabag, $u->created_by, $u->nama_status);
+      $data[] = array($i, $u->id_jadwal, $u->pimpinan_sidang, $u->tanggal, $u->jam_mulai, $u->jam_selesai, $u->lokasi, $u->id_notulis, $u->nama_status);
 
       $i++;
     }
 
-    $judul = "Report Laporan_bulanan";
+    $judul = "Report Laporan_risalah_sidang";
 
-    $head = array('No', 'lokasi', 'departemen', 'bagian', 'tanggal', 'kabag', 'sr', 'status');
+    $head = array('No', 'jadwal', 'pimpinan', 'tanggal', 'jam mulai', 'jam selesai', 'lokasi', 'notulis', 'status');
 
     $json = [
       'judul' => $judul,

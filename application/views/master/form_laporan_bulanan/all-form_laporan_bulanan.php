@@ -37,8 +37,9 @@
                   <th>Departemen</th>
                   <th>Bagian</th>
                   <th>Tanggal</th>
-                  <th>Id kabag</th>
-                  <th>Created by</th>
+                  <th>Kabag</th>
+                  <th>SR</th>
+                  <th>Status</th>
                   <th></th>
                 </tr>
               </thead>

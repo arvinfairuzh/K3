@@ -45,15 +45,14 @@ if ($this->session->userdata('session_sop') == "") {
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-  <link href="<?= FAVICON ?>" rel=icon type=image/png> 
-  <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+  <link href="<?= FAVICON ?>" rel=icon type=image/png> <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
 
   <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Poppins:300,400,500,600,700|Raleway:300,400,500,600,700');
-    body{
+
+    body {
       font-family: Montserrat;
     }
-
   </style>
 
   <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> -->
@@ -174,51 +173,6 @@ if ($this->session->userdata('session_sop') == "") {
 
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <li>
-              <a><i id="date"></i>&nbsp;<i id="clock"></i></a>
-            </li>
-            <!-- Notifications: style can be found in dropdown.less -->
-            <li class="dropdown notifications-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">10</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 10 notifications</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                        page and may cause design problems
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-users text-red"></i> 5 new members joined
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-user text-red"></i> You changed your username
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">View all</a></li>
-              </ul>
-            </li>
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <?php
@@ -226,16 +180,16 @@ if ($this->session->userdata('session_sop') == "") {
               $file = $this->mymodel->selectDataone('file', array('table' => 'user', 'table_id' => $id));
               ?>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <object data="<?= base_url($file['dir']) ?>" type="image/png" class="user-image" alt="User Image">
-                  <img src="https://www.library.caltech.edu/sites/default/files/styles/headshot/public/default_images/user.png?itok=1HlTtL2d" class="user-image" alt="User Image">
+                <object data="<?= base_url('webfile/default.png') ?>" type="image/png" class="user-image" alt="User Image">
+                  <img src="<?= base_url('webfile/default.png') ?>" class="user-image" alt="User Image">
                 </object>
                 <span class="hidden-xs"><?= $this->session->userdata('name'); ?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <object data="<?= base_url($file['dir']) ?>" type="image/png" style="width: 100px;">
-                    <img src="https://www.library.caltech.edu/sites/default/files/styles/headshot/public/default_images/user.png?itok=1HlTtL2d" alt="example">
+                  <object data="<?= base_url('webfile/default.png') ?>" type="image/png" style="width: 100px;">
+                    <img src="<?= base_url('webfile/default.png') ?>" alt="example">
                   </object>
 
                   <p>
@@ -246,7 +200,7 @@ if ($this->session->userdata('session_sop') == "") {
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <!-- <div class="pull-left"> -->
-                  <a href="<?= base_url('master/user/editUser/') . $this->template->sonEncode($this->session->userdata('id')); ?>" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Profile</a>
+                  <!-- <a href="<?= base_url('master/user/editUser/') . $this->template->sonEncode($this->session->userdata('id')); ?>" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Profile</a> -->
                   <a href="<?= base_url('login/lockscreen?user=') . $this->session->userdata('nip'); ?>" class="btn btn-default btn-flat"><i class="fa fa-key"></i> Lockscreen</a>
                   <!-- </div> -->
                   <!-- <div class="pull-right"> -->
@@ -333,7 +287,7 @@ if ($this->session->userdata('session_sop') == "") {
 
 
 
-          
+
 
         </ul>
       </section>

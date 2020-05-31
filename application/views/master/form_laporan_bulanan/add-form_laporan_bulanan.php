@@ -108,7 +108,7 @@
                         <th>
                           TEMUAN BERULANG KE
                         </th>
-                        <th>
+                        <th class="hidden">
                           TINDAK LANJUT
                         </th>
                         <th>
@@ -129,7 +129,7 @@
                         <td>
                           <input type="number" class="form-control" name="ke[]">
                         </td>
-                        <td>
+                        <td class="hidden">
                           <textarea style="margin-bottom: 5px;" class="form-control" name="tindak_lanjut[]" rows="1"></textarea>
                           <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">
                         </td>
@@ -197,7 +197,7 @@
         '<td>' +
         '<input type="number" class="form-control" name="ke[]">' +
         '</td>' +
-        '<td>' +
+        '<td class="hidden">' +
         '<textarea style="margin-bottom: 5px;" class="form-control" name="tindak_lanjut[]" rows="1"></textarea>' +
         '<input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">' +
         '</td>' +

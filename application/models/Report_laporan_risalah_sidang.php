@@ -2,35 +2,31 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Report_laporan_bulanan extends CI_Model
+class Report_laporan_risalah_sidang extends CI_Model
 {
 
     public function __construct()
     {
 
         $this->load->database();
-
-        $qry = '';
+        $departemen = '';
         if (!$_SESSION['role_id'] == 0) {
             $departemen = $_SESSION['id_departemen'];
-            $bagian = $_SESSION['id_bagian'];
-            $qry = " AND form_laporan_bulanan.departemen = '$departemen' AND form_laporan_bulanan.bagian = '$bagian'";
+            $departemen = "AND ketua.id_departemen = '$departemen'";
         }
 
-        $this->column_order = array(null, 'lokasi', 'departemen', 'bagian', 'tanggal', 'id_kabag', 'created_by', 'nama_status'); //field yang ada di table user
-        $this->column_search = array(null, 'lokasi', 'departemen', 'bagian', 'tanggal', 'id_kabag', 'created_by', 'nama_status'); //field yang ada di table user
-        $this->order = array('lokasi' => 'asc'); // default order 
-        $this->table = "(SELECT form_laporan_bulanan.id,lokasi,master_departemen.nama as departemen,
-        master_bagian.nama as bagian,tanggal,value,kabag.nama as id_kabag,
-        form_laporan_bulanan.status_bulanan,sr.nama as created_by, master_status_bulanan.nama as nama_status
-        FROM form_laporan_bulanan
-        LEFT JOIN master_departemen on form_laporan_bulanan.departemen = master_departemen.id
-        LEFT JOIN master_bagian on form_laporan_bulanan.bagian = master_bagian.id
-        LEFT JOIN pegawai sr on form_laporan_bulanan.created_by = sr.id
-        LEFT JOIN pegawai kabag on form_laporan_bulanan.id_kabag = kabag.id
-        LEFT JOIN master_status_bulanan on form_laporan_bulanan.status_bulanan = master_status_bulanan.id
-        WHERE form_laporan_bulanan.status = 'ENABLE' " . $qry . ") as tabledata";
+        $this->column_order = array(null, 'id_jadwal', 'pimpinan_sidang', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'id_notulis', 'nama_status'); //field yang ada di table user
+        $this->column_search = array(null, 'id_jadwal', 'pimpinan_sidang', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'id_notulis', 'nama_status'); //field yang ada di table user
+        $this->order = array('id_jadwal' => 'asc'); // default order 
+        $this->table = "(SELECT hasil_rapat.id,master_jadwal_rapat.nama as id_jadwal,hasil_rapat.pimpinan_sidang,hasil_rapat.tanggal,hasil_rapat.jam_mulai,hasil_rapat.jam_selesai,hasil_rapat.lokasi,pendahuluan,review,tindak_lanjut,materi_tambahan,materi_kesehatan,pegawai.nama as id_notulis,hasil_rapat.status_sidang, master_status_sidang.nama as nama_status
+        FROM hasil_rapat
+        LEFT JOIN master_jadwal_rapat on hasil_rapat.id_jadwal = master_jadwal_rapat.id
+        LEFT JOIN pegawai on hasil_rapat.id_notulis = pegawai.id
+        LEFT JOIN master_status_sidang on hasil_rapat.status_sidang = master_status_sidang.id
+        LEFT JOIN pegawai ketua on master_jadwal_rapat.id_ketua = ketua.id
+        WHERE hasil_rapat.status = 'ENABLE' " . $departemen . " ) as tabledata";
     }
+
 
 
     private function _get_datatables_query()

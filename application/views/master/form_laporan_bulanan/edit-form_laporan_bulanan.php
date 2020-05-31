@@ -137,6 +137,7 @@
                         ?>
                         <tr>
                           <td>
+                            <input type="hidden" name="id_tl[]" value="<?= $ftl['id'] ?>">
                             <select style="width: 100%" name="jenis_temuan[]" class="form-control select2">
                               <option value="">Pilih Jenis Temuan</option>
                               <option value="UA" <?php if ($ftl['jenis'] == 'UA') echo 'selected'; ?>>Sikap Tidak Aman</option>
@@ -151,6 +152,12 @@
                             <input type="number" class="form-control" name="ke[]" value="<?= $ftl['ke'] ?>">
                           </td>
                           <td>
+                            <?php
+                              if ($ftl['gambar'] != "") {
+                                ?>
+                              <img src="<?= base_url($ftl['gambar']) ?>" style="width: 200px" class="img img-thumbnail">
+                              <br>
+                            <?php } ?>
                             <textarea class="form-control" name="tindak_lanjut[]" rows="1"><?= $ftl['tindak_lanjut'] ?></textarea>
                             <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">
                           </td>
@@ -302,7 +309,7 @@
 
           setTimeout(function() {
 
-            window.location.href = "<?= base_url('master/Form_laporan_bulanan') ?>";
+            window.location.href = "<?= base_url('master/Form_laporan_bulanan/detail/' . $form_laporan_bulanan['id']) ?>";
 
           }, 1000);
 

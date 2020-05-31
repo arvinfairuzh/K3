@@ -1,3 +1,11 @@
+<?php
+if ($_SESSION['role_id'] == 0) {
+  $hide = '';
+} else {
+  $hide = 'hide';
+}
+?>
+
 <!-- Content Wrapper. Contains page content -->
 
 <div class="content-wrapper">
@@ -8,7 +16,7 @@
 
     <h1>
 
-      Master Jadwal Rapat
+      Jadwal Rapat Bulan Ini
 
       <small>Data</small>
 
@@ -20,7 +28,7 @@
 
       <li><a href="#">Master</a></li>
 
-      <li class="#">Master Jadwal Rapat</li>
+      <li class="#">Jadwal Rapat Bulan Ini</li>
 
       <li class="active">Data</li>
 
@@ -46,7 +54,7 @@
 
               <div class="col-md-6">
 
-                <select onchange="loadtable(this.value)" id="select-status" style="width: 150px" class="form-control">
+                <select onchange="loadtable(this.value)" id="select-status" style="width: 150px" class="form-control <?= $hide ?>">
 
                   <option value="ENABLE">ENABLE</option>
 
@@ -60,9 +68,10 @@
 
               <div class="col-md-6">
 
-                <div class="pull-right"> <a href="<?= base_url('master/Master_jadwal_rapat/create') ?>">
+                <div class="pull-right">
+                  <a href="<?= base_url('master/Master_jadwal_rapat/create') ?>">
 
-                    <button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Data</button>
+                    <button type="button" class="btn btn-sm btn-success <?= $hide ?>"><i class="fa fa-plus"></i> Tambah Data</button>
 
                   </a>
                 </div>
@@ -217,9 +226,9 @@
 
       '     <tr class="bg-success">' +
 
-      '       <th style="width:20px">No</th>' + '<th>Nama</th>' + '<th>Tanggal</th>' + '<th>Jam Mulai</th>' + '<th>Jam Selesai</th>' + '<th>Lokasi</th>' + '<th>General Manager</th>' + '       <th style="width:150px">Status</th>' +
+      '       <th style="width:20px">No</th>' + '<th>Nama</th>' + '<th>Tanggal</th>' + '<th>Jam Mulai</th>' + '<th>Jam Selesai</th>' + '<th>Lokasi</th>' + '<th>General Manager</th>' + '       <th style="width:150px" class="<?= $hide ?>">Status</th>' +
 
-      '       <th style="width:150px"></th>' +
+      '       <th class="<?= $hide ?>" style="width:150px"></th>' +
 
       '     </tr>' +
 
@@ -292,18 +301,22 @@
         }, {
           "data": "id_ketua"
         },
+        <?php
+        if ($_SESSION['role_id'] == 0) {
+          ?> {
+            "data": "status"
+          },
 
-        {
-          "data": "status"
-        },
+          {
+            "data": "view",
 
-        {
-          "data": "view",
+            "orderable": false
 
-          "orderable": false
+          }
 
+        <?php
         }
-
+        ?>
       ],
 
       order: [
@@ -312,37 +325,42 @@
 
       columnDefs: [
 
-        {
-          targets: [7],
+        <?php
+        if ($_SESSION['role_id'] == 0) {
+          ?> {
+            targets: [7],
 
-          render: function(data, type, row, meta) {
+            render: function(data, type, row, meta) {
 
-            if (row['status'] == 'ENABLE') {
+              if (row['status'] == 'ENABLE') {
 
-              var htmls = '<a href="<?= base_url('master/Master_jadwal_rapat/status/') ?>' + row['id'] + '/DISABLE">' +
+                var htmls = '<a href="<?= base_url('master/Master_jadwal_rapat/status/') ?>' + row['id'] + '/DISABLE">' +
 
-                '    <button type="button" class="btn btn-sm btn-sm btn-success"><i class="fa fa-home"></i> ENABLE</button>' +
+                  '    <button type="button" class="btn btn-sm btn-sm btn-success"><i class="fa fa-home"></i> ENABLE</button>' +
 
-                '</a>';
+                  '</a>';
 
-            } else {
+              } else {
 
-              var htmls = '<a href="<?= base_url('master/Master_jadwal_rapat/status/') ?>' + row['id'] + '/ENABLE">' +
+                var htmls = '<a href="<?= base_url('master/Master_jadwal_rapat/status/') ?>' + row['id'] + '/ENABLE">' +
 
-                '    <button type="button" class="btn btn-sm btn-sm btn-danger"><i class="fa fa-home"></i> DISABLE</button>' +
+                  '    <button type="button" class="btn btn-sm btn-sm btn-danger"><i class="fa fa-home"></i> DISABLE</button>' +
 
-                '</a>';
+                  '</a>';
 
 
+
+              }
+
+              return htmls;
 
             }
 
-            return htmls;
-
           }
 
+        <?php
         }
-
+        ?>
       ],
 
 

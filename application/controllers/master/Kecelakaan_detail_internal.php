@@ -1,103 +1,84 @@
-
-
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-
-
 class Kecelakaan_detail_internal extends MY_Controller
 {
-
-
-
 	public function __construct()
-
 	{
-
 		parent::__construct();
 	}
 
-
-
 	public function index()
-
 	{
 
 		$data['page_name'] = "kecelakaan_detail_internal";
-
 		$this->template->load('template/template', 'master/kecelakaan_detail_internal/all-kecelakaan_detail_internal', $data);
 	}
 
 	public function create()
-
 	{
-
+		$data['sr'] = $this->mymodel->selectDataOne("pegawai", array('id' => $_SESSION['id']));
+		$data['departemen'] = $this->mymodel->selectDataOne("master_departemen", array('id' => $_SESSION['id_departemen']));
+		$data['bagian'] = $this->mymodel->selectDataOne("master_bagian", array('id' => $_SESSION['id_bagian']));
 		$data['page_name'] = "kecelakaan_detail_internal";
 
 		$this->template->load('template/template', 'master/kecelakaan_detail_internal/add-kecelakaan_detail_internal', $data);
 	}
 
 	public function validate()
-
 	{
-
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
-
 		$this->form_validation->set_rules('dt[kk_tanggal_jam]', '<strong>Kk Tanggal Jam</strong>', 'required');
 		$this->form_validation->set_rules('dt[kk_lokasi]', '<strong>Kk Lokasi</strong>', 'required');
 		$this->form_validation->set_rules('dt[kk_penjelasan_kecelakaan]', '<strong>Kk Penjelasan Kecelakaan</strong>', 'required');
 		$this->form_validation->set_rules('dt[kk_bagian_tubuh_cedera]', '<strong>Kk Bagian Tubuh Cedera</strong>', 'required');
-		$this->form_validation->set_rules('dt[tw_apkh_1]', '<strong>Tw Apkh 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[tw_apkh_2]', '<strong>Tw Apkh 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[tw_apkh_3]', '<strong>Tw Apkh 3</strong>', 'required');
-		$this->form_validation->set_rules('dt[tw_tidak_q1]', '<strong>Tw Tidak Q1</strong>', 'required');
-		$this->form_validation->set_rules('dt[tw_tidak_q2]', '<strong>Tw Tidak Q2</strong>', 'required');
-		$this->form_validation->set_rules('dt[tw_tidak_q3]', '<strong>Tw Tidak Q3</strong>', 'required');
-		$this->form_validation->set_rules('dt[sp_apkh_1]', '<strong>Sp Apkh 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[sp_apkh_2]', '<strong>Sp Apkh 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[sp_tidak_2]', '<strong>Sp Tidak 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[pk__apkh_1]', '<strong>Pk  Apkh 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[pk_tidak_1]', '<strong>Pk Tidak 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[pk_apkh_2]', '<strong>Pk Apkh 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[pk_tidak_2]', '<strong>Pk Tidak 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[pk_apkh_3]', '<strong>Pk Apkh 3</strong>', 'required');
-		$this->form_validation->set_rules('dt[pk_tidak_3]', '<strong>Pk Tidak 3</strong>', 'required');
-		$this->form_validation->set_rules('dt[papd_apkh_1]', '<strong>Papd Apkh 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[papd_apd]', '<strong>Papd Apd</strong>', 'required');
-		$this->form_validation->set_rules('dt[papd_apkh_2]', '<strong>Papd Apkh 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[papd_tidak_2]', '<strong>Papd Tidak 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_fungsi_alat]', '<strong>Md Fungsi Alat</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_apkh_1]', '<strong>Md Apkh 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_ya_1]', '<strong>Md Ya 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_apkh_2]', '<strong>Md Apkh 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_apkh_3]', '<strong>Md Apkh 3</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_tidak_3]', '<strong>Md Tidak 3</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_apkh_4]', '<strong>Md Apkh 4</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_tidak_4]', '<strong>Md Tidak 4</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_apkh_5]', '<strong>Md Apkh 5</strong>', 'required');
-		$this->form_validation->set_rules('dt[md_ya_5]', '<strong>Md Ya 5</strong>', 'required');
-		$this->form_validation->set_rules('dt[snp_apkh_1]', '<strong>Snp Apkh 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[snp_adakah_1]', '<strong>Snp Adakah 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[snp_apkh_2]', '<strong>Snp Apkh 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[snp_tidak_2]', '<strong>Snp Tidak 2</strong>', 'required');
-		$this->form_validation->set_rules('dt[pttk_apkh_1]', '<strong>Pttk Apkh 1</strong>', 'required');
-		$this->form_validation->set_rules('dt[pttk_kesimpulan]', '<strong>Pttk Kesimpulan</strong>', 'required');
+		// $this->form_validation->set_rules('dt[tw_apkh_1]', '<strong>Tw Apkh 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[tw_apkh_2]', '<strong>Tw Apkh 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[tw_apkh_3]', '<strong>Tw Apkh 3</strong>', 'required');
+		// $this->form_validation->set_rules('dt[tw_tidak_q1]', '<strong>Tw Tidak Q1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[tw_tidak_q2]', '<strong>Tw Tidak Q2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[tw_tidak_q3]', '<strong>Tw Tidak Q3</strong>', 'required');
+		// $this->form_validation->set_rules('dt[sp_apkh_1]', '<strong>Sp Apkh 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[sp_apkh_2]', '<strong>Sp Apkh 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[sp_tidak_2]', '<strong>Sp Tidak 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[pk__apkh_1]', '<strong>Pk  Apkh 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[pk_tidak_1]', '<strong>Pk Tidak 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[pk_apkh_2]', '<strong>Pk Apkh 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[pk_tidak_2]', '<strong>Pk Tidak 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[pk_apkh_3]', '<strong>Pk Apkh 3</strong>', 'required');
+		// $this->form_validation->set_rules('dt[pk_tidak_3]', '<strong>Pk Tidak 3</strong>', 'required');
+		// $this->form_validation->set_rules('dt[papd_apkh_1]', '<strong>Papd Apkh 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[papd_apd]', '<strong>Papd Apd</strong>', 'required');
+		// $this->form_validation->set_rules('dt[papd_apkh_2]', '<strong>Papd Apkh 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[papd_tidak_2]', '<strong>Papd Tidak 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_fungsi_alat]', '<strong>Md Fungsi Alat</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_apkh_1]', '<strong>Md Apkh 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_ya_1]', '<strong>Md Ya 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_apkh_2]', '<strong>Md Apkh 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_apkh_3]', '<strong>Md Apkh 3</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_tidak_3]', '<strong>Md Tidak 3</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_apkh_4]', '<strong>Md Apkh 4</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_tidak_4]', '<strong>Md Tidak 4</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_apkh_5]', '<strong>Md Apkh 5</strong>', 'required');
+		// $this->form_validation->set_rules('dt[md_ya_5]', '<strong>Md Ya 5</strong>', 'required');
+		// $this->form_validation->set_rules('dt[snp_apkh_1]', '<strong>Snp Apkh 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[snp_adakah_1]', '<strong>Snp Adakah 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[snp_apkh_2]', '<strong>Snp Apkh 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[snp_tidak_2]', '<strong>Snp Tidak 2</strong>', 'required');
+		// $this->form_validation->set_rules('dt[pttk_apkh_1]', '<strong>Pttk Apkh 1</strong>', 'required');
+		// $this->form_validation->set_rules('dt[pttk_kesimpulan]', '<strong>Pttk Kesimpulan</strong>', 'required');
 	}
 
 
 
 	public function store()
-
 	{
-
 		$this->validate();
-
 		if ($this->form_validation->run() == FALSE) {
-
 			$this->alert->alertdanger(validation_errors());
 		} else {
-
+			$kabag = $this->mymodel->selectDataOne("pegawai", array('id_departemen' => $_SESSION['id_departemen'], 'id_bagian' => $_SESSION['id_bagian']));
+			$kabag = $this->mymodel->selectDataOne("pegawai", array('id_departemen' => $_SESSION['id_departemen'], 'id_bagian' => $_SESSION['id_bagian']));
 			$dta = $_POST['dta'];
-
+			$dta['id_penderita'] = $_SESSION['id'];
 			$this->mymodel->insertData('kecelakaan_main', $dta);
 			$last_id = $this->db->insert_id();
 
@@ -106,14 +87,13 @@ class Kecelakaan_detail_internal extends MY_Controller
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
-
 			$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
 			if ($dt['pttk_kondisi_lingkungan'] == 'Lainya') {
 				$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
 			}
 
 			if (!empty($_FILES['kk_gambar_lokasi']['name'])) {
-				$dir  = "webfile/";
+				$dir  = "webfile/kecelakaan/";
 				$config['upload_path']          = $dir;
 				$config['allowed_types']        = '*';
 				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
@@ -128,7 +108,7 @@ class Kecelakaan_detail_internal extends MY_Controller
 			}
 
 			if (!empty($_FILES['md_gambar_1']['name'])) {
-				$dir  = "webfile/";
+				$dir  = "webfile/kecelakaan/";
 				$config['upload_path']          = $dir;
 				$config['allowed_types']        = '*';
 				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
@@ -143,8 +123,8 @@ class Kecelakaan_detail_internal extends MY_Controller
 			}
 
 			$this->mymodel->insertData('kecelakaan_detail_internal', $dt);
-
-			$this->alert->alertsuccess('Success Send Data'); //kyoke ndak metu se kui metu iku ijo ndk duwur form
+			die();
+			$this->alert->alertsuccess('Success Send Data');
 		}
 	}
 
@@ -159,7 +139,7 @@ class Kecelakaan_detail_internal extends MY_Controller
 		} else {
 			$id = $this->input->post('id', TRUE);
 			if (!empty($_FILES['file']['name'])) {
-				$dir  = "webfile/";
+				$dir  = "webfile/kecelakaan/";
 				$config['upload_path']          = $dir;
 				$config['allowed_types']        = '*';
 				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
@@ -230,10 +210,9 @@ class Kecelakaan_detail_internal extends MY_Controller
 	}
 
 	public function edit($id)
-
 	{
-
-		$data['kecelakaan_detail_internal'] = $this->mymodel->selectDataone('kecelakaan_detail_internal', array('id' => $id));
+		$data['kecelakaan_main'] = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$data['kecelakaan_detail_internal'] = $this->mymodel->selectDataone('kecelakaan_detail_internal', array('id_kecelakaan' => $data['kecelakaan_main']['id']));
 		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'kecelakaan_detail_internal'));
 		$data['page_name'] = "kecelakaan_detail_internal";
 
@@ -270,5 +249,3 @@ class Kecelakaan_detail_internal extends MY_Controller
 		redirect('master/Kecelakaan_detail_internal');
 	}
 }
-
-?>
