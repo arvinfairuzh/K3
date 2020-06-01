@@ -27,7 +27,19 @@
                         </div>
                         <div class="box-body">
                             <div class="show_error"></div>
+                            <div class="form-group" align="center">
+                                <label for="form-jenis_kecelakaan" style="font-size:20px">Jenis Kecelakaan</label><br>
+                                <div class="col-md-6">
+                                    <input type="radio" id="form-jenis_kecelakaan-1" name="dta[jenis_kecelakaan]" value="1">
+                                    <label for="form-jenis_kecelakaan-1">Kecelakaan Kerja</label><br>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="radio" id="form-jenis_kecelakaan-2" name="dta[jenis_kecelakaan]" value="2">
+                                    <label for="form-jenis_kecelakaan-2">Bukan Kecelakaan Kerja</label><br>
+                                </div>
+                            </div>
                             <div class="form-group">
+                                <hr>
                                 <label for="form-id_kecelakaan" style="font-size:20px">IDENTITAS PENDERITA</label>
                             </div>
                             <div class="form-group">

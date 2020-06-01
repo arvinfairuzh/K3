@@ -267,7 +267,7 @@
         if (str.indexOf("success") != -1) {
           form.find(".show_error").hide().html(response).slideDown("fast");
           setTimeout(function() {
-            // window.location.href = "<?= base_url('master/Pegawai') ?>";
+            window.location.href = "<?= base_url('master/Pegawai') ?>";
           }, 1000);
           $(".btn-send").removeClass("disabled").html('<i class="fa fa-save"></i> Save').attr('disabled', false);
         } else {

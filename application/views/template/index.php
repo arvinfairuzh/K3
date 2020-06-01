@@ -1,6 +1,7 @@
 <!-- Content Wrapper. Contains page content -->
 <style>
-  #risalah_sidang {
+  #risalah_sidang,
+  #kecelakaan {
     width: 100%;
     height: 500px;
   }
@@ -81,7 +82,7 @@
             <div class="row">
               <div class="col-md-6">
                 <h4>
-                  Laporan Safety Patrol Bulan ini
+                  Laporan Safety Patrol Bulan Ini
                 </h4>
               </div>
             </div>
@@ -103,13 +104,35 @@
             <div class="row">
               <div class="col-md-6">
                 <h4>
-                  Risalah Sidang Bulan ini
+                  Risalah Sidang Tahun Ini
                 </h4>
               </div>
             </div>
           </div>
           <div class="box-body">
             <div id="risalah_sidang"></div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <!-- /.box-header -->
+          <div class="box-header">
+            <div class="row">
+              <div class="col-md-6">
+                <h4>
+                  Kecelekaan Tahun ini
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div id="kecelakaan"></div>
           </div>
           <!-- /.box-body -->
         </div>
@@ -269,6 +292,97 @@
     chart.cursor = new am4charts.XYCursor();
     chart.cursor.lineX.strokeOpacity = 0;
     chart.cursor.lineY.strokeOpacity = 0;
+
+  }); // end am4core.ready()
+
+  am4core.ready(function() {
+
+    // Themes begin
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+    var chart = am4core.create('kecelakaan', am4charts.XYChart)
+    chart.colors.step = 2;
+
+    chart.legend = new am4charts.Legend()
+    chart.legend.position = 'top'
+    chart.legend.paddingBottom = 20
+    chart.legend.labels.template.maxWidth = 95
+
+    var xAxis = chart.xAxes.push(new am4charts.CategoryAxis())
+    xAxis.dataFields.category = 'category'
+    xAxis.renderer.cellStartLocation = 0.1
+    xAxis.renderer.cellEndLocation = 0.9
+    xAxis.renderer.grid.template.location = 0;
+
+    var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    yAxis.min = 0;
+
+    function createSeries(value, name) {
+      var series = chart.series.push(new am4charts.ColumnSeries())
+      series.dataFields.valueY = value
+      series.dataFields.categoryX = 'category'
+      series.name = name
+
+      series.events.on("hidden", arrangeColumns);
+      series.events.on("shown", arrangeColumns);
+
+      var bullet = series.bullets.push(new am4charts.LabelBullet())
+      bullet.interactionsEnabled = false
+      bullet.dy = 30;
+      bullet.label.text = '{valueY}'
+      bullet.label.fill = am4core.color('#ffffff')
+
+      return series;
+    }
+
+    chart.data = <?php echo json_encode($chart_3, JSON_NUMERIC_CHECK); ?>;
+
+
+    createSeries('first', 'Tempat Kerja');
+    createSeries('second', 'Bukan Tempat Kerja');
+
+    function arrangeColumns() {
+
+      var series = chart.series.getIndex(0);
+
+      var w = 1 - xAxis.renderer.cellStartLocation - (1 - xAxis.renderer.cellEndLocation);
+      if (series.dataItems.length > 1) {
+        var x0 = xAxis.getX(series.dataItems.getIndex(0), "categoryX");
+        var x1 = xAxis.getX(series.dataItems.getIndex(1), "categoryX");
+        var delta = ((x1 - x0) / chart.series.length) * w;
+        if (am4core.isNumber(delta)) {
+          var middle = chart.series.length / 2;
+
+          var newIndex = 0;
+          chart.series.each(function(series) {
+            if (!series.isHidden && !series.isHiding) {
+              series.dummyData = newIndex;
+              newIndex++;
+            } else {
+              series.dummyData = chart.series.indexOf(series);
+            }
+          })
+          var visibleCount = newIndex;
+          var newMiddle = visibleCount / 2;
+
+          chart.series.each(function(series) {
+            var trueIndex = chart.series.indexOf(series);
+            var newIndex = series.dummyData;
+
+            var dx = (newIndex - trueIndex + middle - newMiddle) * delta
+
+            series.animate({
+              property: "dx",
+              to: dx
+            }, series.interpolationDuration, series.interpolationEasing);
+            series.bulletsContainer.animate({
+              property: "dx",
+              to: dx
+            }, series.interpolationDuration, series.interpolationEasing);
+          })
+        }
+      }
+    }
 
   }); // end am4core.ready()
 </script>

@@ -2,25 +2,25 @@
 
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Kecelakaan_internal extends MY_Controller
+class Kecelakaan_eksternal extends MY_Controller
 {
 
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('Report_kecelakaan_internal', 'rKecelakaan_internal');
+    $this->load->model('Report_kecelakaan_eksternal', 'rKecelakaan_eksternal');
   }
 
   public function index()
   {
-    $data['page_name'] = "Report Kecelakaan_internal";
-    $this->template->load('template/template', 'report/kecelakaan_internal/all', $data);
+    $data['page_name'] = "Report Kecelakaan_eksternal";
+    $this->template->load('template/template', 'report/kecelakaan_eksternal/all', $data);
   }
 
 
   function ajaxAll()
   {
-    $list = $this->rKecelakaan_internal->get_datatables();
+    $list = $this->rKecelakaan_eksternal->get_datatables();
     $data = array();
     $i = 1;
     foreach ($list as $u) {
@@ -74,8 +74,8 @@ class Kecelakaan_internal extends MY_Controller
 
     $output = array(
       "draw" => $_POST['draw'],
-      "recordsTotal" => $this->rKecelakaan_internal->count_all(),
-      "recordsFiltered" => $this->rKecelakaan_internal->count_filtered(),
+      "recordsTotal" => $this->rKecelakaan_eksternal->count_all(),
+      "recordsFiltered" => $this->rKecelakaan_eksternal->count_filtered(),
       "data" => $data
     );
 
@@ -85,7 +85,7 @@ class Kecelakaan_internal extends MY_Controller
 
   function getExcel()
   {
-    $list = $this->rKecelakaan_internal->get_data();
+    $list = $this->rKecelakaan_eksternal->get_data();
     $data = array();
     $i = 1;
     foreach ($list as $u) {
@@ -93,7 +93,7 @@ class Kecelakaan_internal extends MY_Controller
       $i++;
     }
 
-    $judul = "Report Kecelakaan_internal";
+    $judul = "Report Kecelakaan_eksternal";
 
     $head = array('No', 'nama', 'nik', 'departemen', 'bagian', 'nama_se', 'nama_kabag', 'nama_k3', 'status');
 

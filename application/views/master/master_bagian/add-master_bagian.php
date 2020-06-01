@@ -95,9 +95,9 @@
                     setTimeout(function() {
 
                         // window.location.href = "<?= base_url('master/Master_bagian') ?>";
-                        // $("#load-table").html('');
-                        // loadtable($("#select-status").val());
-                        // $("#modal-form").modal('hide');
+                        $("#load-table").html('');
+                        loadtable($("#select-status").val());
+                        $("#modal-form").modal('hide');
 
 
                     }, 1000);

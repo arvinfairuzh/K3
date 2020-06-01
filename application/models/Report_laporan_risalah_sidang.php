@@ -9,22 +9,22 @@ class Report_laporan_risalah_sidang extends CI_Model
     {
 
         $this->load->database();
-        $departemen = '';
+        $kompartemen = '';
         if (!$_SESSION['role_id'] == 0) {
-            $departemen = $_SESSION['id_departemen'];
-            $departemen = "AND ketua.id_departemen = '$departemen'";
+            $kompartemen = $_SESSION['id_kompartemen'];
+            $kompartemen = "AND ketua.id_kompartemen = '$kompartemen'";
         }
 
         $this->column_order = array(null, 'id_jadwal', 'pimpinan_sidang', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'id_notulis', 'nama_status'); //field yang ada di table user
         $this->column_search = array(null, 'id_jadwal', 'pimpinan_sidang', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'id_notulis', 'nama_status'); //field yang ada di table user
-        $this->order = array('id_jadwal' => 'asc'); // default order 
+        $this->order = array('id' => 'desc'); // default order 
         $this->table = "(SELECT hasil_rapat.id,master_jadwal_rapat.nama as id_jadwal,hasil_rapat.pimpinan_sidang,hasil_rapat.tanggal,hasil_rapat.jam_mulai,hasil_rapat.jam_selesai,hasil_rapat.lokasi,pendahuluan,review,tindak_lanjut,materi_tambahan,materi_kesehatan,pegawai.nama as id_notulis,hasil_rapat.status_sidang, master_status_sidang.nama as nama_status
         FROM hasil_rapat
         LEFT JOIN master_jadwal_rapat on hasil_rapat.id_jadwal = master_jadwal_rapat.id
         LEFT JOIN pegawai on hasil_rapat.id_notulis = pegawai.id
         LEFT JOIN master_status_sidang on hasil_rapat.status_sidang = master_status_sidang.id
         LEFT JOIN pegawai ketua on master_jadwal_rapat.id_ketua = ketua.id
-        WHERE hasil_rapat.status = 'ENABLE' " . $departemen . " ) as tabledata";
+        WHERE hasil_rapat.status = 'ENABLE' " . $kompartemen . " ) as tabledata";
     }
 
 

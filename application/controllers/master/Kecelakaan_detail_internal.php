@@ -75,10 +75,12 @@ class Kecelakaan_detail_internal extends MY_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->alert->alertdanger(validation_errors());
 		} else {
-			$kabag = $this->mymodel->selectDataOne("pegawai", array('id_departemen' => $_SESSION['id_departemen'], 'id_bagian' => $_SESSION['id_bagian']));
-			$kabag = $this->mymodel->selectDataOne("pegawai", array('id_departemen' => $_SESSION['id_departemen'], 'id_bagian' => $_SESSION['id_bagian']));
+			$kabag = $this->mymodel->selectDataOne("pegawai", array('id_departemen' => $_SESSION['id_departemen'], 'id_bagian' => $_SESSION['id_bagian'], 'id_role' => 3));
+
 			$dta = $_POST['dta'];
 			$dta['id_penderita'] = $_SESSION['id'];
+			$dta['jenis_form'] = 1;
+			$dta['id_kabag'] = $kabag['id'];
 			$this->mymodel->insertData('kecelakaan_main', $dta);
 			$last_id = $this->db->insert_id();
 
@@ -87,7 +89,6 @@ class Kecelakaan_detail_internal extends MY_Controller
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
-			$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
 			if ($dt['pttk_kondisi_lingkungan'] == 'Lainya') {
 				$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
 			}
@@ -123,89 +124,77 @@ class Kecelakaan_detail_internal extends MY_Controller
 			}
 
 			$this->mymodel->insertData('kecelakaan_detail_internal', $dt);
-			die();
 			$this->alert->alertsuccess('Success Send Data');
 		}
 	}
 
 	public function update()
-
 	{
-
 		$this->validate();
-
 		if ($this->form_validation->run() == FALSE) {
 			$this->alert->alertdanger(validation_errors());
 		} else {
 			$id = $this->input->post('id', TRUE);
-			if (!empty($_FILES['file']['name'])) {
+
+			$dta = $_POST['dta'];
+			$dta['id_se'] = $_SESSION['id'];
+			$this->mymodel->updateData('kecelakaan_main', $dta, array('id' => $id));
+
+			$dt = $_POST['dt'];
+			$dt['updated_at'] = date('Y-m-d H:i:s');
+			if ($dt['pttk_kondisi_lingkungan'] == 'Lainya') {
+				$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
+			}
+
+			if (!empty($_FILES['kk_gambar_lokasi']['name'])) {
 				$dir  = "webfile/kecelakaan/";
 				$config['upload_path']          = $dir;
 				$config['allowed_types']        = '*';
 				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
 				$this->load->library('upload', $config);
-				if (!$this->upload->do_upload('file')) {
+				if (!$this->upload->do_upload('kk_gambar_lokasi')) {
 					$error = $this->upload->display_errors();
 					$this->alert->alertdanger($error);
 				} else {
-					$file = $this->upload->data();
-					$data = array(
-						'name' => $file['file_name'],
-						'mime' => $file['file_type'],
-						// 'size'=> $file['file_size'],
-						'dir' => $dir . $file['file_name'],
-						'table' => 'kecelakaan_detail_internal',
-						'table_id' => $id,
-						'updated_at' => date('Y-m-d H:i:s')
-					);
-					$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'kecelakaan_detail_internal'));
-					@unlink($file['dir']);
-					if ($file == "") {
-						$this->mymodel->insertData('file', $data);
-					} else {
-						$this->mymodel->updateData('file', $data, array('id' => $file['id']));
-					}
-					$dt = $_POST['dt'];
-					$dt['updated_at'] = date("Y-m-d H:i:s");
-					$str =  $this->mymodel->updateData('kecelakaan_detail_internal', $dt, array('id' => $id));
-					return $str;
+					$file_kk = $this->upload->data();
+					$dt['kk_gambar_lokasi'] = $dir . $file_kk['file_name'];
 				}
-			} else {
-				$dt = $_POST['dt'];
-				$dt['updated_at'] = date("Y-m-d H:i:s");
-				$str = $this->mymodel->updateData('kecelakaan_detail_internal', $dt, array('id' => $id));
-				return $str;
 			}
+
+			if (!empty($_FILES['md_gambar_1']['name'])) {
+				$dir  = "webfile/kecelakaan/";
+				$config['upload_path']          = $dir;
+				$config['allowed_types']        = '*';
+				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
+				$this->load->library('upload', $config);
+				if (!$this->upload->do_upload('md_gambar_1')) {
+					$error = $this->upload->display_errors();
+					$this->alert->alertdanger($error);
+				} else {
+					$file_md = $this->upload->data();
+					$dt['md_gambar_1'] = $dir . $file_md['file_name'];
+				}
+			}
+
+			$str = $this->mymodel->updateData('kecelakaan_detail_internal', $dt, array('id_kecelakaan' => $id));
 		}
 	}
 
 	public function json()
-
 	{
-
 		$status = $_GET['status'];
-
 		if ($status == '') {
-
 			$status = 'ENABLE';
 		}
-
 		header('Content-Type: application/json');
-
 		$this->datatables->select('id,id_kecelakaan,kk_tanggal_jam,kk_lokasi,kk_penjelasan_kecelakaan,kk_gambar_lokasi,kk_bagian_tubuh_cedera,tw_apkh_1,tw_apkh_2,tw_apkh_3,tw_tidak_q1,tw_tidak_q2,tw_tidak_q3,sp_apkh_1,sp_ya_1,sp_tidak_1,sp_apkh_2,sp_tidak_2,pk__apkh_1,pk_tidak_1,pk_apkh_2,pk_tidak_2,pk_apkh_3,pk_tidak_3,papd_apkh_1,papd_ya_1,papd_tidak_1,papd_apd,papd_apkh_2,papd_tidak_2,md_gambar_1,md_fungsi_alat,md_apkh_1,md_ya_1,md_apkh_2,md_apkh_3,md_tidak_3,md_apkh_4,md_tidak_4,md_apkh_5,md_ya_5,snp_apkh_1,snp_ya_1,snp_tidak_1,snp_adakah_1,snp_apkh_2,snp_tidak_2,pttk_kondisi_lingkungan,pttk_apkh_1,pttk_kesimpulan,status');
-
 		$this->datatables->where('status', $status);
-
 		$this->datatables->from('kecelakaan_detail_internal');
-
 		if ($status == "ENABLE") {
-
 			$this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button></div>', 'id');
 		} else {
-
 			$this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button><button type="button" onclick="hapus($1)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Hapus</button></div>', 'id');
 		}
-
 		echo $this->datatables->generate();
 	}
 
@@ -219,22 +208,112 @@ class Kecelakaan_detail_internal extends MY_Controller
 		$this->template->load('template/template', 'master/kecelakaan_detail_internal/edit-kecelakaan_detail_internal', $data);
 	}
 
+	public function detail($id)
+	{
+		$data['kecelakaan_main'] = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$data['k3'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['kecelakaan_main']['id_k3']));
+		$data['kabag'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['kecelakaan_main']['id_kabag']));
+		$data['penderita'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['kecelakaan_main']['id_penderita']));
+		$datamain = $data['kecelakaan_main'];
+		$data['kecelakaan_detail_internal'] = $this->mymodel->selectDataone('kecelakaan_detail_internal', array('id_kecelakaan' => $datamain['id']));
+
+		$data['page_name'] = "kecelakaan_detail_internal";
+
+		$this->template->load('template/template', 'master/kecelakaan_detail_internal/detail-kecelakaan_detail_internal', $data);
+	}
+
+	public function cetak($id)
+	{
+		$data['kecelakaan_main'] = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$data['k3'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['kecelakaan_main']['id_k3']));
+		$data['kabag'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['kecelakaan_main']['id_kabag']));
+		$data['penderita'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['kecelakaan_main']['id_penderita']));
+		$datamain = $data['kecelakaan_main'];
+		$data['kecelakaan_detail_internal'] = $this->mymodel->selectDataone('kecelakaan_detail_internal', array('id_kecelakaan' => $datamain['id']));
+
+		$data['page_name'] = "kecelakaan_detail_internal";
+
+		$this->load->view('master/kecelakaan_detail_internal/cetak-kecelakaan_detail_internal', $data);
+	}
+
+	public function validasi($id)
+	{
+		$kecelakaan_main = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$data['status_sekarang'] = $kecelakaan_main['status_kecelakaan'];
+		$data['id'] = $kecelakaan_main['id'];
+		$data['page_name'] = "kecelakaan_detail_internal";
+
+		$this->load->view('master/kecelakaan_detail_internal/modal', $data);
+	}
+
+	public function validasi_act($id, $status)
+	{
+		$kecelakaan_main = $this->mymodel->selectDataone('kecelakaan_main', array('id' => $id));
+		$status_sekarang = $kecelakaan_main['status_kecelakaan'];
+		if ($status == 'terima') {
+			if ($_SESSION['role_id'] == 1) {
+				$dt['status_kecelakaan'] = 0;
+			} else if ($_SESSION['role_id'] == 3) {
+				if ($_SESSION['id_bagian'] == 16) {
+					if ($status_sekarang == 3) {
+						$dt['status_kecelakaan'] = 5;
+						$dt['id_k3'] = $_SESSION['id'];
+					} else if ($status_sekarang == 8) {
+						$dt['status_kecelakaan'] = 10;
+						$dt['id_k3'] = $_SESSION['id'];
+					}
+				} else {
+					if ($status_sekarang == 0) {
+						$dt['status_kecelakaan'] = 2;
+					} else if ($status_sekarang == 5 || $status_sekarang == 7) {
+						$dt['status_kecelakaan'] = 6;
+					}
+				}
+			} else if ($_SESSION['role_id'] == 6) {
+				$dt['id_se'] = $_SESSION['id'];
+				if ($status_sekarang == 2) {
+					$dt['status_kecelakaan'] = 3;
+				} else if ($status_sekarang == 4) {
+					$dt['status_kecelakaan'] = 3;
+				} else if ($status_sekarang == 6) {
+					$dt['status_kecelakaan'] = 8;
+				} else if ($status_sekarang == 9) {
+					$dt['status_kecelakaan'] = 8;
+				}
+			}
+		} else {
+			if ($_SESSION['role_id'] == 3) {
+				if ($_SESSION['id_bagian'] == 16) {
+					if ($status_sekarang == 3) {
+						$dt['status_kecelakaan'] = 4;
+						$dt['id_k3'] = $_SESSION['id'];
+					} else if ($status_sekarang == 8) {
+						$dt['status_kecelakaan'] = 9;
+						$dt['id_k3'] = $_SESSION['id'];
+					}
+				} else {
+					if ($status_sekarang == 0) {
+						$dt['status_kecelakaan'] = 1;
+					}
+				}
+			} else if ($_SESSION['role_id'] == 6) {
+				if ($status_sekarang == 6) {
+					$dt['status_kecelakaan'] = 7;
+					$dt['id_se'] = $_SESSION['id'];
+				}
+			}
+		}
+		$str = $this->db->update('kecelakaan_main', $dt, array('id' => $id));
+		header('Location: ' . base_url('master/kecelakaan_detail_internal/'));
+	}
 
 	public function delete()
 
 	{
-
 		$id = $this->input->post('id', TRUE);
-		$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'kecelakaan_detail_internal'));
-
-		@unlink($file['dir']);
-
-		$this->mymodel->deleteData('file',  array('table_id' => $id, 'table' => 'kecelakaan_detail_internal'));
-
-
-
-		$str = $this->mymodel->deleteData('kecelakaan_detail_internal',  array('id' => $id));
-		return $str;
+		$dt['status'] = 'DISABLE';
+		$str = $this->db->update('kecelakaan_detail_internal', $dt, array('id' => $id));
+		header('Location: ' . base_url('master/kecelakaan_detail_internal/'));
 	}
 
 

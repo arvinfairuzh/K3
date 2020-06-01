@@ -7,39 +7,22 @@
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
 <div class="content-wrapper">
-
   <!-- Content Header (Page header) -->
-
   <section class="content-header">
-
     <h1>
-
       Hasil Rapat
-
       <small>Tambah</small>
-
     </h1>
-
     <ol class="breadcrumb">
-
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-
       <li><a href="#">Master</a></li>
-
       <li class="#">Hasil Rapat</li>
-
       <li class="active">Tambah</li>
-
     </ol>
-
   </section>
-
   <!-- Main content -->
-
   <section class="content">
-
     <form method="POST" autocomplete="off" action="<?= base_url('master/Hasil_rapat/store') ?>" id="upload-create" enctype="multipart/form-data">
       <div class="row">
         <div class="col-xs-12">
@@ -60,60 +43,36 @@
                   foreach ($master_jadwal_rapat as $master_jadwal_rapat_record) {
                     echo "<option value=" . $master_jadwal_rapat_record['id'] . ">" . $master_jadwal_rapat_record['nama'] . "</option>";
                   }
-
                   ?>
-
                 </select>
-
               </div>
               <div class="form-group col-md-6">
-
                 <label for="form-pimpinan_sidang">Pimpinan Sidang</label>
-
                 <input type="text" readonly id="pimpinan" class="form-control" id="form-pimpinan_sidang" placeholder="Masukan Pimpinan Sidang" name="dt[pimpinan_sidang]">
-
               </div>
               <div class="form-group col-md-6">
-
                 <label for="form-lokasi">Lokasi</label>
-
                 <input type="text" id="lokasi" class="form-control" id="form-lokasi" placeholder="Masukan Lokasi" name="dt[lokasi]">
-
               </div>
               <div class="form-group col-md-4">
-
                 <label for="form-tanggal">Tanggal</label>
-
                 <input type="text" class="form-control tgl" value="<?= date('Y-m-d') ?>" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]">
-
               </div>
               <div class="form-group col-md-4">
-
                 <label for="form-jam_mulai">Jam Mulai</label>
-
                 <input type="time" class="form-control" id="form-jam_mulai" value="<?= date('h:i:s') ?>" placeholder="Masukan Jam Mulai" name="dt[jam_mulai]">
-
               </div>
               <div class="form-group col-md-4">
-
                 <label for="form-jam_selesai">Jam Selesai</label>
-
                 <input type="time" class="form-control" id="form-jam_selesai" placeholder="Masukan Jam Selesai" name="dt[jam_selesai]">
-
               </div>
               <div class="form-group col-md-12">
-
                 <label for="form-pendahuluan">Pendahuluan</label>
-
                 <textarea id="summernote_1" name="dt[pendahuluan]" class="form-control"></textarea>
-
               </div>
               <div class="form-group col-md-12">
-
                 <label for="form-review">Review</label>
-
                 <textarea id="summernote_2" name="dt[review]" class="form-control"></textarea>
-
               </div>
               <div class="form-group col-md-12">
                 <label for="form-tindak_lanjut">Tindak Lanjut</label>

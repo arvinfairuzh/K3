@@ -19,7 +19,7 @@ class Report_laporan_bulanan extends CI_Model
 
         $this->column_order = array(null, 'lokasi', 'departemen', 'bagian', 'tanggal', 'id_kabag', 'created_by', 'nama_status'); //field yang ada di table user
         $this->column_search = array(null, 'lokasi', 'departemen', 'bagian', 'tanggal', 'id_kabag', 'created_by', 'nama_status'); //field yang ada di table user
-        $this->order = array('lokasi' => 'asc'); // default order 
+        $this->order = array('id' => 'desc'); // default order 
         $this->table = "(SELECT form_laporan_bulanan.id,lokasi,master_departemen.nama as departemen,
         master_bagian.nama as bagian,tanggal,value,kabag.nama as id_kabag,
         form_laporan_bulanan.status_bulanan,sr.nama as created_by, master_status_bulanan.nama as nama_status

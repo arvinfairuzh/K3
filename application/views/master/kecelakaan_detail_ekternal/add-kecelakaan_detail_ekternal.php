@@ -1,92 +1,72 @@
 <!-- Content Wrapper. Contains page content -->
-
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <div class="content-wrapper">
-
     <!-- Content Header (Page header) -->
-
     <section class="content-header">
-
         <h1>
-
             Kecelakaan Detail Ekternal
-
             <small>Tambah</small>
-
         </h1>
-
         <ol class="breadcrumb">
-
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-
             <li><a href="#">Master</a></li>
-
             <li class="#">Kecelakaan Detail Ekternal</li>
-
             <li class="active">Tambah</li>
-
         </ol>
-
     </section>
-
     <!-- Main content -->
-
     <section class="content">
-
         <form method="POST" action="<?= base_url('master/Kecelakaan_detail_ekternal/store') ?>" id="upload-create" enctype="multipart/form-data">
-
-
-
             <div class="row">
-
                 <div class="col-xs-12">
-
                     <div class="box">
-
                         <!-- /.box-header -->
-
                         <div class="box-header">
-
                             <h5 class="box-title">
-
                                 Tambah Kecelakaan Detail Ekternal
-
                             </h5>
-
                         </div>
-
                         <div class="box-body">
-
                             <div class="show_error"></div>
-                            <!-- <div class="form-group">
-                                <label for="form-id_kecelakaan">Id Kecelakaan</label>
-                                <input type="text" class="form-control" id="form-id_kecelakaan" placeholder="Masukan Id Kecelakaan" name="dt[id_kecelakaan]">
-                            </div> -->
+                            <div class="form-group" align="center">
+                                <label for="form-jenis_kecelakaan" style="font-size:20px">Jenis Kecelakaan</label><br>
+                                <div class="col-md-6">
+                                    <input type="radio" id="form-jenis_kecelakaan-1" name="dta[jenis_kecelakaan]" value="1">
+                                    <label for="form-jenis_kecelakaan-1">Kecelakaan Kerja</label><br>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="radio" id="form-jenis_kecelakaan-2" name="dta[jenis_kecelakaan]" value="2">
+                                    <label for="form-jenis_kecelakaan-2">Bukan Kecelakaan Kerja</label><br>
+                                </div>
+                            </div>
                             <div class="form-group">
+                                <hr>
                                 <label for="form-id_kecelakaan" style="font-size:20px">IDENTITAS PENDERITA</label>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nama</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" value="<?= $sr['nama'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nomor Induk</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" value="<?= $sr['nip'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Umur</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_umur]">
+                                <input type="number" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_umur]">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Alamat</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_alamat]">
+                                <textarea class="form-control" id="form-kk_tanggal_jam" name="dta[ip_alamat]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Dep/Biro/Bid</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]" value="<?= $departemen['nama'] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Bagian/Seksi</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]" value="<?= $bagian['nama'] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Lama bekerja di unit tersebut</label>
@@ -109,7 +89,7 @@
                                 <input type="text" class="form-control" id="form-kk_lokasi" placeholder="Masukan Kk Lokasi" name="dt[kk_lokasi]">
                             </div>
                             <div class="form-group">
-                                <label for="form-kk_penjelasan_kecelakaan">Jelaskan bagaimana terjadi</label>
+                                <label for="form-kk_penjelasan_kecelakaan">Jelaskan bagaimana kecelakaan terjadi</label>
                                 <textarea name="dt[kk_penjelasan_kecelakaan]" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
@@ -160,14 +140,14 @@
                                             <input type="radio" name="dt[kk_aktifitas_penderita]" onclick="javascript:yesnoCheck();" id="lain" value="Lain lain">
                                             <label for="Tidak">Lain lain</label>
                                         </td>
-                                        
+
                                     </tr>
-                                    
+
                                 </table>
                             </div>
                             <div class="form-group" id="kap" style="display: none;">
                                 <label for="form-kk_apabila_1">Jelaskan keperluan aktifitas penderita</label>
-                                <textarea class="form-control" id="form-kk_apabila_1"  name="dt[kk_apabila_1]"></textarea>
+                                <textarea class="form-control" id="form-kk_apabila_1" name="dt[kk_apabila_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_apkh_1">Apakah yang bersangkutan melalui jalan yang ditempuh ?</label>
@@ -184,9 +164,9 @@
                             <div class="form-group">
                                 <label for="form-kk_apkh_2">Apakah kendaraan yang digunakan penderita ?</label>
                                 <!-- <input type="text" class="form-control" id="form-kk_apkh_2" placeholder="Masukan Kk Apkh 2" name="dt[kk_apkh_2]"> -->
-                                <br><input type="radio"  name="dt[kk_apkh_2]" value="Dinas">
+                                <br><input type="radio" name="dt[kk_apkh_2]" value="Dinas">
                                 <label for="Ya">Dinas</label>
-                                <input type="radio"  name="dt[kk_apkh_2]" value="Pribadi">
+                                <input type="radio" name="dt[kk_apkh_2]" value="Pribadi">
                                 <label for="Tidak">Pribadi</label>
                                 <input type="radio" name="dt[kk_apkh_2]" value="Kendaraan Umum">
                                 <label for="Tidak">Kendaraan Umum</label>
@@ -206,7 +186,7 @@
                                 <label for="Tidak">Truck</label>
                                 <input type="radio" onclick="javascript:yesnoCheck2();" id="jenis6" name="dt[kk_jenis_kendaraan]" value="Lain lain">
                                 <label for="Tidak">Lain lain</label>
-                                <input type="text" name="pttk_kondisi_lingkungan_lainnya" id="wolk" style="display: none;">
+                                <input type="text" name="kk_jenis_kendaraan" id="wolk" style="display: none;">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_apkh_3">Saat terjadi kecelakaan lalulintas, Apakah yang bersangkutan melanggar rambu rambu lalulintas ?</label>
@@ -227,7 +207,7 @@
                                 <label for="Ya">Ya</label><br>
                                 <input type="radio" onclick="javascript:yesnoCheck4();" id="noCheck4" name="dt[kk_apkh_4]" value="tidak">
                                 <label for="Tidak">Tidak</label><br>
-                                <input type="radio" onclick="javascript:yesnoCheck4();" id="nonCheck4" name="dt[kk_apkh_4]" value="tidak">
+                                <input type="radio" onclick="javascript:yesnoCheck4();" id="nonCheck4" name="dt[kk_apkh_4]" value="tidak perlu">
                                 <label for="Tidak">Tidak Perlu</label>
                             </div>
                             <div class="form-group" id="ifNo4" style="display:none">
@@ -276,7 +256,7 @@
                             </div>
                             <div class="form-group" id="ifYes6" style="display:none">
                                 <label for="form-wp_ya_q1">Siapa yang memerintahkan untuk menjalankan/mengoprasikan ?</label>
-                                <textarea  class="form-control" id="form-wp_ya_q1" placeholder="Masukan Wp Ya Q1" name="dt[wp_ya_q1]"></textarea>
+                                <textarea class="form-control" id="form-wp_ya_q1" placeholder="Masukan Wp Ya Q1" name="dt[wp_ya_q1]"></textarea>
                             </div>
                             <div class="form-group" id="ifYes7" style="display:none">
                                 <label for="form-wp_ya_q2">Tugas dan instruksi apa yang telah diberikan kepada penderita ?</label>
@@ -298,20 +278,26 @@
                                 <label for="form-wp_persyaratan_administrasi">Persyaratan administrasi apa yang di bawa penderita saat terjadi kecelakaan ?</label>
                                 <!-- <input type="text" class="form-control" id="form-wp_persyaratan_administrasi" placeholder="Masukan Wp Persyaratan Administrasi" name="dt[wp_persyaratan_administrasi]"> -->
                                 <br>
-                                <input type="checkbox" id="vehicle1" name="dt[wp_persyaratan_administrasi]" value="simpol">
+                                <input type="checkbox" id="vehicle1" name="wp_persyaratan_administrasi[]" value="simpol">
                                 <label for="vehicle1"> SIMPOL sesuai dengan kendaraan yang dikemudikan</label><br>
-                                <input type="checkbox" id="vehicle2" name="dt[wp_persyaratan_administrasi]" value="simper">
+                                <input type="checkbox" id="vehicle2" name="wp_persyaratan_administrasi[]" value="simper">
                                 <label for="vehicle2"> SIMPER sesuai dengan kendaraan yang dikemudikan</label><br>
-                                <input type="checkbox" id="vehicle3" name="dt[wp_persyaratan_administrasi]" value="sio">
+                                <input type="checkbox" id="vehicle3" name="wp_persyaratan_administrasi[]" value="sio">
                                 <label for="vehicle3"> SIO Untuk alat alat berat perusahaan</label><br>
-                                <input type="checkbox" id="vehicle3" name="dt[wp_persyaratan_administrasi]" value="simper1">
+                                <input type="checkbox" id="vehicle3" name="wp_persyaratan_administrasi[]" value="simper1">
                                 <label for="vehicle3"> SIMPER alat alat berat sesuai yang dioprasikan</label><br>
-                                <input type="checkbox" id="vehicle3" name="dt[wp_persyaratan_administrasi]" value="stnk">
+                                <input type="checkbox" id="vehicle3" name="wp_persyaratan_administrasi[]" value="stnk">
                                 <label for="vehicle3"> STNK</label><br>
                             </div>
                             <div class="form-group">
-                                <label for="form-wp_masa_aktif_administrasi">Kapan masa berakhirnya persyaratan tersebut di atas ?</label>
-                                <textarea  class="form-control" id="form-wp_masa_aktif_administrasi" placeholder="Masukan Wp Masa Aktif Administrasi" name="dt[wp_masa_aktif_administrasi]"></textarea>
+                                <label for="form-wp_masa_aktif_administrasi">Kapan masa berakhirnya persyaratan tersebut di atas ? (Isi sesuai pilihan anda diatas)</label>
+                                <textarea class="form-control" id="summernote_surat" placeholder="Masukan Wp Masa Aktif Administrasi" name="dt[wp_masa_aktif_administrasi]">
+                                    SIMPOL : <br>
+                                    SIMPER : <br>
+                                    SIO : <br>
+                                    SIMPER ALBER : <br>
+                                    STNK : <br>
+                                </textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-wp_mengapa">Apabila habis masa berlakunya, mengapa tidak diperpanjang ?</label>
@@ -319,7 +305,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-wp_bgmn_1">Bagaimana kondisi tempat kejadian?</label>
-                                <textarea  class="form-control" id="form-wp_bgmn_1" placeholder="Masukan Wp Bgmn 1" name="dt[wp_bgmn_1]"></textarea>
+                                <textarea class="form-control" id="form-wp_bgmn_1" placeholder="Masukan Wp Bgmn 1" name="dt[wp_bgmn_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-wp_usaha_pencegahan_1">Dapatkah ditentukan usaha pencegahan lebih lanjut agar kejadian serupa tidak terulang ?</label>
@@ -347,7 +333,7 @@
                             </div>
                             <div class="form-group" id="ifYes10" style="display:none">
                                 <label for="form-sp_ya_1">Pelatihan apa yang diperlukan ?</label>
-                                <textarea  class="form-control" id="form-sp_ya_1" placeholder="Masukan Sp Ya 1" name="dt[sp_ya_1]"></textarea>
+                                <textarea class="form-control" id="form-sp_ya_1" placeholder="Masukan Sp Ya 1" name="dt[sp_ya_1]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -421,16 +407,10 @@
                                 <textarea name="dt[pttk_apkh_1]" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="form-pttk_kesimpulan">buatlah dan jelasakan kesimpulan mengenai penyebab kecelakaan persyaratan yang harus di penuhi oleh korban dan kondisi lain yang ada hubungannya dengan kejadian kecelakaan.</label>
+                                <label for="form-pttk_kesimpulan">Buatlah dan jelaskan kesimpulan mengenai penyebab kecelakaan persyaratan yang harus di penuhi oleh korban dan kondisi lain yang ada hubungannya dengan kejadian kecelakaan.</label>
                                 <textarea name="dt[pttk_kesimpulan]" class="form-control"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
-                            <div class="form-group">
-                                <label for="form-id_kecelakaan" style="font-size:20px">SARAN</label>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="dta[saran]" class="form-control"></textarea>
-                            </div>
                             <div class="show_error"></div>
                         </div>
                         <div class="box-footer">
@@ -468,6 +448,8 @@
 
 <!-- /.content-wrapper -->
 <script type="text/javascript">
+    $('#summernote_surat').summernote();
+
     function yesnoCheck() {
         if (document.getElementById('lain').checked || document.getElementById('ijin').checked) {
             document.getElementById("kap").style.display = 'block';
@@ -475,6 +457,7 @@
             document.getElementById("kap").style.display = 'none';
         }
     }
+
     function yesnoCheck1() {
         if (document.getElementById('noCheck1').checked) {
             document.getElementById("ifNo1").style.display = 'block';
@@ -483,6 +466,7 @@
             document.getElementById("ifNo1").style.display = 'none';
         }
     }
+
     function yesnoCheck2() {
         if (document.getElementById('jenis6').checked) {
             document.getElementById("wolk").style.display = 'block';
@@ -491,14 +475,16 @@
             document.getElementById("wolk").style.display = 'none';
         }
     }
+
     function yesnoCheck3() {
-        if (document.getElementById('noCheck3').checked) {
+        if (document.getElementById('yesCheck3').checked) {
             document.getElementById("ifNo3").style.display = 'block';
 
         } else {
             document.getElementById("ifNo3").style.display = 'none';
         }
     }
+
     function yesnoCheck4() {
         if (document.getElementById('noCheck4').checked) {
             document.getElementById("ifNo4").style.display = 'block';
@@ -507,6 +493,7 @@
             document.getElementById("ifNo4").style.display = 'none';
         }
     }
+
     function yesnoCheck5() {
         if (document.getElementById('noCheck5').checked) {
             document.getElementById("ifNo5").style.display = 'block';
@@ -515,6 +502,7 @@
             document.getElementById("ifNo5").style.display = 'none';
         }
     }
+
     function yesnoCheck6() {
         if (document.getElementById('noCheck6').checked) {
             document.getElementById("ifNo6").style.display = 'block';
@@ -531,6 +519,7 @@
             document.getElementById("ifNo7").style.display = 'none';
         }
     }
+
     function yesnoCheck7() {
         if (document.getElementById('yesCheck7').checked) {
             document.getElementById("ifYes9").style.display = 'block';
@@ -539,6 +528,7 @@
             document.getElementById("ifYes9").style.display = 'none';
         }
     }
+
     function yesnoCheck8() {
         if (document.getElementById('yesCheck8').checked) {
             document.getElementById("ifYes10").style.display = 'block';

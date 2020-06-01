@@ -153,7 +153,7 @@ class Pegawai extends MY_Controller
 
 
 				$str = $this->mymodel->insertData('file', $data);
-				die();
+				// die();
 				$this->alert->alertsuccess('Success Send Data');
 			}
 		}
