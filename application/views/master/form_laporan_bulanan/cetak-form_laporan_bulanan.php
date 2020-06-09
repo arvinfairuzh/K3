@@ -104,29 +104,30 @@
                         $id_kategori = $kat['id'];
                         $kategori = $kat['nama'];
                         $master_daftar_periksa = $this->mymodel->selectWithQuery("SELECT * FROM master_daftar_periksa WHERE kategori = '$id_kategori'");
-                        ?>
+                    ?>
                         <tr>
                             <th colspan="5"><?= $kategori ?></th>
                         </tr>
                         <?php
-                            $no = 0;
-                            foreach ($master_daftar_periksa as $dp) {
-                                $no++;
-                                $keterangan = '';
-                                $ya_text = '';
-                                $tidak_text = '';
-                                foreach ($jawaban as $j) {
-                                    if ($j->id_dp == $dp['id']) {
-                                        if ($j->hasil == 'Ya') {
-                                            $ya_text = 'fa fa-check-circle';
-                                        } else {
-                                            $tidak_text = 'fa fa-check-circle';
-                                        }
-                                        $keterangan = $j->keterangan;
-                                    } else { }
+                        $no = 0;
+                        foreach ($master_daftar_periksa as $dp) {
+                            $no++;
+                            $keterangan = '';
+                            $ya_text = '';
+                            $tidak_text = '';
+                            foreach ($jawaban as $j) {
+                                if ($j->id_dp == $dp['id']) {
+                                    if ($j->hasil == 'Ya') {
+                                        $ya_text = 'fa fa-check-circle';
+                                    } else {
+                                        $tidak_text = 'fa fa-check-circle';
+                                    }
+                                    $keterangan = $j->keterangan;
+                                } else {
                                 }
-                                // print_r($hasil);
-                                ?>
+                            }
+                            // print_r($hasil);
+                        ?>
                             <tr>
                                 <td><?= $no ?></td>
                                 <td>
@@ -141,8 +142,8 @@
                                 <td><?= $keterangan ?></td>
                             </tr>
                         <?php
-                            }
-                            ?>
+                        }
+                        ?>
                     <?php
                     }
                     ?>
@@ -221,15 +222,16 @@
                         if (!$form_tindak_lanjut) {
                             $kosong = '(Kosong)';
                         }
-                        ?>
+                    ?>
                         <tr>
-                            <th colspan="4"><?= $hasil_temuan ?> <?= $kosong ?></th>
+                            <td></td>
+                            <td colspan="3"><?= $hasil_temuan ?> <?= $kosong ?></td>
                         </tr>
                         <?php
-                            $no = 0;
-                            foreach ($form_tindak_lanjut as $ftl) {
-                                $no++;
-                                ?>
+                        $no = 0;
+                        foreach ($form_tindak_lanjut as $ftl) {
+                            $no++;
+                        ?>
                             <tr>
                                 <td><?= $no; ?></td>
                                 <td>
@@ -240,8 +242,8 @@
                                 </td>
                                 <td>
                                     <?php
-                                            if ($ftl['gambar'] != "") {
-                                                ?>
+                                    if ($ftl['gambar'] != "") {
+                                    ?>
                                         <img src="<?= base_url($ftl['gambar']) ?>" style="width: 200px" class="img img-thumbnail">
                                         <br>
                                     <?php } ?>
@@ -253,7 +255,7 @@
                     } ?>
                     <tr>
                         <th colspan="2">
-                            Anggota Safety Representative <br><br><br><br><br><br>
+                            Anggota Safety Representative <br><br><br><br><br>
                             <?= $sr['nama'] ?><br>
                             <?= $sr['nip'] ?>
                         </th>

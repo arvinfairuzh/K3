@@ -44,6 +44,7 @@
     <form method="POST" action="<?= base_url('master/Pegawai/update') ?>" id="upload-create" enctype="multipart/form-data">
 
       <input type="hidden" name="id" value="<?= $pegawai['id'] ?>">
+      <input type="hidden" name="nik_last" value="<?= $pegawai['nip'] ?>">
 
       <div class="row">
         <div class="col-xs-12">

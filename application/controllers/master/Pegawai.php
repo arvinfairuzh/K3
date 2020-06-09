@@ -209,19 +209,24 @@ class Pegawai extends MY_Controller
 	}
 
 
-
-
-
 	public function update()
 
 	{
-
-		$this->validate();
-
-
-
-
-
+		$dt = $_POST['dt'];
+		$this->form_validation->set_error_delimiters('<li>', '</li>');
+		if ($_POST['nik_last'] != $dt['nip']) {
+			$this->form_validation->set_rules(
+				'dt[nip]',
+				'<strong>NIK</strong>',
+				'required|is_unique[pegawai.nip]',
+				array(
+					'required'      => 'You have not provided %s.',
+					'is_unique'     => 'This %s already exists.'
+				)
+			);
+		}
+		$this->form_validation->set_rules('dt[nama]', '<strong>Nama</strong>', 'required');
+		$this->form_validation->set_rules('dt[id_role]', '<strong>Id Role</strong>', 'required');
 		if ($this->form_validation->run() == FALSE) {
 
 			$this->alert->alertdanger(validation_errors());
@@ -279,27 +284,11 @@ class Pegawai extends MY_Controller
 
 						$this->mymodel->updateData('file', $data, array('id' => $file['id']));
 					}
-
-
-
-
-
-					$dt = $_POST['dt'];
-
-
-
 					$dt['updated_at'] = date("Y-m-d H:i:s");
-
 					$str =  $this->mymodel->updateData('pegawai', $dt, array('id' => $id));
-
 					return $str;
 				}
 			} else {
-
-				$dt = $_POST['dt'];
-
-
-
 				$dt['updated_at'] = date("Y-m-d H:i:s");
 
 				$str = $this->mymodel->updateData('pegawai', $dt, array('id' => $id));

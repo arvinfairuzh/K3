@@ -229,6 +229,7 @@ class Hasil_rapat extends MY_Controller
 		$data['master_jadwal_rapat'] = $this->mymodel->selectDataone('master_jadwal_rapat', array('id' => $data['hasil_rapat']['id_jadwal']));
 		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'hasil_rapat'));
 		$data['page_name'] = "hasil_rapat";
+		$data['master_status_sidang'] = $this->mymodel->selectDataone('master_status_sidang', array('id' => $data['hasil_rapat']['status_sidang']));
 
 		$this->template->load('template/template', 'master/hasil_rapat/detail-hasil_rapat', $data);
 	}
@@ -265,6 +266,15 @@ class Hasil_rapat extends MY_Controller
 		$this->load->view('master/hasil_rapat/modal', $data);
 	}
 
+	public function validasi_tolak($id)
+	{
+		$hasil_rapat = $this->mymodel->selectDataone('hasil_rapat', array('id' => $id));
+		$data['id'] = $hasil_rapat['id'];
+		$data['page_name'] = "hasil_rapat";
+
+		$this->load->view('master/hasil_rapat/modal-tolak', $data);
+	}
+
 	public function validasi_act($id, $status)
 	{
 		if ($status == 'terima') {
@@ -274,6 +284,7 @@ class Hasil_rapat extends MY_Controller
 				$dt['status_sidang'] = 0;
 			}
 		} else {
+			$dt['keterangan'] = $_POST['keterangan'];
 			if ($_SESSION['role_id'] == 2) {
 				$dt['status_sidang'] = 1;
 			}

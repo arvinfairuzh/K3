@@ -207,19 +207,19 @@
                                         <td>
                                             Di RS Petrokimia Gresik
                                         </td>
-                                        <td><?= $kecelakaan_main['lpp_di_rs_petro'] ?> hari</td>
+                                        <td><?= $kecelakaan_main['lpp_di_rs_petro'] ?></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             Di RS Luar
                                         </td>
-                                        <td> <?= $kecelakaan_main['lpp_di_rs_luar'] ?> hari</td>
+                                        <td> <?= $kecelakaan_main['lpp_di_rs_luar'] ?></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             Istirahat Dokter
                                         </td>
-                                        <td><?= $kecelakaan_main['lpp_istirahat_dokter'] ?> hari</td>
+                                        <td><?= $kecelakaan_main['lpp_istirahat_dokter'] ?></td>
                                     </tr>
                                     <tr>
                                         <td rowspan="4">

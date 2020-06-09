@@ -1,12 +1,14 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 
 
-abstract class MY_Controller extends CI_Controller{
+abstract class MY_Controller extends CI_Controller
+{
 
 
 
-	public function __construct() {
+	public function __construct()
+	{
 
 		parent::__construct();
 
@@ -20,36 +22,14 @@ abstract class MY_Controller extends CI_Controller{
 
 		$role = $this->session->userdata('role_id');
 
-		
-
-		if($folder==""){
-
-			$link = $class."/".$method;
-
-		}else{
-
-			$link = $folder.$class."/".$method;
-
-		}
 
 
+		if ($folder == "") {
 
-		if($this->session->userdata('session_sop')==true){
+			$link = $class . "/" . $method;
+		} else {
 
-		$get_link = $this->mymodel->selectDataone('access_control',array('val'=>$link));
-
-		$cek = $this->mymodel->selectWhere('access',array('access_control_id'=>$get_link['id'],'role_id'=>$role));
-
-		if($link!=""){
-
-			if(count($cek)==0){
-
-				// redirect('/');
-
-			}	
-
-		}
-
+			$link = $folder . $class . "/" . $method;
 		}
 
 
@@ -79,9 +59,7 @@ abstract class MY_Controller extends CI_Controller{
 		foreach ($konfig as $knf) {
 
 			define($knf['slug'], $knf['value']);
-
 		}
-
 	}
 
 
@@ -92,86 +70,78 @@ abstract class MY_Controller extends CI_Controller{
 
 		# code...
 
-				// cara memanggil
+		// cara memanggil
 
-				// $hasil = $this->upload_file('file');
+		// $hasil = $this->upload_file('file');
 
-				// print_r($hasil);
-
-
-
-				$dir  = "webfile/";
-
-				$config['upload_path']          = $dir;
-
-				$config['allowed_types']        = '*';
-
-				$config['file_name']           = md5('smartsoftstudio').rand(1000,100000);
-
-        		$this->load->library('upload', $config);
-
-				if ( ! $this->upload->do_upload($files)){
-
-					$msg['response'] = false;
-
-					$msg['message'] = $this->upload->display_errors();
-
-						
-
-				}else{
-
-					$file = $this->upload->data();
-
-					$data = array(
-
-				   				'name'=> $file['file_name'],
-
-				   				'mime'=> $file['file_type'],				   				
-
-				   				'dir'=> $dir.$file['file_name'],
-
-				   	 		);
-
-					$msg['response'] = true;
-
-					$msg['message'] = $data;
-
-				}
+		// print_r($hasil);
 
 
 
-				return $msg;
+		$dir  = "webfile/";
+
+		$config['upload_path']          = $dir;
+
+		$config['allowed_types']        = '*';
+
+		$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload($files)) {
+
+			$msg['response'] = false;
+
+			$msg['message'] = $this->upload->display_errors();
+		} else {
+
+			$file = $this->upload->data();
+
+			$data = array(
+
+				'name' => $file['file_name'],
+
+				'mime' => $file['file_type'],
+
+				'dir' => $dir . $file['file_name'],
+
+			);
+
+			$msg['response'] = true;
+
+			$msg['message'] = $data;
+		}
 
 
 
+		return $msg;
 	}
 
-	
-	public function upload_file_dir($files,$dir='webfile/')
+
+	public function upload_file_dir($files, $dir = 'webfile/')
 
 	{
-	# code...
+		# code...
 		// cara memanggil
 		// $hasil = $this->upload_file('file','webfile/dokumen');
 		// print_r($hasil);
 		$config['upload_path']          = $dir;
 		$config['allowed_types']        = '*';
-		$config['file_name']           = md5('smartsoftstudio').rand(1000,100000);
+		$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
 		if (!is_dir($dir)) {
-		    mkdir('./'.$dir, 0777, TRUE);
-
+			mkdir('./' . $dir, 0777, TRUE);
 		}
 		$this->load->library('upload', $config);
-		if ( ! $this->upload->do_upload($files)){
+		if (!$this->upload->do_upload($files)) {
 			$msg['response'] = false;
 			$msg['message'] = $this->upload->display_errors();
-		}else{
+		} else {
 			$file = $this->upload->data();
 			$data = array(
-		   				'name'=> $file['file_name'],
-		   				'mime'=> $file['file_type'],
-		   				'dir'=> $dir.$file['file_name'],
-		   	 		);
+				'name' => $file['file_name'],
+				'mime' => $file['file_type'],
+				'dir' => $dir . $file['file_name'],
+			);
 			$msg['response'] = true;
 			$msg['message'] = $data;
 		}
@@ -180,15 +150,15 @@ abstract class MY_Controller extends CI_Controller{
 
 
 
-	public function get_uri($folder="")
+	public function get_uri($folder = "")
 
 	{
 
 		# code...
 
-		if($folder!="api/"){
+		if ($folder != "api/") {
 
-			$dir    =  dirname(__FILE__) .'/../controllers'.$folder;
+			$dir    =  dirname(__FILE__) . '/../controllers' . $folder;
 
 			$files1 = scandir($dir);
 
@@ -198,24 +168,17 @@ abstract class MY_Controller extends CI_Controller{
 
 				if (strpos($a, '.php') !== false) {
 
-				    $data['file'][] = $a;
+					$data['file'][] = $a;
+				} else {
 
-				}else{
+					if ($a != "." and $a != ".." and strpos($a, '.') === false)
 
-					if($a!="." AND $a!=".." AND strpos($a, '.') === false)
-
-				    $data['folder'][] = $a;
-
+						$data['folder'][] = $a;
 				}
-
 			}
 
 			return $data;
-
 		}
-
-		
-
 	}
 
 
@@ -238,35 +201,31 @@ abstract class MY_Controller extends CI_Controller{
 
 		// print_r($log);
 
-		$this->mymodel->insertData('activity',$log);
-
+		$this->mymodel->insertData('activity', $log);
 	}
 
 
-	 public function sendmails($from,$to,$subject,$message)
+	public function sendmails($from, $to, $subject, $message)
 	{
-        $mail = $this->phpmailer_library->load();
-	    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'centaur.indowebsite.net';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'mailer@gatoko1.com';                 // SMTP username
-        $mail->Password = '#sismik123';                           // SMTP password
-        $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 465;
-        $mail->CharSet = 'utf-8';
-        $mail->isHTML(true);
+		$mail = $this->phpmailer_library->load();
+		$mail->SMTPDebug = 0;                                 // Enable verbose debug output
+		$mail->isSMTP();                                      // Set mailer to use SMTP
+		$mail->Host = 'centaur.indowebsite.net';  // Specify main and backup SMTP servers
+		$mail->SMTPAuth = true;                               // Enable SMTP authentication
+		$mail->Username = 'mailer@gatoko1.com';                 // SMTP username
+		$mail->Password = '#sismik123';                           // SMTP password
+		$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+		$mail->Port = 465;
+		$mail->CharSet = 'utf-8';
+		$mail->isHTML(true);
 		$mail->setFrom($from);
 		$mail->addAddress($to);
 		$mail->Subject = $subject;
 		$mail->Body    = $message;
-		if($mail->send())
-		{
-		    return $this->alert->alertsuccess('Email Terkirim');
-		}
-		else
-		{
-		    return $this->alert->alertdanger('Gagal Mengirim !');;
+		if ($mail->send()) {
+			return $this->alert->alertsuccess('Email Terkirim');
+		} else {
+			return $this->alert->alertdanger('Gagal Mengirim !');;
 		}
 	}
 
@@ -361,7 +320,4 @@ abstract class MY_Controller extends CI_Controller{
 		exit;
 
     } */
-
-
-
 }

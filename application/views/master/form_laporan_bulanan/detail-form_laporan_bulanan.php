@@ -43,33 +43,47 @@
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-header">
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <h4><b>DAFTAR PERIKSA (CHECKLIST) SAFETY PATROL OLEH SAFETY REPRESENTATIIVE ATAU SUB P2K3</b></h4>
                         </div>
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
-                            <?php
-                            if ($_SESSION['role_id'] == 1) {
-                                if ($form_laporan_bulanan['status_bulanan'] == 1) {
-                                    ?>
-                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                        <div class="col-md-5">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
                                 <?php
+                                if ($_SESSION['role_id'] == 1) {
+                                    if ($form_laporan_bulanan['status_bulanan'] == 1) {
+                                ?>
+                                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <?php
                                     }
                                     ?>
-                                <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
-                                <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
-                                <?php
+                                    <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                                    <?php
                                 } else if ($_SESSION['role_id'] == 3) {
                                     if ($form_laporan_bulanan['status_bulanan'] == 0 || $form_laporan_bulanan['status_bulanan'] == 2) {
-                                        ?>
-                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                <?php
+                                    ?>
+                                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <?php
                                     }
                                     ?>
-                                <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
-                            <?php
-                            }
-                            ?>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $form_laporan_bulanan['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                                <?php
+                                }
+                                if ($form_laporan_bulanan['status_bulanan'] == 0) {
+                                    $badge_color = 'bg-yellow';
+                                } else if ($form_laporan_bulanan['status_bulanan'] == 1) {
+                                    $badge_color = 'bg-blue';
+                                } else if ($form_laporan_bulanan['status_bulanan'] == 2) {
+                                    $badge_color = 'bg-red';
+                                } else {
+                                    $badge_color = 'bg-green';
+                                }
+                                ?>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 15px;">
+                                <label class=" pull-right">Status Sekarang <span class='badge badge-pill <?= $badge_color ?>'><?= $master_status_bulanan['nama'] ?></span></label>
+                            </div>
                         </div>
                     </div>
                     <div class="box-body">
@@ -127,29 +141,30 @@
                                             $id_kategori = $kat['id'];
                                             $kategori = $kat['nama'];
                                             $master_daftar_periksa = $this->mymodel->selectWithQuery("SELECT * FROM master_daftar_periksa WHERE kategori = '$id_kategori'");
-                                            ?>
+                                        ?>
                                             <tr>
                                                 <th colspan="5"><?= $kategori ?></th>
                                             </tr>
                                             <?php
-                                                $no = 0;
-                                                foreach ($master_daftar_periksa as $dp) {
-                                                    $no++;
-                                                    $keterangan = '';
-                                                    $ya_text = '';
-                                                    $tidak_text = '';
-                                                    foreach ($jawaban as $j) {
-                                                        if ($j->id_dp == $dp['id']) {
-                                                            if ($j->hasil == 'Ya') {
-                                                                $ya_text = 'fa fa-check-circle';
-                                                            } else {
-                                                                $tidak_text = 'fa fa-check-circle';
-                                                            }
-                                                            $keterangan = $j->keterangan;
-                                                        } else { }
+                                            $no = 0;
+                                            foreach ($master_daftar_periksa as $dp) {
+                                                $no++;
+                                                $keterangan = '';
+                                                $ya_text = '';
+                                                $tidak_text = '';
+                                                foreach ($jawaban as $j) {
+                                                    if ($j->id_dp == $dp['id']) {
+                                                        if ($j->hasil == 'Ya') {
+                                                            $ya_text = 'fa fa-check-circle';
+                                                        } else {
+                                                            $tidak_text = 'fa fa-check-circle';
+                                                        }
+                                                        $keterangan = $j->keterangan;
+                                                    } else {
                                                     }
-                                                    // print_r($hasil);
-                                                    ?>
+                                                }
+                                                // print_r($hasil);
+                                            ?>
                                                 <tr>
                                                     <td><?= $no ?></td>
                                                     <td>
@@ -164,8 +179,8 @@
                                                     <td><?= $keterangan ?></td>
                                                 </tr>
                                             <?php
-                                                }
-                                                ?>
+                                            }
+                                            ?>
                                         <?php
                                         }
                                         ?>
@@ -250,15 +265,16 @@
                                                 if (!$form_tindak_lanjut) {
                                                     $kosong = '(Kosong)';
                                                 }
-                                                ?>
+                                            ?>
                                                 <tr>
-                                                    <th colspan="4"><?= $hasil_temuan ?> <?= $kosong ?></th>
+                                                    <td></td>
+                                                    <td colspan="3"><?= $hasil_temuan ?> <?= $kosong ?></th>
                                                 </tr>
                                                 <?php
-                                                    $no = 0;
-                                                    foreach ($form_tindak_lanjut as $ftl) {
-                                                        $no++;
-                                                        ?>
+                                                $no = 0;
+                                                foreach ($form_tindak_lanjut as $ftl) {
+                                                    $no++;
+                                                ?>
                                                     <tr>
                                                         <td><?= $no; ?></td>
                                                         <td>
@@ -269,8 +285,8 @@
                                                         </td>
                                                         <td>
                                                             <?php
-                                                                    if ($ftl['gambar'] != "") {
-                                                                        ?>
+                                                            if ($ftl['gambar'] != "") {
+                                                            ?>
                                                                 <img src="<?= base_url($ftl['gambar']) ?>" style="width: 200px" class="img img-thumbnail">
                                                                 <br>
                                                             <?php } ?>
@@ -282,7 +298,7 @@
                                             } ?>
                                             <tr>
                                                 <th colspan="2">
-                                                    Anggota Safety Representative <br><br><br><br><br><br>
+                                                    Anggota Safety Representative <br><br><br><br><br>
                                                     <?= $sr['nama'] ?><br>
                                                     <?= $sr['nip'] ?>
                                                 </th>

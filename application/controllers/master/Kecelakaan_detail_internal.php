@@ -1,4 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+error_reporting(0);
 class Kecelakaan_detail_internal extends MY_Controller
 {
 	public function __construct()
@@ -26,10 +27,10 @@ class Kecelakaan_detail_internal extends MY_Controller
 	public function validate()
 	{
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
-		$this->form_validation->set_rules('dt[kk_tanggal_jam]', '<strong>Kk Tanggal Jam</strong>', 'required');
-		$this->form_validation->set_rules('dt[kk_lokasi]', '<strong>Kk Lokasi</strong>', 'required');
-		$this->form_validation->set_rules('dt[kk_penjelasan_kecelakaan]', '<strong>Kk Penjelasan Kecelakaan</strong>', 'required');
-		$this->form_validation->set_rules('dt[kk_bagian_tubuh_cedera]', '<strong>Kk Bagian Tubuh Cedera</strong>', 'required');
+		// 		$this->form_validation->set_rules('dt[kk_tanggal_jam]', '<strong>Kk Tanggal Jam</strong>', 'required');
+		// 		$this->form_validation->set_rules('dt[kk_lokasi]', '<strong>Kk Lokasi</strong>', 'required');
+		// 		$this->form_validation->set_rules('dt[kk_penjelasan_kecelakaan]', '<strong>Kk Penjelasan Kecelakaan</strong>', 'required');
+		// 		$this->form_validation->set_rules('dt[kk_bagian_tubuh_cedera]', '<strong>Kk Bagian Tubuh Cedera</strong>', 'required');
 		// $this->form_validation->set_rules('dt[tw_apkh_1]', '<strong>Tw Apkh 1</strong>', 'required');
 		// $this->form_validation->set_rules('dt[tw_apkh_2]', '<strong>Tw Apkh 2</strong>', 'required');
 		// $this->form_validation->set_rules('dt[tw_apkh_3]', '<strong>Tw Apkh 3</strong>', 'required');
@@ -130,54 +131,49 @@ class Kecelakaan_detail_internal extends MY_Controller
 
 	public function update()
 	{
-		$this->validate();
-		if ($this->form_validation->run() == FALSE) {
-			$this->alert->alertdanger(validation_errors());
-		} else {
-			$id = $this->input->post('id', TRUE);
+		$id = $this->input->post('id', TRUE);
 
-			$dta = $_POST['dta'];
-			$dta['id_se'] = $_SESSION['id'];
-			$this->mymodel->updateData('kecelakaan_main', $dta, array('id' => $id));
+		$dta = $_POST['dta'];
+		$dta['id_se'] = $_SESSION['id'];
+		$this->mymodel->updateData('kecelakaan_main', $dta, array('id' => $id));
 
-			$dt = $_POST['dt'];
-			$dt['updated_at'] = date('Y-m-d H:i:s');
-			if ($dt['pttk_kondisi_lingkungan'] == 'Lainya') {
-				$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
-			}
-
-			if (!empty($_FILES['kk_gambar_lokasi']['name'])) {
-				$dir  = "webfile/kecelakaan/";
-				$config['upload_path']          = $dir;
-				$config['allowed_types']        = '*';
-				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
-				$this->load->library('upload', $config);
-				if (!$this->upload->do_upload('kk_gambar_lokasi')) {
-					$error = $this->upload->display_errors();
-					$this->alert->alertdanger($error);
-				} else {
-					$file_kk = $this->upload->data();
-					$dt['kk_gambar_lokasi'] = $dir . $file_kk['file_name'];
-				}
-			}
-
-			if (!empty($_FILES['md_gambar_1']['name'])) {
-				$dir  = "webfile/kecelakaan/";
-				$config['upload_path']          = $dir;
-				$config['allowed_types']        = '*';
-				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
-				$this->load->library('upload', $config);
-				if (!$this->upload->do_upload('md_gambar_1')) {
-					$error = $this->upload->display_errors();
-					$this->alert->alertdanger($error);
-				} else {
-					$file_md = $this->upload->data();
-					$dt['md_gambar_1'] = $dir . $file_md['file_name'];
-				}
-			}
-
-			$str = $this->mymodel->updateData('kecelakaan_detail_internal', $dt, array('id_kecelakaan' => $id));
+		$dt = $_POST['dt'];
+		$dt['updated_at'] = date('Y-m-d H:i:s');
+		if ($dt['pttk_kondisi_lingkungan'] == 'Lainya') {
+			$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
 		}
+
+		if (!empty($_FILES['kk_gambar_lokasi']['name'])) {
+			$dir  = "webfile/kecelakaan/";
+			$config['upload_path']          = $dir;
+			$config['allowed_types']        = '*';
+			$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('kk_gambar_lokasi')) {
+				$error = $this->upload->display_errors();
+				$this->alert->alertdanger($error);
+			} else {
+				$file_kk = $this->upload->data();
+				$dt['kk_gambar_lokasi'] = $dir . $file_kk['file_name'];
+			}
+		}
+
+		if (!empty($_FILES['md_gambar_1']['name'])) {
+			$dir  = "webfile/kecelakaan/";
+			$config['upload_path']          = $dir;
+			$config['allowed_types']        = '*';
+			$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('md_gambar_1')) {
+				$error = $this->upload->display_errors();
+				$this->alert->alertdanger($error);
+			} else {
+				$file_md = $this->upload->data();
+				$dt['md_gambar_1'] = $dir . $file_md['file_name'];
+			}
+		}
+
+		$str = $this->mymodel->updateData('kecelakaan_detail_internal', $dt, array('id_kecelakaan' => $id));
 	}
 
 	public function json()
@@ -216,6 +212,7 @@ class Kecelakaan_detail_internal extends MY_Controller
 		$data['penderita'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['kecelakaan_main']['id_penderita']));
 		$datamain = $data['kecelakaan_main'];
 		$data['kecelakaan_detail_internal'] = $this->mymodel->selectDataone('kecelakaan_detail_internal', array('id_kecelakaan' => $datamain['id']));
+		$data['master_status_kecelakaan'] = $this->mymodel->selectDataone('master_status_kecelakaan', array('id' => $data['kecelakaan_main']['status_kecelakaan']));
 
 		$data['page_name'] = "kecelakaan_detail_internal";
 
@@ -244,6 +241,15 @@ class Kecelakaan_detail_internal extends MY_Controller
 		$data['page_name'] = "kecelakaan_detail_internal";
 
 		$this->load->view('master/kecelakaan_detail_internal/modal', $data);
+	}
+
+	public function validasi_tolak($id)
+	{
+		$kecelakaan_detail_internal = $this->mymodel->selectDataone('kecelakaan_detail_internal', array('id' => $id));
+		$data['id'] = $kecelakaan_detail_internal['id'];
+		$data['page_name'] = "kecelakaan_detail_internal";
+
+		$this->load->view('master/kecelakaan_detail_internal/modal-tolak', $data);
 	}
 
 	public function validasi_act($id, $status)
@@ -282,6 +288,7 @@ class Kecelakaan_detail_internal extends MY_Controller
 				}
 			}
 		} else {
+			$dt['keterangan'] = $_POST['keterangan'];
 			if ($_SESSION['role_id'] == 3) {
 				if ($_SESSION['id_bagian'] == 16) {
 					if ($status_sekarang == 3) {

@@ -256,6 +256,7 @@ class Form_laporan_bulanan extends MY_Controller
 		$data['kabag'] = $this->mymodel->selectDataOne('pegawai', array('id' => $data['form_laporan_bulanan']['id_kabag']));
 		$data['bagian'] = $master_bagian['nama'];
 		$data['departemen'] = $master_departemen['nama'];
+		$data['master_status_bulanan'] = $this->mymodel->selectDataone('master_status_bulanan', array('id' => $data['form_laporan_bulanan']['status_bulanan']));
 
 		$data['page_name'] = "form_laporan_bulanan";
 
@@ -289,6 +290,15 @@ class Form_laporan_bulanan extends MY_Controller
 		$this->load->view('master/form_laporan_bulanan/modal', $data);
 	}
 
+	public function validasi_tolak($id)
+	{
+		$form_laporan_bulanan = $this->mymodel->selectDataone('form_laporan_bulanan', array('id' => $id));
+		$data['id'] = $form_laporan_bulanan['id'];
+		$data['page_name'] = "form_laporan_bulanan";
+
+		$this->load->view('master/form_laporan_bulanan/modal-tolak', $data);
+	}
+
 	public function validasi_act($id, $status)
 	{
 		if ($status == 'terima') {
@@ -298,6 +308,7 @@ class Form_laporan_bulanan extends MY_Controller
 				$dt['status_bulanan'] = 1;
 			}
 		} else {
+			$dt['keterangan'] = $_POST['keterangan'];
 			if ($_SESSION['role_id'] == 1) {
 				$dt['status_bulanan'] = 2;
 			}

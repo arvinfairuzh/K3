@@ -49,28 +49,40 @@
                             </h5>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
-                            <?php
-                            if ($_SESSION['role_id'] == 3) {
-                                if ($hasil_rapat['status_sidang'] == 1) {
-                                    ?>
-                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
                                 <?php
+                                if ($_SESSION['role_id'] == 3) {
+                                    if ($hasil_rapat['status_sidang'] == 1) {
+                                ?>
+                                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                        <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                                    <?php
                                     }
                                     ?>
-                                <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
-                                <?php
+                                    <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
+                                    <?php
                                 } else if ($_SESSION['role_id'] == 2) {
                                     if ($hasil_rapat['status_sidang'] == 0) {
-                                        ?>
-                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                <?php
+                                    ?>
+                                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $hasil_rapat['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <?php
                                     }
                                     ?>
-                            <?php
-                            }
-                            ?>
+                                <?php
+                                }
+                                if ($hasil_rapat['status_sidang'] == 0) {
+                                    $badge_color = 'bg-yellow';
+                                } else if ($hasil_rapat['status_sidang'] == 1) {
+                                    $badge_color = 'bg-red';
+                                } else {
+                                    $badge_color = 'bg-green';
+                                }
+                                ?>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 15px;">
+                                <label class=" pull-right">Status Sekarang <span class='badge badge-pill <?= $badge_color ?>'><?= $master_status_sidang['nama'] ?></span></label>
+                            </div>
                         </div>
                     </div>
                     <div class="box-body">
@@ -129,7 +141,7 @@
                                     $tindak_lanjut = json_decode($hasil_rapat['tindak_lanjut']);
                                     foreach ($tindak_lanjut as $tl) {
                                         $i++;
-                                        ?>
+                                    ?>
                                         <tr id="rowinvoice<?= $i ?>">
                                             <td>
                                                 <?= $tl->permasalahan ?>

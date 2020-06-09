@@ -40,47 +40,75 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <div class="col-md-12 pull-right">
+                        <div class="col-md-7">
+                            <?php
+                            if ($kecelakaan_main['status_kecelakaan'] == 0) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 1) {
+                                $badge_color = 'bg-red';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 2) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 3) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 4) {
+                                $badge_color = 'bg-red';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 5) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 6) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 7) {
+                                $badge_color = 'bg-red';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 8) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($kecelakaan_main['status_kecelakaan'] == 9) {
+                                $badge_color = 'bg-red';
+                            } else {
+                                $badge_color = 'bg-green';
+                            }
+                            ?>
+                            <label class="">Status Sekarang <span class='badge badge-pill <?= $badge_color ?>'><?= $master_status_kecelakaan['nama'] ?></span></label>
+                        </div>
+                        <div class="col-md-5 pull-right">
                             <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
                             <?php
                             if ($_SESSION['role_id'] == 1) {
                                 if ($kecelakaan_main['status_kecelakaan'] == 1) {
-                                    ?>
+                            ?>
                                     <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
                                     <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
                                 <?php
-                                    }
-                                    ?>
+                                }
+                                ?>
                                 <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
                             <?php
                             } else if ($_SESSION['role_id'] == 3) {
-                                ?>
+                            ?>
                                 <?php
-                                    if ($_SESSION['id_bagian'] != 16) {
-                                        if ($kecelakaan_main['status_kecelakaan'] == 0 || $kecelakaan_main['status_kecelakaan'] == 5 || $kecelakaan_main['status_kecelakaan'] == 7) {
-                                            ?>
+                                if ($_SESSION['id_bagian'] != 16) {
+                                    if ($kecelakaan_main['status_kecelakaan'] == 0 || $kecelakaan_main['status_kecelakaan'] == 5 || $kecelakaan_main['status_kecelakaan'] == 7) {
+                                ?>
                                         <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
                                         <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
                                     <?php
-                                            }
-                                        } else {
-                                            if ($kecelakaan_main['status_kecelakaan'] == 3 || $kecelakaan_main['status_kecelakaan'] == 8) {
-                                                ?>
+                                    }
+                                } else {
+                                    if ($kecelakaan_main['status_kecelakaan'] == 3 || $kecelakaan_main['status_kecelakaan'] == 8) {
+                                    ?>
                                         <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
                                         <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
                                 <?php
-                                        }
                                     }
-                                    ?>
+                                }
+                                ?>
                                 <?php
-                                } else if ($_SESSION['role_id'] == 6) {
-                                    if ($kecelakaan_main['status_kecelakaan'] == 2 || $kecelakaan_main['status_kecelakaan'] == 4 || $kecelakaan_main['status_kecelakaan'] == 6 || $kecelakaan_main['status_kecelakaan'] == 9) {
-                                        ?>
+                            } else if ($_SESSION['role_id'] == 6) {
+                                if ($kecelakaan_main['status_kecelakaan'] == 2 || $kecelakaan_main['status_kecelakaan'] == 4 || $kecelakaan_main['status_kecelakaan'] == 6 || $kecelakaan_main['status_kecelakaan'] == 9) {
+                                ?>
                                     <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
                                     <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
                                 <?php
-                                    }
-                                    ?>
+                                }
+                                ?>
                             <?php
                             }
                             ?>
@@ -518,19 +546,19 @@
                                         <td>
                                             Di RS Petrokimia Gresik
                                         </td>
-                                        <td><?= $kecelakaan_main['lpp_di_rs_petro'] ?> hari</td>
+                                        <td><?= $kecelakaan_main['lpp_di_rs_petro'] ?> </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             Di RS Luar
                                         </td>
-                                        <td> <?= $kecelakaan_main['lpp_di_rs_luar'] ?> hari</td>
+                                        <td> <?= $kecelakaan_main['lpp_di_rs_luar'] ?> </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             Istirahat Dokter
                                         </td>
-                                        <td><?= $kecelakaan_main['lpp_istirahat_dokter'] ?> hari</td>
+                                        <td><?= $kecelakaan_main['lpp_istirahat_dokter'] ?> </td>
                                     </tr>
                                     <tr>
                                         <td rowspan="9">

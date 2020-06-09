@@ -173,7 +173,266 @@ if ($this->session->userdata('session_sop') == "") {
 
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown messages-menu">
+              <?php
+              if ($_SESSION['role_id'] == 1) {
+                $status_bulanan = ' AND status_bulanan = 1';
+              } else if ($_SESSION['role_id'] == 3) {
+                $status_bulanan = ' AND status_bulanan = 0 OR status_bulanan = 2';
+              } else {
+                $status_bulanan = ' AND status_bulanan = 3';
+              }
+
+              $qry = '';
+              if (!$_SESSION['role_id'] == 0) {
+                $departemen = $_SESSION['id_departemen'];
+                $bagian = $_SESSION['id_bagian'];
+                $qry = " AND form_laporan_bulanan.departemen = '$departemen' AND form_laporan_bulanan.bagian = '$bagian'";
+              }
+
+              $notification = $this->mymodel->selectWithQuery("SELECT form_laporan_bulanan.id,lokasi,master_departemen.nama as departemen,
+              master_bagian.nama as bagian,tanggal,value,kabag.nama as id_kabag,
+              form_laporan_bulanan.status_bulanan,sr.nama as created_by, master_status_bulanan.nama as nama_status
+              FROM form_laporan_bulanan
+              LEFT JOIN master_departemen on form_laporan_bulanan.departemen = master_departemen.id
+              LEFT JOIN master_bagian on form_laporan_bulanan.bagian = master_bagian.id
+              LEFT JOIN pegawai sr on form_laporan_bulanan.created_by = sr.id
+              LEFT JOIN pegawai kabag on form_laporan_bulanan.id_kabag = kabag.id
+              LEFT JOIN master_status_bulanan on form_laporan_bulanan.status_bulanan = master_status_bulanan.id
+              WHERE form_laporan_bulanan.status = 'ENABLE' $qry $status_bulanan");
+
+              if ($_SESSION['role_id'] == 1) {
+                $countnotif = count($notification);
+              } else if ($_SESSION['role_id'] == 3) {
+                $countnotif = count($notification);
+              } else {
+                $countnotif = 0;
+              }
+              ?>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-refresh"></i>
+                <span class="label label-danger"> <?= $countnotif ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">Anda Memiliki <?= $countnotif ?> Pemberitahuan Laporan Bulanan</li>
+                <li style="padding-top:15px;">
+
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <?php
+                    foreach ($notification as $notif) {
+                      $date = date_create($notif['tanggal']);
+                      $date = date_format($date, "d M Y h:i:s");
+                    ?>
+                      <a class="notifikasi" href="<?= base_url('master/form_laporan_bulanan/detail/' . $notif['id']) ?>" style="color: black;">
+
+                        <li>
+                          <!-- start message -->
+                          <div class="col-md-12">
+                            <i class="fa fa-clock-o"></i><?= $date ?><br>
+                            Laporan Bulanan Nomor <?= $notif['id'] ?> <br>
+                            (<?= $notif['nama_status'] ?>)
+                            <hr style="padding:5px;margin:5px;">
+                          </div>
+                        </li>
+                      </a>
+                    <?php
+                    }
+                    ?>
+                  </ul>
+                </li>
+                <!-- <li class="footer"><a href="#">See All Messages</a></li> -->
+              </ul>
+            </li>
+            <li class="dropdown messages-menu">
+              <?php
+              if ($_SESSION['role_id'] == 2) {
+                $status_sidang = ' AND status_sidang = 0';
+              } else if ($_SESSION['role_id'] == 3) {
+                $status_sidang = ' AND status_sidang = 1';
+              } else {
+                $status_sidang = ' AND status_sidang = 2';
+              }
+
+              $kompartemen = '';
+              if (!$_SESSION['role_id'] == 0) {
+                $kompartemen = $_SESSION['id_kompartemen'];
+                $kompartemen = "AND ketua.id_kompartemen = '$kompartemen'";
+              }
+
+              $notification = $this->mymodel->selectWithQuery("SELECT hasil_rapat.id,master_jadwal_rapat.nama as id_jadwal,hasil_rapat.pimpinan_sidang,hasil_rapat.tanggal,hasil_rapat.jam_mulai,hasil_rapat.jam_selesai,hasil_rapat.lokasi,pendahuluan,review,tindak_lanjut,materi_tambahan,materi_kesehatan,pegawai.nama as id_notulis,hasil_rapat.status_sidang, master_status_sidang.nama as nama_status
+              FROM hasil_rapat
+              LEFT JOIN master_jadwal_rapat on hasil_rapat.id_jadwal = master_jadwal_rapat.id
+              LEFT JOIN pegawai on hasil_rapat.id_notulis = pegawai.id
+              LEFT JOIN master_status_sidang on hasil_rapat.status_sidang = master_status_sidang.id
+              LEFT JOIN pegawai ketua on master_jadwal_rapat.id_ketua = ketua.id
+              WHERE hasil_rapat.status = 'ENABLE' $kompartemen $status_sidang");
+
+              if ($_SESSION['role_id'] == 2) {
+                $countnotif = count($notification);
+              } else if ($_SESSION['role_id'] == 3) {
+                $countnotif = count($notification);
+              } else {
+                $countnotif = 0;
+              }
+              ?>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-archive"></i>
+                <span class="label label-danger"> <?= $countnotif ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">Anda Memiliki <?= $countnotif ?> Pemberitahuan Notulensi Sidang</li>
+                <li style="padding-top:15px;">
+
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <?php
+                    foreach ($notification as $notif) {
+                      $date = date_create($notif['tanggal']);
+                      $date = date_format($date, "d M Y h:i:s");
+                    ?>
+                      <a class="notifikasi" href="<?= base_url('master/form_laporan_bulanan/detail/' . $notif['id']) ?>" style="color: black;">
+
+                        <li>
+                          <!-- start message -->
+                          <div class="col-md-12">
+                            <i class="fa fa-clock-o"></i><?= $date ?><br>
+                            Laporan Notulensi Sidang Nomor <?= $notif['id'] ?> <br>
+                            (<?= $notif['nama_status'] ?>)
+                            <hr style="padding:5px;margin:5px;">
+                          </div>
+                        </li>
+                      </a>
+                    <?php
+                    }
+                    ?>
+                  </ul>
+                </li>
+                <!-- <li class="footer"><a href="#">See All Messages</a></li> -->
+              </ul>
+            </li>
+            <li class="dropdown messages-menu">
+              <?php
+              if ($_SESSION['role_id'] == 1) {
+                $status_kecelakaan = ' AND status_kecelakaan = 1';
+              } else if ($_SESSION['role_id'] == 3) {
+                if ($_SESSION['id_bagian'] != 16) {
+                  $status_kecelakaan = ' AND (status_kecelakaan = 0 OR status_kecelakaan = 5 OR status_kecelakaan = 7)';
+                } else {
+                  $status_kecelakaan = ' AND (status_kecelakaan = 3 OR status_kecelakaan = 8)';
+                }
+              } else if ($_SESSION['role_id'] == 6) {
+                $status_kecelakaan = ' AND (status_kecelakaan = 2 OR status_kecelakaan = 4 OR status_kecelakaan = 6 OR status_kecelakaan = 9)';
+              } else {
+                $status_kecelakaan = ' AND status_kecelakaan = 10';
+              }
+
+              $qry = '';
+              $departemen = $_SESSION['id_departemen'];
+              $bagian = $_SESSION['id_bagian'];
+              if ($_SESSION['role_id'] == 1) {
+                $qry = " AND penderita.id_departemen = '$departemen' AND penderita.id_bagian = '$bagian'";
+              } else if ($_SESSION['role_id'] == 3) {
+                if ($bagian == 16) {
+                  $qry = " ";
+                } else {
+                  $qry = " AND kabag.id_departemen = '$departemen' AND kabag.id_bagian = '$bagian'";
+                }
+              } else if ($_SESSION['role_id'] == 5) {
+                $qry = " AND penderita.id_departemen = '$departemen'";
+              } else if ($_SESSION['role_id'] == 6) {
+                $qry = " ";
+              }
+
+              $notification = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status
+              FROM kecelakaan_main
+              LEFT JOIN kecelakaan_detail_internal on kecelakaan_main.id = kecelakaan_detail_internal.id_kecelakaan
+              LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id
+              LEFT JOIN pegawai kabag on kecelakaan_main.id_kabag = kabag.id
+              LEFT JOIN pegawai k3 on kecelakaan_main.id_k3 = k3.id
+              LEFT JOIN pegawai penderita on kecelakaan_main.id_penderita = penderita.id
+              LEFT JOIN master_status_kecelakaan on kecelakaan_main.status_kecelakaan = master_status_kecelakaan.id
+              WHERE kecelakaan_detail_internal.status = 'ENABLE' $qry $status_kecelakaan");
+
+              $notification2 = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status 
+              FROM kecelakaan_main 
+              LEFT JOIN kecelakaan_detail_ekternal on kecelakaan_main.id = kecelakaan_detail_ekternal.id_kecelakaan 
+              LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id 
+              LEFT JOIN pegawai kabag on kecelakaan_main.id_kabag = kabag.id 
+              LEFT JOIN pegawai k3 on kecelakaan_main.id_k3 = k3.id 
+              LEFT JOIN pegawai penderita on kecelakaan_main.id_penderita = penderita.id
+              LEFT JOIN master_status_kecelakaan on kecelakaan_main.status_kecelakaan = master_status_kecelakaan.id 
+              WHERE kecelakaan_detail_ekternal.status = 'ENABLE' $qry $status_kecelakaan");
+
+              if ($_SESSION['role_id'] == 1) {
+                $countnotif = count($notification) + count($notification2);
+              } else if ($_SESSION['role_id'] == 3) {
+                if ($_SESSION['id_bagian'] != 16) {
+                  $status_kecelakaan = ' AND (status_kecelakaan = 0 OR status_kecelakaan = 5 OR status_kecelakaan = 7)';
+                } else {
+                  $status_kecelakaan = ' AND (status_kecelakaan = 0 OR status_kecelakaan = 5 OR status_kecelakaan = 7)';
+                }
+              } else if ($_SESSION['role_id'] == 6) {
+                $status_kecelakaan = ' AND (status_kecelakaan = 0 OR status_kecelakaan = 5 OR status_kecelakaan = 7)';
+              } else {
+                $countnotif = 0;
+              }
+              ?>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-briefcase"></i>
+                <span class="label label-danger"> <?= $countnotif ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">Anda Memiliki <?= $countnotif ?> Pemberitahuan Laporan Kecelakaan</li>
+                <li style="padding-top:15px;">
+
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <?php
+                    foreach ($notification as $notif) {
+                      $date = date_create($notif['tanggal']);
+                      $date = date_format($date, "d M Y h:i:s");
+                    ?>
+                      <a class="notifikasi" href="<?= base_url('master/kecelakaan_detail_internal/detail/' . $notif['id']) ?>" style="color: black;">
+
+                        <li>
+                          <!-- start message -->
+                          <div class="col-md-12">
+                            <i class="fa fa-clock-o"></i><?= $date ?><br>
+                            Laporan Kecelakaan Internal Nomor <?= $notif['id'] ?> <br>
+                            (<?= $notif['nama_status'] ?>)
+                            <hr style="padding:5px;margin:5px;">
+                          </div>
+                        </li>
+                      </a>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                    foreach ($notification2 as $notif2) {
+                      $date = date_create($notif2['tanggal']);
+                      $date = date_format($date, "d M Y h:i:s");
+                    ?>
+                      <a class="notifikasi" href="<?= base_url('master/kecelakaan_detail_ekternal/detail/' . $notif2['id']) ?>" style="color: black;">
+
+                        <li>
+                          <!-- start message -->
+                          <div class="col-md-12">
+                            <i class="fa fa-clock-o"></i><?= $date ?><br>
+                            Laporan Kecelakaan Eksternal Nomor <?= $notif2['id'] ?> <br>
+                            (<?= $notif2['nama_status'] ?>)
+                            <hr style="padding:5px;margin:5px;">
+                          </div>
+                        </li>
+                      </a>
+                    <?php
+                    }
+                    ?>
+                  </ul>
+                </li>
+                <!-- <li class="footer"><a href="#">See All Messages</a></li> -->
+              </ul>
+            </li>
             <li class="dropdown user user-menu">
               <?php
               $id = $this->session->userdata('id');
@@ -245,8 +504,9 @@ if ($this->session->userdata('session_sop') == "") {
           foreach ($menu as $m) {
             $this->db->where_in('id', $jsonmenu);
             $parent = $this->mymodel->selectWhere('menu_master', ['parent' => $m['id'], 'status' => 'ENABLE']);
+            $this->db->order_by('urutan asc');
             if (count($parent) == 0) {
-              ?>
+          ?>
               <li class="<?php if ($page_name == $m['name']) echo "active"; ?>">
                 <a href="<?= base_url($m['link']) ?>">
                   <i class="<?= $m['icon'] ?>"></i> <span><?= $m['name'] ?></span>
