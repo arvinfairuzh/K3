@@ -3,8 +3,8 @@ if($_GET['user']==""){
   redirect('login','refresh');
 }
 $this->session->sess_destroy();
-$user=  $this->mymodel->selectDataone('user',['nip'=>$_GET['user']]);
-$file=  $this->mymodel->selectDataone('file',['table_id'=>$user['id'],'table'=>'user']);
+$user=  $this->mymodel->selectDataone('pegawai',['nip'=>$_GET['user']]);
+$file=  $this->mymodel->selectDataone('file',['table_id'=>$user['id'],'table'=>'pegawai']);
 
 
 
@@ -65,7 +65,7 @@ if($file['dir']!=""){
     </div>
     <!-- User name -->
         <div class="show_error"></div>
-    <div class="lockscreen-name"><?= $user['name'] ?></div>
+    <div class="lockscreen-name"><?= $user['nama'] ?></div>
 
     <!-- START LOCK SCREEN ITEM -->
     <div class="lockscreen-item">
