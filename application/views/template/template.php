@@ -291,7 +291,7 @@ if ($this->session->userdata('session_sop') == "") {
                       $date = date_create($notif['tanggal']);
                       $date = date_format($date, "d M Y h:i:s");
                     ?>
-                      <a class="notifikasi" href="<?= base_url('master/form_laporan_bulanan/detail/' . $notif['id']) ?>" style="color: black;">
+                      <a class="notifikasi" href="<?= base_url('master/hasil_rapat/detail/' . $notif['id']) ?>" style="color: black;">
 
                         <li>
                           <!-- start message -->
@@ -374,12 +374,12 @@ if ($this->session->userdata('session_sop') == "") {
                 $countnotif = count($notification) + count($notification2);
               } else if ($_SESSION['role_id'] == 3) {
                 if ($_SESSION['id_bagian'] != 16) {
-                  $status_kecelakaan = ' AND (status_kecelakaan = 0 OR status_kecelakaan = 5 OR status_kecelakaan = 7)';
+                  $countnotif = count($notification) + count($notification2);
                 } else {
-                  $status_kecelakaan = ' AND (status_kecelakaan = 0 OR status_kecelakaan = 5 OR status_kecelakaan = 7)';
+                  $countnotif = count($notification) + count($notification2);
                 }
               } else if ($_SESSION['role_id'] == 6) {
-                $status_kecelakaan = ' AND (status_kecelakaan = 0 OR status_kecelakaan = 5 OR status_kecelakaan = 7)';
+                $countnotif = count($notification) + count($notification2);
               } else {
                 $countnotif = 0;
               }
