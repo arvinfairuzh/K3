@@ -344,7 +344,10 @@ if ($this->session->userdata('session_sop') == "") {
                 $qry = " ";
               }
 
-              $notification = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status
+              $notification = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, 
+              kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, 
+              penderita.nama as nama_penderita, kecelakaan_main.status_kecelakaan, 
+              master_status_kecelakaan.nama as nama_status, kecelakaan_detail_internal.kk_tanggal_jam as tanggal
               FROM kecelakaan_main
               LEFT JOIN kecelakaan_detail_internal on kecelakaan_main.id = kecelakaan_detail_internal.id_kecelakaan
               LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id
@@ -354,7 +357,10 @@ if ($this->session->userdata('session_sop') == "") {
               LEFT JOIN master_status_kecelakaan on kecelakaan_main.status_kecelakaan = master_status_kecelakaan.id
               WHERE kecelakaan_detail_internal.status = 'ENABLE' $qry $status_kecelakaan");
 
-              $notification2 = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status 
+              $notification2 = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, 
+              kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, kecelakaan_main.ip_bagian_seksi, 
+              se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, 
+              kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status , kecelakaan_detail_ekternal.kk_tanggal_jam as tanggal
               FROM kecelakaan_main 
               LEFT JOIN kecelakaan_detail_ekternal on kecelakaan_main.id = kecelakaan_detail_ekternal.id_kecelakaan 
               LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id 

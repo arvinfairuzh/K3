@@ -44,10 +44,10 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
 
-		// 		$this->form_validation->set_rules('dt[kk_tanggal_jam]', '<strong>Kk Tanggal Jam</strong>', 'required');
-		// 		$this->form_validation->set_rules('dt[kk_lokasi]', '<strong>Kk Lokasi</strong>', 'required');
-		// 		$this->form_validation->set_rules('dt[kk_penjelasan_kecelakaan]', '<strong>Kk Penjelasan Kecelakaan</strong>', 'required');
-		// 		$this->form_validation->set_rules('dt[kk_bagian_tubuh_cedera]', '<strong>Kk Bagian Tubuh Cedera</strong>', 'required');
+		$this->form_validation->set_rules('dt[kk_tanggal_jam]', '<strong>Kk Tanggal Jam</strong>', 'required');
+		$this->form_validation->set_rules('dt[kk_lokasi]', '<strong>Kk Lokasi</strong>', 'required');
+		$this->form_validation->set_rules('dt[kk_penjelasan_kecelakaan]', '<strong>Kk Penjelasan Kecelakaan</strong>', 'required');
+		$this->form_validation->set_rules('dt[kk_bagian_tubuh_cedera]', '<strong>Kk Bagian Tubuh Cedera</strong>', 'required');
 		// $this->form_validation->set_rules('dt[kk_apabila_1]', '<strong>Kk Apabila 1</strong>', 'required');
 		// $this->form_validation->set_rules('dt[kk_apkh_1]', '<strong>Kk Apkh 1</strong>', 'required');
 		// $this->form_validation->set_rules('dt[kk_tidak_1]', '<strong>Kk Tidak 1</strong>', 'required');

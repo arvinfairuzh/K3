@@ -27,10 +27,10 @@ class Kecelakaan_detail_internal extends MY_Controller
 	public function validate()
 	{
 		$this->form_validation->set_error_delimiters('<li>', '</li>');
-		// 		$this->form_validation->set_rules('dt[kk_tanggal_jam]', '<strong>Kk Tanggal Jam</strong>', 'required');
-		// 		$this->form_validation->set_rules('dt[kk_lokasi]', '<strong>Kk Lokasi</strong>', 'required');
-		// 		$this->form_validation->set_rules('dt[kk_penjelasan_kecelakaan]', '<strong>Kk Penjelasan Kecelakaan</strong>', 'required');
-		// 		$this->form_validation->set_rules('dt[kk_bagian_tubuh_cedera]', '<strong>Kk Bagian Tubuh Cedera</strong>', 'required');
+		$this->form_validation->set_rules('dt[kk_tanggal_jam]', '<strong>Kk Tanggal Jam</strong>', 'required');
+		$this->form_validation->set_rules('dt[kk_lokasi]', '<strong>Kk Lokasi</strong>', 'required');
+		$this->form_validation->set_rules('dt[kk_penjelasan_kecelakaan]', '<strong>Kk Penjelasan Kecelakaan</strong>', 'required');
+		$this->form_validation->set_rules('dt[kk_bagian_tubuh_cedera]', '<strong>Kk Bagian Tubuh Cedera</strong>', 'required');
 		// $this->form_validation->set_rules('dt[tw_apkh_1]', '<strong>Tw Apkh 1</strong>', 'required');
 		// $this->form_validation->set_rules('dt[tw_apkh_2]', '<strong>Tw Apkh 2</strong>', 'required');
 		// $this->form_validation->set_rules('dt[tw_apkh_3]', '<strong>Tw Apkh 3</strong>', 'required');
