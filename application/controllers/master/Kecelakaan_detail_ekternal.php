@@ -106,6 +106,7 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
+			$dt['pttk_kondisi_lingkungan'] = implode(',', $dt['pttk_kondisi_lingkungan']);
 
 			if ($dt['pttk_kondisi_lingkungan'] == 'Lainya') {
 				$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];

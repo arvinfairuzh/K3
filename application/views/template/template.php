@@ -10,7 +10,7 @@ if ($this->session->userdata('session_sop') == "") {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><?= TITLE_APPLICATION  ?></title>
+  <title>PETROKIMIA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -160,9 +160,21 @@ if ($this->session->userdata('session_sop') == "") {
       <!-- Logo -->
       <a href="<?= base_url() ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><?= APPLICATION_SMALL  ?> </span>
+        <span class="logo-mini">PK</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><?= APPLICATION  ?> </span>
+        <div style="margin-left:-20px"> 
+          <table>
+            <tr>
+              <td>
+              <img src=" <?= LOGO ?>" width="95">
+              </td>
+              <td>
+              <span class="logo-lg" style="margin-top:-10px">PETROKIMIA</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
@@ -448,7 +460,15 @@ if ($this->session->userdata('session_sop') == "") {
                 <object data="<?= base_url('webfile/default.png') ?>" type="image/png" class="user-image" alt="User Image">
                   <img src="<?= base_url('webfile/default.png') ?>" class="user-image" alt="User Image">
                 </object>
+                <?php 
+                if ( $role[0]['role'] = "0"){
+                ?>
                 <span class="hidden-xs"><?= $this->session->userdata('name'); ?></span>
+                <?php }
+                else{?>
+                  <span class="hidden-xs"><?= $this->session->userdata('name'); ?> - <?php $role = $this->mymodel->selectWhere('role', array('id' => $this->session->userdata('role_id')));
+                echo $role[0]['role']; ?></span></span>
+                  <?php }?>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->

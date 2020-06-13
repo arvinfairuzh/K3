@@ -44,11 +44,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nama</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" value="<?= $sr['nama'] ?>">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nomor Induk</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" value="<?= $sr['nip'] ?>">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Umur</label>
@@ -60,11 +60,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Dep/Biro/Bid</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]" value="<?= $departemen['nama'] ?>" readonly>
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]"  >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Bagian/Seksi</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]" value="<?= $bagian['nama'] ?>" readonly>
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]"  >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Lama bekerja di unit tersebut</label>
