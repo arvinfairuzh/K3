@@ -345,57 +345,57 @@
                                 <table>
                                     <tr>
                                         <td style="padding-right: 50px">
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Hujan">
+                                            <input type="checkbox" name="keadaan[]" value="Hujan">
                                             <label for="Ya">Hujan</label>
                                         </td>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Licin">
+                                            <input type="checkbox" name="keadaan[]" value="Licin">
                                             <label for="Tidak"> Jalan Licin</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="padding-right: 75px">
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Panas">
+                                            <input type="checkbox" name="keadaan[]" value="Panas">
                                             <label for="Tidak">Panas</label>
                                         </td>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Jalan Ramai">
+                                            <input type="checkbox" name="keadaan[]" value="Jalan Ramai">
                                             <label for="Tidak">Jalan Ramai</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Dingin">
+                                            <input type="checkbox" name="keadaan[]" value="Dingin">
                                             <label for="Tidak">Dingin</label>
                                         </td>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Jalan Sempit">
+                                            <input type="checkbox" name="keadaan[]" value="Jalan Sempit">
                                             <label for="Tidak">Jalan Sempit</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Kabut">
+                                            <input type="checkbox" name="keadaan[]" value="Kabut">
                                             <label for="Tidak">Kabut</label>
                                         </td>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Jalan Jelek">
+                                            <input type="checkbox" name="keadaan[]" value="Jalan Jelek">
                                             <label for="Tidak">Jalan Jelek</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Gelap">
+                                            <input type="checkbox" name="keadaan[]" value="Gelap">
                                             <label for="Tidak">Gelap</label>
                                         </td>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Jalan Macet">
+                                            <input type="checkbox" name="keadaan[]" value="Jalan Macet">
                                             <label for="Tidak">Jalan Macet</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Lainya">
+                                            <input type="checkbox" name="keadaan[]" value="Lainya">
                                             <label for="Tidakperlu">Lainya</label>
                                             <input type="text" name="pttk_kondisi_lingkungan_lainnya">
                                         </td>

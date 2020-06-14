@@ -90,9 +90,19 @@ class Kecelakaan_detail_internal extends MY_Controller
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
-			if ($dt['pttk_kondisi_lingkungan'] == 'Lainya') {
-				$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
+			$keadaan = $_POST['keadaan'];
+			
+			for ($i=0; $i < count($keadaan); $i++) { 
+				if ($keadaan[$i] == 'Lainya') {
+					$keadaan[$i] = $_POST['pttk_kondisi_lingkungan_lainnya'];
+				}
+				$keadaan_arr[$i] = array(
+					'keadaan' => $keadaan[$i]
+			 );
+			 
 			}
+		   
+		   $dt['pttk_kondisi_lingkungan'] = json_encode($keadaan_arr);
 
 			if (!empty($_FILES['kk_gambar_lokasi']['name'])) {
 				$dir  = "webfile/kecelakaan/";
@@ -139,9 +149,19 @@ class Kecelakaan_detail_internal extends MY_Controller
 
 		$dt = $_POST['dt'];
 		$dt['updated_at'] = date('Y-m-d H:i:s');
-		if ($dt['pttk_kondisi_lingkungan'] == 'Lainya') {
-			$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
-		}
+		$keadaan = $_POST['keadaan'];
+			
+			for ($i=0; $i < count($keadaan); $i++) { 
+				if ($keadaan[$i] == 'Lainya') {
+					$keadaan[$i] = $_POST['pttk_kondisi_lingkungan_lainnya'];
+				}
+				$keadaan_arr[$i] = array(
+					'keadaan' => $keadaan[$i]
+			 );
+			 
+			}
+		   
+		   $dt['pttk_kondisi_lingkungan'] = json_encode($keadaan_arr);
 
 		if (!empty($_FILES['kk_gambar_lokasi']['name'])) {
 			$dir  = "webfile/kecelakaan/";

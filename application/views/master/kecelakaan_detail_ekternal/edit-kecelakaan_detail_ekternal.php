@@ -503,99 +503,97 @@
                                     <label for="form-pttk_kondisi_lingkungan">Bagaimana kondisi lingkungan pada saat itu ?</label>
                                     <!-- <input type="text" class="form-control" id="form-pttk_kondisi_lingkungan" placeholder="Masukan Pttk Kondisi Lingkungan" name="dt[pttk_kondisi_lingkungan]" value="<?= $kecelakaan_detail_ekternal['pttk_kondisi_lingkungan'] ?>"> -->
                                     <?php
-                                        $hujan = 'unchecked';
-                                        $licin = 'unchecked';
-                                        $panas = 'unchecked';
-                                        $jalanramai = 'unchecked';
-                                        $dingin = 'unchecked';
-                                        $jalansempit = 'unchecked';
-                                        $kabut = 'unchecked';
-                                        $jalanjelek = 'unchecked';
-                                        $gelap = 'unchecked';
-                                        $jalanmacet = 'unchecked';
-                                        $lainya = 'unchecked';
-
-                                        $selected_radio = $kecelakaan_detail_ekternal['pttk_kondisi_lingkungan'];
-                                        if ($selected_radio == 'Hujan') {
-                                            $hujan = 'checked';
-                                        } else if ($selected_radio == 'Licin') {
-                                            $licin = 'checked';
-                                        } else if ($selected_radio == 'Panas') {
-                                            $panas = 'checked';
-                                        } else if ($selected_radio == 'Jalan Ramai') {
-                                            $jalanramai = 'checked';
-                                        } else if ($selected_radio == 'Dingin') {
-                                            $dingin = 'checked';
-                                        } else if ($selected_radio == 'Jalan Sempit') {
-                                            $jalansempit = 'checked';
-                                        } else if ($selected_radio == 'Kabut') {
-                                            $kabut = 'checked';
-                                        } else if ($selected_radio == 'Jalan Jelek') {
-                                            $jalanjelek = 'checked';
-                                        } else if ($selected_radio == 'Gelap') {
-                                            $gelap = 'checked';
-                                        } else if ($selected_radio == 'Jalan Macet') {
-                                            $jalanmacet = 'checked';
-                                        } else {
-                                            $lainya = 'checked';
-                                        }
+                                        $jawaban = json_decode($kecelakaan_detail_ekternal['pttk_kondisi_lingkungan']);
+                                        foreach ($jawaban as $j) {
+                                              if ($j->keadaan == 'Hujan') {
+                                                $hujan = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Licin') {
+                                                $licin = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Panas') {
+                                                $panas = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Jalan Ramai') {
+                                                $jalanramai = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Dingin') {
+                                                $dingin = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Kabut') {
+                                                $kabut = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Jalan Jelek') {
+                                                $jalanjelek = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Gelap') {
+                                                $gelap = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Jalan Macet') {
+                                                $jalanmacet = 'checked';
+                                              } 
+                                              else {
+                                                $lainya = 'checked';
+                                                $hasil_text = $j->keadaan;
+                                              }
+                                            }
                                         ?>
                                     <table>
                                         <tr>
                                             <td style="padding-right: 50px">
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Hujan" <?PHP print $hujan; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Hujan" <?PHP print $hujan; ?>>
                                                 <label for="Ya">Hujan</label>
                                             </td>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Licin" <?PHP print $licin; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Licin" <?PHP print $licin; ?>>
                                                 <label for="Tidak"> Jalan Licin</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="padding-right: 75px">
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Panas" <?PHP print $panas; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Panas" <?PHP print $panas; ?>>
                                                 <label for="Tidak">Panas</label>
                                             </td>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Jalan Ramai" <?PHP print $jalanramai; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Jalan Ramai" <?PHP print $jalanramai; ?>>
                                                 <label for="Tidak">Jalan Ramai</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Dingin" <?PHP print $dingin; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Dingin" <?PHP print $dingin; ?>>
                                                 <label for="Tidak">Dingin</label>
                                             </td>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Jalan Sempit" <?PHP print $jalansempit; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Jalan Sempit" <?PHP print $jalansempit; ?>>
                                                 <label for="Tidak">Jalan Sempit</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Kabut" <?PHP print $kabut; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Kabut" <?PHP print $kabut; ?>>
                                                 <label for="Tidak">Kabut</label>
                                             </td>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Jalan Jelek" <?PHP print $jalanjelek; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Jalan Jelek" <?PHP print $jalanjelek; ?>>
                                                 <label for="Tidak">Jalan Jelek</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Gelap" <?PHP print $gelap; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Gelap" <?PHP print $gelap; ?>>
                                                 <label for="Tidak">Gelap</label>
                                             </td>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Jalan Macet" <?PHP print $jalanmacet; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Jalan Macet" <?PHP print $jalanmacet; ?>>
                                                 <label for="Tidak">Jalan Macet</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Lainya" <?PHP print $lainya; ?>>
+                                                <input type="checkbox" name="keadaan[]" value="Lainya" <?PHP print $lainya; ?>>
                                                 <label for="Tidakperlu">Lainya</label>
-                                                <input type="text" name="pttk_kondisi_lingkungan_lainnya">
+                                                <input type="text" name="pttk_kondisi_lingkungan_lainnya" value="<?PHP print $hasil_text; ?>">
                                             </td>
                                         </tr>
                                     </table>

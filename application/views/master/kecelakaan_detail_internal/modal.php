@@ -75,6 +75,6 @@ if ($_SESSION['role_id'] == 1) {
         $("#load-form").html('loading...');
         $("#modal-form").modal();
         $("#title-form").html('Validasi');
-        $("#load-form").load("<?= base_url('master/kecelakaan_detail_ekternal/validasi_tolak/') ?>" + id);
+        $("#load-form").load("<?= base_url('master/kecelakaan_detail_internal/validasi_tolak/') ?>" + id);
     }
 </script>
