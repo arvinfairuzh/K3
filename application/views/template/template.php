@@ -160,7 +160,7 @@ if ($this->session->userdata('session_sop') == "") {
       <!-- Logo -->
       <a href="<?= base_url() ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">PK</span>
+        <span class="logo-mini">PG</span>
         <!-- logo for regular state and mobile devices -->
         <div style="margin-left:-20px"> 
           <table>
