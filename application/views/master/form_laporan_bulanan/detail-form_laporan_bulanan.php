@@ -268,7 +268,7 @@
                                             ?>
                                                 <tr>
                                                     <td></td>
-                                                    <td colspan="3"><?= $hasil_temuan ?> <?= $kosong ?></th>
+                                                    <td colspan="3"><span style="font-weight:700"><?= $hasil_temuan ?> <?= $kosong ?></span></th>
                                                 </tr>
                                                 <?php
                                                 $no = 0;
