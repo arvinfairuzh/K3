@@ -71,9 +71,78 @@
               </div>
 
             </div>
-
-
-
+            <hr>
+            <div class="row" style="margin-top: 15px;">
+              <form method="post" action="<?= base_url('master/pegawai') ?>">
+                <div class="col-xs-3">
+                  <label for="form-kompartemen">Kompartemen</label>
+                  <select style='width:100%' id="kompartemen" name="kompartemen" class="form-control select2">
+                    <option value="">Semua</option>
+                    <?php
+                    $master_kompartemen = $this->mymodel->selectWhere('master_kompartemen', "id != 0");
+                    foreach ($master_kompartemen as $master_kompartemen_record) {
+                      $text = "";
+                      if ($master_kompartemen_record['id'] == $_SESSION['kompartemen']) {
+                        $text = "selected";
+                      }
+                      echo "<option value=" . $master_kompartemen_record['id'] . " $text >" . $master_kompartemen_record['nama'] . "</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-xs-3">
+                  <label for="form-departemen">Departemen</label>
+                  <select style='width:100%' id="departemen" name="departemen" class="form-control select2">
+                    <option value="">Semua</option>
+                    <?php
+                    $master_departemen = $this->mymodel->selectWhere('master_departemen', "id != 0");
+                    foreach ($master_departemen as $master_departemen_record) {
+                      $text = "";
+                      if ($master_departemen_record['id'] == $_SESSION['departemen']) {
+                        $text = "selected";
+                      }
+                      echo "<option value=" . $master_departemen_record['id'] . " $text >" . $master_departemen_record['nama'] . "</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-xs-3">
+                  <label for="form-bagian">Bagian</label>
+                  <select style='width:100%' id="bagian" name="bagian" class="form-control select2">
+                    <option value="">Semua</option>
+                    <?php
+                    $master_bagian = $this->mymodel->selectWhere('master_bagian', "id != 0");
+                    foreach ($master_bagian as $master_bagian_record) {
+                      $text = "";
+                      if ($master_bagian_record['id'] == $_SESSION['bagian']) {
+                        $text = "selected";
+                      }
+                      echo "<option value=" . $master_bagian_record['id'] . " $text >" . $master_bagian_record['nama'] . "</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-xs-2">
+                  <label for="form-role">Role</label>
+                  <select style='width:100%' id="role" name="role" class="form-control select2">
+                    <option value="">Semua</option>
+                    <?php
+                    $master_role = $this->mymodel->selectWhere('role', null);
+                    foreach ($master_role as $master_role_record) {
+                      $text = "";
+                      if ($master_role_record['id'] == $_SESSION['role']) {
+                        $text = "selected";
+                      }
+                      echo "<option value=" . $master_role_record['id'] . " $text >" . $master_role_record['role'] . "</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <button type="submit" class="btn btn-primary" style="margin-top: 25px;"><i class="fa fa-search"></i></button>
+                </div>
+              </form>
+            </div>
           </div>
 
           <div class="box-body">
