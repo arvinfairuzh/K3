@@ -46,11 +46,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nama</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" value="<?= $sr['nama'] ?>">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nomor Induk</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" value="<?= $sr['nip'] ?>">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Umur</label>
@@ -62,11 +62,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Dep/Biro/Bid</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]" value="<?= $departemen['nama'] ?>" readonly>
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]" >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Bagian/Seksi</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]" value="<?= $bagian['nama'] ?>" readonly>
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Lama bekerja di unit tersebut</label>
@@ -82,11 +82,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Tanggal & Jam</label>
-                                <input type="date" class="form-control" id="form-kk_tanggal_jam" placeholder="Masukan Kk Tanggal Jam" name="dt[kk_tanggal_jam]">
+                                <input type="date" class="form-control" id="form-kk_tanggal_jam"  name="dt[kk_tanggal_jam]">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_lokasi">Lokasi</label>
-                                <input type="text" class="form-control" id="form-kk_lokasi" placeholder="Masukan Kk Lokasi" name="dt[kk_lokasi]">
+                                <input type="text" class="form-control" id="form-kk_lokasi"  name="dt[kk_lokasi]">
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_penjelasan_kecelakaan">Jelaskan bagaimana kecelakaan terjadi</label>
@@ -99,7 +99,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_bagian_tubuh_cedera">Bagian tubuh yang cedera</label>
-                                <textarea class="form-control" id="form-kk_bagian_tubuh_cedera" placeholder="Masukan Kk Bagian Tubuh Cedera" name="dt[kk_bagian_tubuh_cedera]"></textarea>
+                                <textarea class="form-control" id="form-kk_bagian_tubuh_cedera"  name="dt[kk_bagian_tubuh_cedera]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_aktifitas_penderita">Pada Saat kejadian apakah keperluan/aktifitas penderita</label>
@@ -159,7 +159,7 @@
                             </div>
                             <div class="form-group" id="ifNo1" style="display:none">
                                 <label for="form-kk_tidak_1">Mengapa tidak menempuh jalan yang biasa di lalui ?</label>
-                                <textarea class="form-control" id="form-kk_tidak_1" placeholder="Masukan Kk Tidak 1" name="dt[kk_tidak_1]"></textarea>
+                                <textarea class="form-control" id="form-kk_tidak_1"  name="dt[kk_tidak_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_apkh_2">Apakah kendaraan yang digunakan penderita ?</label>
@@ -198,7 +198,7 @@
                             </div>
                             <div class="form-group" id="ifNo3" style="display:none">
                                 <label for="form-kk_ya_3">Mengapa pelanggaran rambu-rambu lalulintas dilakukan ?</label>
-                                <textarea class="form-control" id="form-kk_ya_3" placeholder="Masukan Kk Ya 3" name="dt[kk_ya_3]"></textarea>
+                                <textarea class="form-control" id="form-kk_ya_3"  name="dt[kk_ya_3]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_apkh_4">Apakah saat kejadian yang bersangkutan menggunakan alat keselamatan(mis:safety helmet, seat belt, dll) secara benar ?</label>
@@ -224,7 +224,7 @@
                             </div>
                             <div class="form-group" id="ifNo5" style="display:none">
                                 <label for="form-kk_tidak_5">Mengapa belum dilakukan perbaikan ?</label>
-                                <textarea class="form-control" id="form-kk_tidak_5" placeholder="Masukan Kk Tidak 5" name="dt[kk_tidak_5]"></textarea>
+                                <textarea class="form-control" id="form-kk_tidak_5"  name="dt[kk_tidak_5]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -256,23 +256,23 @@
                             </div>
                             <div class="form-group" id="ifYes6" style="display:none">
                                 <label for="form-wp_ya_q1">Siapa yang memerintahkan untuk menjalankan/mengoprasikan ?</label>
-                                <textarea class="form-control" id="form-wp_ya_q1" placeholder="Masukan Wp Ya Q1" name="dt[wp_ya_q1]"></textarea>
+                                <textarea class="form-control" id="form-wp_ya_q1"  name="dt[wp_ya_q1]"></textarea>
                             </div>
                             <div class="form-group" id="ifYes7" style="display:none">
                                 <label for="form-wp_ya_q2">Tugas dan instruksi apa yang telah diberikan kepada penderita ?</label>
-                                <textarea class="form-control" id="form-wp_ya_q2" placeholder="Masukan Wp Ya Q2" name="dt[wp_ya_q2]"></textarea>
+                                <textarea class="form-control" id="form-wp_ya_q2"  name="dt[wp_ya_q2]"></textarea>
                             </div>
                             <div class="form-group" id="ifYes8" style="display:none">
                                 <label for="form-wp_ya_q3">Pada saat terjadi kecelakaan, dimana atasan yang bersangkutan berada ?</label>
-                                <textarea class="form-control" id="form-wp_ya_q3" placeholder="Masukan Wp Ya Q3" name="dt[wp_ya_q3]"></textarea>
+                                <textarea class="form-control" id="form-wp_ya_q3" name="dt[wp_ya_q3]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo6" style="display:none">
                                 <label for="form-wp_tidak_q1">Siapa yang memperintahkan ?</label>
-                                <textarea class="form-control" id="form-wp_tidak_q1" placeholder="Masukan Wp Tidak Q1" name="dt[wp_tidak_q1]"></textarea>
+                                <textarea class="form-control" id="form-wp_tidak_q1"  name="dt[wp_tidak_q1]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo7" style="display:none">
                                 <label for="form-wp_tidak_q2">Mengapa hal tersebut dilakukan ?</label>
-                                <textarea class="form-control" id="form-wp_tidak_q2" placeholder="Masukan Wp Tidak Q2" name="dt[wp_tidak_q2]"></textarea>
+                                <textarea class="form-control" id="form-wp_tidak_q2"  name="dt[wp_tidak_q2]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-wp_persyaratan_administrasi">Persyaratan administrasi apa yang di bawa penderita saat terjadi kecelakaan ?</label>
@@ -291,7 +291,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-wp_masa_aktif_administrasi">Kapan masa berakhirnya persyaratan tersebut di atas ? (Isi sesuai pilihan anda diatas)</label>
-                                <textarea class="form-control" id="summernote_surat" placeholder="Masukan Wp Masa Aktif Administrasi" name="dt[wp_masa_aktif_administrasi]">
+                                <textarea class="form-control" id="summernote_surat"  name="dt[wp_masa_aktif_administrasi]">
                                     SIMPOL : <br>
                                     SIMPER : <br>
                                     SIO : <br>
@@ -301,11 +301,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-wp_mengapa">Apabila habis masa berlakunya, mengapa tidak diperpanjang ?</label>
-                                <textarea class="form-control" id="form-wp_mengapa" placeholder="Masukan Wp Mengapa" name="dt[wp_mengapa]"></textarea>
+                                <textarea class="form-control" id="form-wp_mengapa"  name="dt[wp_mengapa]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-wp_bgmn_1">Bagaimana kondisi tempat kejadian?</label>
-                                <textarea class="form-control" id="form-wp_bgmn_1" placeholder="Masukan Wp Bgmn 1" name="dt[wp_bgmn_1]"></textarea>
+                                <textarea class="form-control" id="form-wp_bgmn_1"  name="dt[wp_bgmn_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-wp_usaha_pencegahan_1">Dapatkah ditentukan usaha pencegahan lebih lanjut agar kejadian serupa tidak terulang ?</label>
@@ -317,7 +317,7 @@
                             </div>
                             <div class="form-group" id="ifYes9" style="display:none">
                                 <label for="form-wp_ya_1">Bagaimana usaha dan langkah-langkah pencegahannya ?</label>
-                                <textarea type="text" class="form-control" id="form-wp_ya_1" placeholder="Masukan Wp Ya 1" name="dt[wp_ya_1]"></textarea>
+                                <textarea type="text" class="form-control" id="form-wp_ya_1"  name="dt[wp_ya_1]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -333,7 +333,7 @@
                             </div>
                             <div class="form-group" id="ifYes10" style="display:none">
                                 <label for="form-sp_ya_1">Pelatihan apa yang diperlukan ?</label>
-                                <textarea class="form-control" id="form-sp_ya_1" placeholder="Masukan Sp Ya 1" name="dt[sp_ya_1]"></textarea>
+                                <textarea class="form-control" id="form-sp_ya_1" name="dt[sp_ya_1]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -345,57 +345,57 @@
                                 <table>
                                     <tr>
                                         <td style="padding-right: 50px">
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Hujan">
+                                            <input type="checkbox" name="keadaan[]" value="Hujan">
                                             <label for="Ya">Hujan</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Licin">
+                                            <input type="checkbox" name="keadaan[]" value="Licin">
                                             <label for="Tidak"> Jalan Licin</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="padding-right: 75px">
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Panas">
+                                            <input type="checkbox" name="keadaan[]" value="Panas">
                                             <label for="Tidak">Panas</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Jalan Ramai">
+                                            <input type="checkbox" name="keadaan[]" value="Jalan Ramai">
                                             <label for="Tidak">Jalan Ramai</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Dingin">
+                                            <input type="checkbox" name="keadaan[]" value="Dingin">
                                             <label for="Tidak">Dingin</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Jalan Sempit">
+                                            <input type="checkbox" name="keadaan[]" value="Jalan Sempit">
                                             <label for="Tidak">Jalan Sempit</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Kabut">
+                                            <input type="checkbox" name="keadaan[]" value="Kabut">
                                             <label for="Tidak">Kabut</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Jalan Jelek">
+                                            <input type="checkbox" name="keadaan[]" value="Jalan Jelek">
                                             <label for="Tidak">Jalan Jelek</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Gelap">
+                                            <input type="checkbox" name="keadaan[]" value="Gelap">
                                             <label for="Tidak">Gelap</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Jalan Macet">
+                                            <input type="checkbox" name="keadaan[]" value="Jalan Macet">
                                             <label for="Tidak">Jalan Macet</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Lainya">
+                                            <input type="checkbox" name="keadaan[]" value="Lainya">
                                             <label for="Tidakperlu">Lainya</label>
                                             <input type="text" name="pttk_kondisi_lingkungan_lainnya">
                                         </td>

@@ -268,7 +268,7 @@
                                             ?>
                                                 <tr>
                                                     <td></td>
-                                                    <td colspan="3"><?= $hasil_temuan ?> <?= $kosong ?></th>
+                                                    <td  align="center" style="border-right: 0px;"><span  style="font-weight:700"><?= $hasil_temuan ?> <?= $kosong ?></span></th>
                                                 </tr>
                                                 <?php
                                                 $no = 0;
@@ -280,10 +280,10 @@
                                                         <td>
                                                             <?= $ftl['hasil_temuan'] ?>
                                                         </td>
-                                                        <td>
-                                                            <?= $ftl['ke'] ?>
+                                                        <td> 
+                                                            &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp <?= $ftl['ke'] ?>
                                                         </td>
-                                                        <td>
+                                                        <td align="center">
                                                             <?php
                                                             if ($ftl['gambar'] != "") {
                                                             ?>

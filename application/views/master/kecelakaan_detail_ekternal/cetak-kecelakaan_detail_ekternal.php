@@ -685,42 +685,40 @@
                                     <td colspan="2">
                                         Bagaimana Kondisi lingkungan saat itu ?<br>
                                         <?php
-                                        $hujan = 'unchecked';
-                                        $licin = 'unchecked';
-                                        $panas = 'unchecked';
-                                        $jalanramai = 'unchecked';
-                                        $dingin = 'unchecked';
-                                        $jalansempit = 'unchecked';
-                                        $kabut = 'unchecked';
-                                        $jalanjelek = 'unchecked';
-                                        $gelap = 'unchecked';
-                                        $jalanmacet = 'unchecked';
-                                        $lainya = 'unchecked';
-
-                                        $selected_radio = $kecelakaan_detail_ekternal['pttk_kondisi_lingkungan'];
-                                        if ($selected_radio == 'Hujan') {
-                                            $hujan = 'checked';
-                                        } else if ($selected_radio == 'Licin') {
-                                            $licin = 'checked';
-                                        } else if ($selected_radio == 'Panas') {
-                                            $panas = 'checked';
-                                        } else if ($selected_radio == 'Jalan Ramai') {
-                                            $jalanramai = 'checked';
-                                        } else if ($selected_radio == 'Dingin') {
-                                            $dingin = 'checked';
-                                        } else if ($selected_radio == 'Jalan Sempit') {
-                                            $jalansempit = 'checked';
-                                        } else if ($selected_radio == 'Kabut') {
-                                            $kabut = 'checked';
-                                        } else if ($selected_radio == 'Jalan Jelek') {
-                                            $jalanjelek = 'checked';
-                                        } else if ($selected_radio == 'Gelap') {
-                                            $gelap = 'checked';
-                                        } else if ($selected_radio == 'Jalan Macet') {
-                                            $jalanmacet = 'checked';
-                                        } else {
-                                            $lainya = 'checked';
-                                        }
+                                        $jawaban = json_decode($kecelakaan_detail_ekternal['pttk_kondisi_lingkungan']);
+                                        foreach ($jawaban as $j) {
+                                              if ($j->keadaan == 'Hujan') {
+                                                $hujan = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Licin') {
+                                                $licin = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Panas') {
+                                                $panas = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Jalan Ramai') {
+                                                $jalanramai = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Dingin') {
+                                                $dingin = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Kabut') {
+                                                $kabut = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Jalan Jelek') {
+                                                $jalanjelek = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Gelap') {
+                                                $gelap = 'checked';
+                                              } 
+                                              elseif($j->keadaan == 'Jalan Macet') {
+                                                $jalanmacet = 'checked';
+                                              } 
+                                              else {
+                                                $lainya = 'checked';
+                                                $hasil_text = $j->keadaan;
+                                              }
+                                            }
                                         ?>
                                         <table>
                                             <tr>
@@ -776,15 +774,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Lainya" onClick="this.checked=!this.checked;" <?PHP print $lainya; ?>>
-                                                    Lainya
-                                                    <?php
-                                                    if ($kecelakaan_detail_ekternal['pttk_kondisi_lingkungan'] == 'Lainya') {
-                                                        $value_lain = ' yaitu: ' . $kecelakaan_detail_ekternal['pttk_kondisi_lingkungan'];
-                                                    } else {
-                                                        $value_lain = '';
-                                                    }
-                                                    ?>
-                                                    <p><?= $value_lain ?></p>
+                                                    Lainya : <?PHP print $hasil_text; ?>
                                                 </td>
                                             </tr>
                                         </table>

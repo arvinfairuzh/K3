@@ -894,58 +894,44 @@
                                         <td colspan="2">
                                             Bagaimana Kondisi lingkungan saat itu ?<br>
                                             <?php
-                                            $hujan = 'unchecked';
-                                            $panas = 'unchecked';
-                                            $adafume = 'unchecked';
-                                            $getaran = 'unchecked';
-                                            $ketinggian = 'unchecked';
-                                            $licin = 'unchecked';
-                                            $kabut = 'unchecked';
-                                            $dingin = 'unchecked';
-                                            $kebisingan = 'unchecked';
-                                            $adagas = 'unchecked';
-                                            $dikedalaman = 'unchecked';
-                                            $panassinarmatahari = 'unchecked';
-                                            $lembab = 'unchecked';
-                                            $adavapour = 'unchecked';
-                                            $ruangtertutup = 'unchecked';
-                                            $gelap = 'unchecked';
-                                            $lainya = 'unchecked';
-                                            $selected_radio = $kecelakaan_detail_internal['pttk_kondisi_lingkungan'];
-                                            if ($selected_radio == 'Hujan') {
-                                                $hujan = 'checked';
-                                            } else if ($selected_radio == 'Panas') {
-                                                $panas = 'checked';
-                                            } else if ($selected_radio == 'Ada fume') {
-                                                $adafume = 'checked';
-                                            } else if ($selected_radio == 'Getaran') {
-                                                $getaran = 'checked';
-                                            } else if ($selected_radio == 'Ketinggian') {
-                                                $ketinggian = 'checked';
-                                            } else if ($selected_radio == 'Licin') {
-                                                $licin = 'checked';
-                                            } else if ($selected_radio == 'Kabut') {
-                                                $kabut = 'checked';
-                                            } else if ($selected_radio == 'Dingin') {
-                                                $dingin = 'checked';
-                                            } else if ($selected_radio == 'Kebisingan') {
-                                                $kebisingan = 'checked';
-                                            } else if ($selected_radio == 'Ada gas') {
-                                                $adagas = 'checked';
-                                            } else if ($selected_radio == 'Di kedalaman') {
-                                                $dikedalaman = 'checked';
-                                            } else if ($selected_radio == 'Panas sinar matahari') {
-                                                $panassinarmatahari = 'checked';
-                                            } else if ($selected_radio == 'Lembab') {
-                                                $lembab = 'checked';
-                                            } else if ($selected_radio == 'Ada vapour') {
-                                                $adavapour = 'checked';
-                                            } else if ($selected_radio == 'Ruang tertutup') {
-                                                $ruangtertutup = 'checked';
-                                            } else if ($selected_radio == 'Gelap') {
-                                                $gelap = 'checked';
-                                            } else {
-                                                $lainya = 'checked';
+                                            $jawaban = json_decode($kecelakaan_detail_internal['pttk_kondisi_lingkungan']);
+                                            foreach ($jawaban as $j) {
+                                                if ($j->keadaan == 'Hujan') {
+                                                    $hujan = 'checked';
+                                                } elseif ($j->keadaan == 'Panas') {
+                                                    $panas = 'checked';
+                                                } elseif ($j->keadaan == 'Ada fume') {
+                                                    $adafume = 'checked';
+                                                } elseif ($j->keadaan == 'Getaran') {
+                                                    $getaran = 'checked';
+                                                } elseif ($j->keadaan == 'Ketinggian') {
+                                                    $ketinggian = 'checked';
+                                                } elseif ($j->keadaan == 'Licin') {
+                                                    $licin = 'checked';
+                                                } elseif ($j->keadaan == 'Kabut') {
+                                                    $kabut = 'checked';
+                                                } elseif ($j->keadaan == 'Dingin') {
+                                                    $dingin = 'checked';
+                                                } elseif ($j->keadaan == 'Kebisingan') {
+                                                    $kebisingan = 'checked';
+                                                } elseif ($j->keadaan == 'Ada gas') {
+                                                    $adagas = 'checked';
+                                                } elseif ($j->keadaan == 'Di kedalaman') {
+                                                    $dikedalaman = 'checked';
+                                                } elseif ($j->keadaan == 'Panas sinar matahari') {
+                                                    $panassinarmatahari = 'checked';
+                                                } elseif ($j->keadaan == 'Lembab') {
+                                                    $lembab = 'checked';
+                                                } elseif ($j->keadaan == 'Ada vapour') {
+                                                    $adavapour = 'checked';
+                                                } elseif ($j->keadaan == 'Ruang tertutup') {
+                                                    $ruangtertutup = 'checked';
+                                                } elseif ($j->keadaan == 'Gelap') {
+                                                    $gelap = 'checked';
+                                                } else {
+                                                    $lainya = 'checked';
+                                                    $hasil_text = $j->keadaan;
+                                                }
                                             }
                                             ?>
                                             <table>
@@ -1026,15 +1012,7 @@
                                                     </td>
                                                     <td colspan="2">
                                                         <input type="checkbox" name="dt[pttk_kondisi_lingkungan]" value="Lainya" <?PHP print $lainya; ?> onClick="this.checked=!this.checked;">
-                                                        Lainnya
-                                                        <?php
-                                                        if ($kecelakaan_detail_internal['pttk_kondisi_lingkungan'] == 'Lainya') {
-                                                            $value_lain = ' yaitu: ' . $kecelakaan_detail_internal['pttk_kondisi_lingkungan'];
-                                                        } else {
-                                                            $value_lain = '';
-                                                        }
-                                                        ?>
-                                                        <p><?= $value_lain ?></p>
+                                                        Lainnya : <?PHP print $hasil_text; ?>
                                                     </td>
                                                 </tr>
                                             </table>

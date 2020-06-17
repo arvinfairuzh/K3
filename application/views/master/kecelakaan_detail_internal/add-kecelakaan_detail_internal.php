@@ -44,11 +44,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nama</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" value="<?= $sr['nama'] ?>">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nama]" >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Nomor Induk</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" value="<?= $sr['nip'] ?>">
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_nomor_induk]" >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Umur</label>
@@ -60,11 +60,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Dep/Biro/Bid</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]" value="<?= $departemen['nama'] ?>" readonly>
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_dep_birobid]"  >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Bagian/Seksi</label>
-                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]" value="<?= $bagian['nama'] ?>" readonly>
+                                <input type="text" class="form-control" id="form-kk_tanggal_jam" name="dta[ip_bagian_seksi]"  >
                             </div>
                             <div class="form-group">
                                 <label for="form-kk_tanggal_jam">Lama bekerja di unit tersebut</label>
@@ -169,11 +169,11 @@
                             </div>
                             <div class="form-group" id="ifYes3" style="display:none">
                                 <label for="form-sp_ya_1">Instruksi apa yang telah diberikan kepada penderita ?</label>
-                                <textarea class="form-control" id="form-sp_ya_1" placeholder="Masukan Sp Ya 1" name="dt[sp_ya_1]"></textarea>
+                                <textarea class="form-control" id="form-sp_ya_1"  name="dt[sp_ya_1]"></textarea>
                             </div>
                             <div class="form-group" id="ifNo3" style="display:none">
                                 <label for="form-sp_tidak_1">Dimana atasan penderita berada ?</label>
-                                <textarea class="form-control" id="form-sp_tidak_1" placeholder="Masukan Sp Tidak 1" name="dt[sp_tidak_1]"></textarea>
+                                <textarea class="form-control" id="form-sp_tidak_1"  name="dt[sp_tidak_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-sp_apkh_2">Apakah tugas tersebut dilakukan sesai dengan instruksi kerja atau praktek kerja yang biasa dilakukan ?</label><br>
@@ -185,7 +185,7 @@
                             </div>
                             <div class="form-group" id="ifNo4" style="display:none">
                                 <label for="form-sp_tidak_2">Mengapa hal tersebut harus dilakukan ?</label>
-                                <textarea class="form-control" id="form-sp_tidak_2" placeholder="Masukan Sp Tidak 2" name="dt[sp_tidak_2]"></textarea>
+                                <textarea class="form-control" id="form-sp_tidak_2"  name="dt[sp_tidak_2]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -201,7 +201,7 @@
                             </div>
                             <div class="form-group" id="ifNo5" style="display:none">
                                 <label for="form-pk_tidak_1">Pelatihan apa yang diperlukan ?</label>
-                                <textarea class="form-control" id="form-pk_tidak_1" placeholder="Masukan Pk Tidak 1" name="dt[pk_tidak_1]"></textarea>
+                                <textarea class="form-control" id="form-pk_tidak_1"  name="dt[pk_tidak_1]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-pk_apkh_2">Apakah karyawan tersebut telah terbiasa dengan jenis pekerjaan/peralatan/bahan yang ditangani ?</label>
@@ -213,7 +213,7 @@
                             </div>
                             <div class="form-group" id="ifNo6" style="display:none">
                                 <label for="form-pk_tidak_2">Pengetahuan/keterampilan apa yang diperlukan ?</label>
-                                <textarea class="form-control" id="form-pk_tidak_2" placeholder="Masukan Pk Tidak 2" name="dt[pk_tidak_2]"></textarea>
+                                <textarea class="form-control" id="form-pk_tidak_2" name="dt[pk_tidak_2]"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="form-pk_apkh_3">Apakah karyawan tersebut telah dilatih untuk melakukan pekerjaan tersebut dengan aman ?</label>
@@ -368,7 +368,7 @@
                             </div>
                             <div class="form-group" id="ifNo15" style="display:none">
                                 <label for="form-snp_tidak_2">Mengapa tidak dibuat dan tidak dilaksanakan ?</label>
-                                <textarea class="form-control" id="form-snp_tidak_2" placeholder="Masukan Snp Tidak 2" name="dt[snp_tidak_2]"></textarea>
+                                <textarea class="form-control" id="form-snp_tidak_2" name="dt[snp_tidak_2]"></textarea>
                             </div>
                             <!-- JAGA JARAK -->
                             <div class="form-group">
@@ -380,81 +380,81 @@
                                 <table>
                                     <tr>
                                         <td style="padding-right: 50px">
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Hujan">
+                                            <input type="checkbox" name="keadaan[]" value="Hujan">
                                             <label for="Ya">Hujan</label>
                                         </td>
                                         <td style="padding-right: 75px">
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Panas">
+                                            <input type="checkbox" name="keadaan[]" value="Panas">
                                             <label for="Tidak">Panas</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Ada fume">
+                                            <input type="checkbox" name="keadaan[]" value="Ada fume">
                                             <label for="Tidak">Ada fume</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Getaran">
+                                            <input type="checkbox" name="keadaan[]" value="Getaran">
                                             <label for="Tidak">Getaran</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Ketinggian">
+                                            <input type="checkbox" name="keadaan[]" value="Ketinggian">
                                             <label for="Tidak">Ketinggian</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Licin">
+                                            <input type="checkbox" name="keadaan[]" value="Licin">
                                             <label for="Tidak">Licin</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Kabut">
+                                            <input type="checkbox" name="keadaan[]" value="Kabut">
                                             <label for="Tidak">Kabut</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Dingin">
+                                            <input type="checkbox" name="keadaan[]" value="Dingin">
                                             <label for="Tidak">Dingin</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Kebisingan">
+                                            <input type="checkbox" name="keadaan[]" value="Kebisingan">
                                             <label for="Tidak">Kebisingan</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Ada gas">
+                                            <input type="checkbox" name="keadaan[]" value="Ada gas">
                                             <label for="Tidak">Ada gas</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Di kedalaman">
+                                            <input type="checkbox" name="keadaan[]" value="Di kedalaman">
                                             <label for="Tidak">Di kedalaman</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Panas sinar matahari">
+                                            <input type="checkbox" name="keadaan[]" value="Panas sinar matahari">
                                             <label for="Tidak">Panas sinar matahari</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Lembab">
+                                            <input type="checkbox" name="keadaan[]" value="Lembab">
                                             <label for="Tidak">Lembab</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Ada vapour">
+                                            <input type="checkbox" name="keadaan[]" value="Ada vapour">
                                             <label for="Tidak">Ada vapour</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Ruang tertutup">
+                                            <input type="checkbox" name="keadaan[]" value="Ruang tertutup">
                                             <label for="Tidak">Ruang tertutup</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Gelap">
+                                            <input type="checkbox" name="keadaan[]" value="Gelap">
                                             <label for="Tidakperlu">Gelap</label>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dt[pttk_kondisi_lingkungan]" value="Lainya">
+                                            <input type="checkbox" name="keadaan[]" value="Lainya">
                                             <label for="Tidakperlu">Lainya</label>
                                             <input type="text" name="pttk_kondisi_lingkungan_lainnya">
                                         </td>
