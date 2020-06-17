@@ -147,7 +147,7 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 		$id = $this->input->post('id', TRUE);
 		$dta = $_POST['dta'];
 		$dta['id_se'] = $_SESSION['id'];
-		$this->mymodel->updateData('kecelakaan_main', $dta, array('id' => $id));
+		$this->db->update('kecelakaan_main', $dta, array('id' => $id));
 
 		$dt = $_POST['dt'];
 		$wp_persyaratan_administrasi = $_POST['wp_persyaratan_administrasi'];
@@ -190,7 +190,8 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 			}
 		}
 
-		$str = $this->mymodel->updateData('kecelakaan_detail_ekternal', $dt, array('id_kecelakaan' => $id));
+		$str = $this->db->update('kecelakaan_detail_ekternal', $dt, array('id_kecelakaan' => $id));
+		$this->alert->alertsuccess('Success Update Data');
 	}
 
 	public function json()

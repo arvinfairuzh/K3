@@ -19,11 +19,17 @@ class Pegawai extends MY_Controller
 
 
 	public function index()
-
 	{
+		$filter = array(
+			'kompartemen' => $this->input->post('kompartemen'),
+			'departemen' => $this->input->post('departemen'),
+			'bagian' => $this->input->post('bagian'),
+			'role' => $this->input->post('role')
+		);
+
+		$this->session->set_userdata($filter);
 
 		$data['page_name'] = "pegawai";
-
 		$this->template->load('template/template', 'master/pegawai/all-pegawai', $data);
 	}
 
@@ -162,22 +168,31 @@ class Pegawai extends MY_Controller
 
 
 	public function json()
-
 	{
-
 		$status = $_GET['status'];
+		$kompartemen = $_SESSION['kompartemen'];
+		$departemen = $_SESSION['departemen'];
+		$bagian = $_SESSION['bagian'];
+		$role = $_SESSION['role'];
 
 		if ($status == '') {
-
 			$status = 'ENABLE';
 		}
-
 		header('Content-Type: application/json');
-
 		$this->datatables->select('pegawai.id,nip,master_bagian.nama as bagian,pegawai.nama,master_shift.nama as shift,master_departemen.nama as departemen,master_kompartemen.nama as kompartemen,master_jabatan.nama as jabatan,role.role as role,pegawai.id_bagian,pegawai.id_shift,pegawai.id_departemen,pegawai.id_kompartemen,pegawai.id_shift,pegawai.id_role,pegawai.status');
-
 		$this->datatables->where('pegawai.status', $status);
-
+		if ($kompartemen) {
+			$this->datatables->where('pegawai.id_kompartemen', $kompartemen);
+		}
+		if ($departemen) {
+			$this->datatables->where('pegawai.id_departemen', $departemen);
+		}
+		if ($bagian) {
+			$this->datatables->where('pegawai.id_bagian', $bagian);
+		}
+		if ($role) {
+			$this->datatables->where('pegawai.id_role', $role);
+		}
 		$this->datatables->from('pegawai');
 		$this->datatables->join('master_departemen', 'pegawai.id_departemen = master_departemen.id', 'left');
 		$this->datatables->join('master_kompartemen', 'pegawai.id_kompartemen = master_kompartemen.id', 'left');
@@ -185,15 +200,11 @@ class Pegawai extends MY_Controller
 		$this->datatables->join('master_jabatan', 'pegawai.id_jabatan = master_jabatan.id', 'left');
 		$this->datatables->join('master_bagian', 'pegawai.id_bagian = master_bagian.id', 'left');
 		$this->datatables->join('role', 'pegawai.id_role = role.id', 'left');
-
 		if ($status == "ENABLE") {
-
 			$this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button></div>', 'id');
 		} else {
-
 			$this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button><button type="button" onclick="hapus($1)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Hapus</button></div>', 'id');
 		}
-
 		echo $this->datatables->generate();
 	}
 

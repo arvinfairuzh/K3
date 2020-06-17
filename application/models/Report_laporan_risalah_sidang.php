@@ -9,10 +9,27 @@ class Report_laporan_risalah_sidang extends CI_Model
     {
 
         $this->load->database();
-        $kompartemen = '';
-        if (!$_SESSION['role_id'] == 0) {
-            $kompartemen = $_SESSION['id_kompartemen'];
-            $kompartemen = "AND ketua.id_kompartemen = '$kompartemen'";
+        $qry = " ";
+        $kompartemen = $_SESSION['id_kompartemen'];
+        $bagian = $_SESSION['id_bagian'];
+        if ($_SESSION['role_id'] == 1) {
+            $qry = " AND ketua.id_kompartemen = '$kompartemen'";
+        } else if ($_SESSION['role_id'] == 2) {
+            $qry = " AND ketua.id_kompartemen = '$kompartemen'";
+        } else if ($_SESSION['role_id'] == 3) {
+            if ($bagian == 16) {
+                $qry = " ";
+            } else {
+                $qry = " AND ketua.id_kompartemen = '$kompartemen'";
+            }
+        } else if ($_SESSION['role_id'] == 4) {
+            $qry = " AND ketua.id_kompartemen = '$kompartemen'";
+        } else if ($_SESSION['role_id'] == 5) {
+            $qry = " ";
+        } else if ($_SESSION['role_id'] == 6) {
+            $qry = " ";
+        } else {
+            $qry = " ";
         }
 
         $this->column_order = array('id_jadwal', 'pimpinan_sidang', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'id_notulis', 'nama_status'); //field yang ada di table user
@@ -24,7 +41,7 @@ class Report_laporan_risalah_sidang extends CI_Model
         LEFT JOIN pegawai on hasil_rapat.id_notulis = pegawai.id
         LEFT JOIN master_status_sidang on hasil_rapat.status_sidang = master_status_sidang.id
         LEFT JOIN pegawai ketua on master_jadwal_rapat.id_ketua = ketua.id
-        WHERE hasil_rapat.status = 'ENABLE' " . $kompartemen . " ) as tabledata";
+        WHERE hasil_rapat.status = 'ENABLE' " . $qry . " ) as tabledata";
     }
 
 

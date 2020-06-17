@@ -145,7 +145,7 @@ class Kecelakaan_detail_internal extends MY_Controller
 
 		$dta = $_POST['dta'];
 		$dta['id_se'] = $_SESSION['id'];
-		$this->mymodel->updateData('kecelakaan_main', $dta, array('id' => $id));
+		$this->db->update('kecelakaan_main', $dta, array('id' => $id));
 
 		$dt = $_POST['dt'];
 		$dt['updated_at'] = date('Y-m-d H:i:s');
@@ -193,7 +193,8 @@ class Kecelakaan_detail_internal extends MY_Controller
 			}
 		}
 
-		$str = $this->mymodel->updateData('kecelakaan_detail_internal', $dt, array('id_kecelakaan' => $id));
+		$str = $this->db->update('kecelakaan_detail_internal', $dt, array('id_kecelakaan' => $id));
+		$this->alert->alertsuccess('Success Update Data');
 	}
 
 	public function json()
