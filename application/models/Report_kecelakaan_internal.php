@@ -13,17 +13,24 @@ class Report_kecelakaan_internal extends CI_Model
         $qry = '';
         $departemen = $_SESSION['id_departemen'];
         $bagian = $_SESSION['id_bagian'];
+        $kompartemen = $_SESSION['id_kompartemen'];
         if ($_SESSION['role_id'] == 1) {
             $qry = " AND penderita.id_departemen = '$departemen' AND penderita.id_bagian = '$bagian'";
+        } else if ($_SESSION['role_id'] == 2) {
+            $qry = " AND penderita.id_kompartemen = '$kompartemen'";
         } else if ($_SESSION['role_id'] == 3) {
             if ($bagian == 16) {
                 $qry = " ";
             } else {
                 $qry = " AND kabag.id_departemen = '$departemen' AND kabag.id_bagian = '$bagian'";
             }
+        } else if ($_SESSION['role_id'] == 4) {
+            $qry = " AND kabag.id_departemen = '$departemen'";
         } else if ($_SESSION['role_id'] == 5) {
             $qry = " ";
         } else if ($_SESSION['role_id'] == 6) {
+            $qry = " ";
+        } else {
             $qry = " ";
         }
 

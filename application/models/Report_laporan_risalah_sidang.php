@@ -12,7 +12,7 @@ class Report_laporan_risalah_sidang extends CI_Model
         $qry = " ";
         $kompartemen = $_SESSION['id_kompartemen'];
         $bagian = $_SESSION['id_bagian'];
-        if (!$_SESSION['role_id'] == 1) {
+        if ($_SESSION['role_id'] == 1) {
             $qry = " AND ketua.id_kompartemen = '$kompartemen'";
         } else if ($_SESSION['role_id'] == 2) {
             $qry = " AND ketua.id_kompartemen = '$kompartemen'";
@@ -22,9 +22,13 @@ class Report_laporan_risalah_sidang extends CI_Model
             } else {
                 $qry = " AND ketua.id_kompartemen = '$kompartemen'";
             }
+        } else if ($_SESSION['role_id'] == 4) {
+            $qry = " AND ketua.id_kompartemen = '$kompartemen'";
         } else if ($_SESSION['role_id'] == 5) {
             $qry = " ";
         } else if ($_SESSION['role_id'] == 6) {
+            $qry = " ";
+        } else {
             $qry = " ";
         }
 
@@ -37,7 +41,7 @@ class Report_laporan_risalah_sidang extends CI_Model
         LEFT JOIN pegawai on hasil_rapat.id_notulis = pegawai.id
         LEFT JOIN master_status_sidang on hasil_rapat.status_sidang = master_status_sidang.id
         LEFT JOIN pegawai ketua on master_jadwal_rapat.id_ketua = ketua.id
-        WHERE hasil_rapat.status = 'ENABLE' " . $kompartemen . " ) as tabledata";
+        WHERE hasil_rapat.status = 'ENABLE' " . $qry . " ) as tabledata";
     }
 
 
