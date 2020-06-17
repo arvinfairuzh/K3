@@ -11,10 +11,20 @@ class Report_laporan_bulanan extends CI_Model
         $this->load->database();
 
         $qry = '';
-        if (!$_SESSION['role_id'] == 0) {
-            $departemen = $_SESSION['id_departemen'];
-            $bagian = $_SESSION['id_bagian'];
+        $departemen = $_SESSION['id_departemen'];
+        $bagian = $_SESSION['id_bagian'];
+        if ($_SESSION['role_id'] == 1) {
             $qry = " AND form_laporan_bulanan.departemen = '$departemen' AND form_laporan_bulanan.bagian = '$bagian'";
+        } else if ($_SESSION['role_id'] == 3) {
+            if ($bagian == 16) {
+                $qry = " ";
+            } else {
+                $qry = " AND form_laporan_bulanan.departemen = '$departemen' AND form_laporan_bulanan.bagian = '$bagian'";
+            }
+        } else if ($_SESSION['role_id'] == 5) {
+            $qry = " ";
+        } else if ($_SESSION['role_id'] == 6) {
+            $qry = " ";
         }
 
         $this->column_order = array(null, 'lokasi', 'departemen', 'bagian', 'tanggal', 'id_kabag', 'created_by', 'nama_status'); //field yang ada di table user

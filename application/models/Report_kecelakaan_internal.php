@@ -22,7 +22,7 @@ class Report_kecelakaan_internal extends CI_Model
                 $qry = " AND kabag.id_departemen = '$departemen' AND kabag.id_bagian = '$bagian'";
             }
         } else if ($_SESSION['role_id'] == 5) {
-            $qry = " AND penderita.id_departemen = '$departemen'";
+            $qry = " ";
         } else if ($_SESSION['role_id'] == 6) {
             $qry = " ";
         }

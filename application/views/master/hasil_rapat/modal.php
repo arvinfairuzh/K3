@@ -26,6 +26,6 @@ if ($_SESSION['role_id'] == 2) {
         $("#load-form").html('loading...');
         $("#modal-form").modal();
         $("#title-form").html('Validasi');
-        $("#load-form").load("<?= base_url('master/form_laporan_bulanan/validasi_tolak/') ?>" + id);
+        $("#load-form").load("<?= base_url('master/hasil_rapat/validasi_tolak/') ?>" + id);
     }
 </script>
