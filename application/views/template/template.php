@@ -659,8 +659,9 @@ if ($this->session->userdata('session_sop') == "") {
 
   <script type="text/javascript">
     $('.select2').select2();
-
-    $('.tgl').datepicker({
+    var dateControl = document.querySelector('input[type="datetime-local"]');
+    dateControl.autoclose = true;
+    $('.tgl').datetimepicker({
       autoclose: true,
       format: 'yyyy-mm-dd'
     });
