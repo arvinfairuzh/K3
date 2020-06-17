@@ -32,19 +32,19 @@
                             <div class="show_error"></div>
                             <?php
                             if ($_SESSION['role_id'] == 1) {
-                                ?>
+                            ?>
                                 <div class="form-group" align="center">
                                     <label for="form-jenis_kecelakaan" style="font-size:20px">Jenis Kecelakaan</label><br>
                                     <?php
-                                        $ya = 'unchecked';
-                                        $tidak = 'unchecked';
-                                        $selected_radio = $kecelakaan_main['jenis_kecelakaan'];
-                                        if ($selected_radio == '1') {
-                                            $ya = 'checked';
-                                        } else if ($selected_radio == '2') {
-                                            $tidak = 'checked';
-                                        }
-                                        ?>
+                                    $ya = 'unchecked';
+                                    $tidak = 'unchecked';
+                                    $selected_radio = $kecelakaan_main['jenis_kecelakaan'];
+                                    if ($selected_radio == '1') {
+                                        $ya = 'checked';
+                                    } else if ($selected_radio == '2') {
+                                        $tidak = 'checked';
+                                    }
+                                    ?>
                                     <div class="col-md-6">
                                         <input type="radio" id="form-jenis_kecelakaan-1" name="dta[jenis_kecelakaan]" value="1" <?= $ya ?>>
                                         <label for="form-jenis_kecelakaan-1">Kecelakaan Kerja</label><br>
@@ -96,11 +96,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_tanggal_jam">Tanggal & Jam</label>
-                                    <input type="date" class="form-control" id="form-kk_tanggal_jam"  name="dt[kk_tanggal_jam]" value="<?= $kecelakaan_detail_ekternal['kk_tanggal_jam'] ?>">
+                                    <input type="date" class="form-control" id="form-kk_tanggal_jam" name="dt[kk_tanggal_jam]" value="<?= $kecelakaan_detail_ekternal['kk_tanggal_jam'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_lokasi">Lokasi</label>
-                                    <input type="text" class="form-control" id="form-kk_lokasi"  name="dt[kk_lokasi]" value="<?= $kecelakaan_detail_ekternal['kk_lokasi'] ?>">
+                                    <input type="text" class="form-control" id="form-kk_lokasi" name="dt[kk_lokasi]" value="<?= $kecelakaan_detail_ekternal['kk_lokasi'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_penjelasan_kecelakaan">Jelaskan bagaimana terjadi</label>
@@ -113,36 +113,36 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_bagian_tubuh_cedera">Bagian tubuh yang cedera</label>
-                                    <input type="text" class="form-control" id="form-kk_bagian_tubuh_cedera"  name="dt[kk_bagian_tubuh_cedera]" value="<?= $kecelakaan_detail_ekternal['kk_bagian_tubuh_cedera'] ?>">
+                                    <input type="text" class="form-control" id="form-kk_bagian_tubuh_cedera" name="dt[kk_bagian_tubuh_cedera]" value="<?= $kecelakaan_detail_ekternal['kk_bagian_tubuh_cedera'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_aktifitas_penderita">Pada Saat kejadian apakah keperluan/aktifitas penderita</label>
                                     <!-- <input type="text" class="form-control" id="form-kk_aktifitas_penderita" placeholder="Masukan Kk Aktifitas Penderita" name="dt[kk_aktifitas_penderita]" value="<?= $kecelakaan_detail_ekternal['kk_aktifitas_penderita'] ?>"> -->
                                     <?php
-                                        $berangkatkerja = 'unchecked';
-                                        $berangkatdanistirahatkerja = 'unchecked';
-                                        $perjalanandinas = 'unchecked';
-                                        $ijin = 'unchecked';
-                                        $pulangkerjauntukistirahat = 'unchecked';
-                                        $pulangkerja = 'unchecked';
-                                        $lainya = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['kk_aktifitas_penderita'];
-                                        if ($selected_radio == 'Berangkat kerja') {
-                                            $berangkatkerja = 'checked';
-                                        } else if ($selected_radio == 'Berangkat dan istirahat kerja') {
-                                            $berangkatdanistirahatkerja = 'checked';
-                                        } else if ($selected_radio == 'Perjalanan dinas') {
-                                            $perjalanandinas = 'checked';
-                                        } else if ($selected_radio == 'Ijin') {
-                                            $ijin = 'checked';
-                                        } else if ($selected_radio == 'Pulang untuk istirahat kerja') {
-                                            $pulangkerjauntukistirahat = 'checked';
-                                        } else if ($selected_radio == 'Pulang kerja') {
-                                            $var  = 'checked';
-                                        } else {
-                                            $lainya = 'checked';
-                                        }
-                                        ?>
+                                    $berangkatkerja = 'unchecked';
+                                    $berangkatdanistirahatkerja = 'unchecked';
+                                    $perjalanandinas = 'unchecked';
+                                    $ijin = 'unchecked';
+                                    $pulangkerjauntukistirahat = 'unchecked';
+                                    $pulangkerja = 'unchecked';
+                                    $lainya = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['kk_aktifitas_penderita'];
+                                    if ($selected_radio == 'Berangkat kerja') {
+                                        $berangkatkerja = 'checked';
+                                    } else if ($selected_radio == 'Berangkat dan istirahat kerja') {
+                                        $berangkatdanistirahatkerja = 'checked';
+                                    } else if ($selected_radio == 'Perjalanan dinas') {
+                                        $perjalanandinas = 'checked';
+                                    } else if ($selected_radio == 'Ijin') {
+                                        $ijin = 'checked';
+                                    } else if ($selected_radio == 'Pulang untuk istirahat kerja') {
+                                        $pulangkerjauntukistirahat = 'checked';
+                                    } else if ($selected_radio == 'Pulang kerja') {
+                                        $var  = 'checked';
+                                    } else {
+                                        $lainya = 'checked';
+                                    }
+                                    ?>
                                     <table>
                                         <tr>
                                             <td style="padding-right: 50px">
@@ -184,21 +184,21 @@
                                 </div>
                                 <div class="form-group" id="kap" style="display: none;">
                                     <label for="form-kk_apabila_1">Jelaskan keperluan aktifitas penderita</label>
-                                    <input type="text" class="form-control" id="form-kk_apabila_1"  name="dt[kk_apabila_1]" value="<?= $kecelakaan_detail_ekternal['kk_apabila_1'] ?>">
+                                    <input type="text" class="form-control" id="form-kk_apabila_1" name="dt[kk_apabila_1]" value="<?= $kecelakaan_detail_ekternal['kk_apabila_1'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_apkh_1">Apakah yang bersangkutan melalui jalan yang ditempuh ?</label>
                                     <!-- <input type="text" class="form-control" id="form-kk_apkh_1" placeholder="Masukan Kk Apkh 1" name="dt[kk_apkh_1]" value="<?= $kecelakaan_detail_ekternal['kk_apkh_1'] ?>"> -->
                                     <?php
-                                        $ya = 'unchecked';
-                                        $tidak = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_1'];
-                                        if ($selected_radio == 'ya') {
-                                            $ya = 'checked';
-                                        } else if ($selected_radio == 'tidak') {
-                                            $tidak = 'checked';
-                                        }
-                                        ?>
+                                    $ya = 'unchecked';
+                                    $tidak = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_1'];
+                                    if ($selected_radio == 'ya') {
+                                        $ya = 'checked';
+                                    } else if ($selected_radio == 'tidak') {
+                                        $tidak = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" onclick="javascript:yesnoCheck1();" id="yesCheck1" name="dt[kk_apkh_1]" value="ya" <?PHP print $ya; ?>>
                                     <label for="Ya">Ya</label><br>
                                     <input type="radio" onclick="javascript:yesnoCheck1();" id="noCheck1" name="dt[kk_apkh_1]" value="tidak" <?PHP print $tidak; ?>>
@@ -206,24 +206,24 @@
                                 </div>
                                 <div class="form-group" id="ifNo1" style="display:none">
                                     <label for="form-kk_tidak_1">Mengapa tidak menempuh jalan yang biasa di lalui ?</label>
-                                    <input type="text" class="form-control" id="form-kk_tidak_1"  name="dt[kk_tidak_1]" value="<?= $kecelakaan_detail_ekternal['kk_tidak_1'] ?>">
+                                    <input type="text" class="form-control" id="form-kk_tidak_1" name="dt[kk_tidak_1]" value="<?= $kecelakaan_detail_ekternal['kk_tidak_1'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_apkh_2">Apakah kendaraan yang digunakan penderita ?</label>
                                     <!-- <input type="text" class="form-control" id="form-kk_apkh_2" placeholder="Masukan Kk Apkh 2" name="dt[kk_apkh_2]" value="<?= $kecelakaan_detail_ekternal['kk_apkh_2'] ?>"> -->
                                     <?php
-                                        $dinas = 'unchecked';
-                                        $pribadi = 'unchecked';
-                                        $kendaraanumum = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_2'];
-                                        if ($selected_radio == 'Dinas') {
-                                            $dinas = 'checked';
-                                        } else if ($selected_radio == 'Pribadi') {
-                                            $pribadi = 'checked';
-                                        } else if ($selected_radio == 'Kendaraan Umum') {
-                                            $kendaraanumum = 'checked';
-                                        }
-                                        ?>
+                                    $dinas = 'unchecked';
+                                    $pribadi = 'unchecked';
+                                    $kendaraanumum = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_2'];
+                                    if ($selected_radio == 'Dinas') {
+                                        $dinas = 'checked';
+                                    } else if ($selected_radio == 'Pribadi') {
+                                        $pribadi = 'checked';
+                                    } else if ($selected_radio == 'Kendaraan Umum') {
+                                        $kendaraanumum = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" name="dt[kk_apkh_2]" value="Dinas" <?PHP print $dinas; ?>>
                                     <label for="Ya">Dinas</label>
                                     <input type="radio" name="dt[kk_apkh_2]" value="Pribadi" <?PHP print $pribadi; ?>>
@@ -235,27 +235,27 @@
                                     <label for="form-kk_jenis_kendaraan">Jenis kendaraan apa yang digunakan ?</label>
                                     <!-- <input type="text" class="form-control" id="form-kk_jenis_kendaraan" placeholder="Masukan Kk Jenis Kendaraan" name="dt[kk_jenis_kendaraan]" value="<?= $kecelakaan_detail_ekternal['kk_jenis_kendaraan'] ?>"> -->
                                     <?php
-                                        $mobil = 'unchecked';
-                                        $sepedamotor = 'unchecked';
-                                        $bis = 'unchecked';
-                                        $alatberat = 'unchecked';
-                                        $truck = 'unchecked';
-                                        $lainya = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['kk_jenis_kendaraan'];
-                                        if ($selected_radio == 'Mobil') {
-                                            $mobil = 'checked';
-                                        } else if ($selected_radio == 'Sepeda motor') {
-                                            $sepedamotor = 'checked';
-                                        } else if ($selected_radio == 'Bis') {
-                                            $bis = 'checked';
-                                        } else if ($selected_radio == 'Alat Berat') {
-                                            $alatberat = 'checked';
-                                        } else if ($selected_radio == 'Truck') {
-                                            $truck = 'checked';
-                                        } else {
-                                            $lainya = 'checked';
-                                        }
-                                        ?>
+                                    $mobil = 'unchecked';
+                                    $sepedamotor = 'unchecked';
+                                    $bis = 'unchecked';
+                                    $alatberat = 'unchecked';
+                                    $truck = 'unchecked';
+                                    $lainya = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['kk_jenis_kendaraan'];
+                                    if ($selected_radio == 'Mobil') {
+                                        $mobil = 'checked';
+                                    } else if ($selected_radio == 'Sepeda motor') {
+                                        $sepedamotor = 'checked';
+                                    } else if ($selected_radio == 'Bis') {
+                                        $bis = 'checked';
+                                    } else if ($selected_radio == 'Alat Berat') {
+                                        $alatberat = 'checked';
+                                    } else if ($selected_radio == 'Truck') {
+                                        $truck = 'checked';
+                                    } else {
+                                        $lainya = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" onclick="javascript:yesnoCheck2();" id="jenis1" name="dt[kk_jenis_kendaraan]" value="Mobil" <?PHP print $mobil; ?>>
                                     <label for="Ya">Mobil</label>
                                     <input type="radio" onclick="javascript:yesnoCheck2();" id="jenis2" name="dt[kk_jenis_kendaraan]" value="Sepeda motor" <?PHP print $sepedamotor; ?>>
@@ -274,15 +274,15 @@
                                     <label for="form-kk_apkh_3">Saat terjadi kecelakaan lalulintas, Apakah yang bersangkutan melanggar rambu rambu lalulintas ?</label>
                                     <!-- <input type="text" class="form-control" id="form-kk_apkh_3" placeholder="Masukan Kk Apkh 3" name="dt[kk_apkh_3]" value="<?= $kecelakaan_detail_ekternal['kk_apkh_3'] ?>"> -->
                                     <?php
-                                        $ya = 'unchecked';
-                                        $tidak = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_3'];
-                                        if ($selected_radio == 'ya') {
-                                            $ya = 'checked';
-                                        } else if ($selected_radio == 'tidak') {
-                                            $tidak = 'checked';
-                                        }
-                                        ?>
+                                    $ya = 'unchecked';
+                                    $tidak = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_3'];
+                                    if ($selected_radio == 'ya') {
+                                        $ya = 'checked';
+                                    } else if ($selected_radio == 'tidak') {
+                                        $tidak = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" onclick="javascript:yesnoCheck3();" id="yesCheck3" name="dt[kk_apkh_3]" value="ya" <?PHP print $ya; ?>>
                                     <label for="Ya">Ya</label><br>
                                     <input type="radio" onclick="javascript:yesnoCheck3();" id="noCheck3" name="dt[kk_apkh_3]" value="tidak" <?PHP print $tidak; ?>>
@@ -290,24 +290,24 @@
                                 </div>
                                 <div class="form-group" id="ifNo3" style="display:none">
                                     <label for="form-kk_ya_3">Mengapa pelanggaran rambu-rambu lalulintas dilakukan ?</label>
-                                    <input type="text" class="form-control" id="form-kk_ya_3"  name="dt[kk_ya_3]" value="<?= $kecelakaan_detail_ekternal['kk_ya_3'] ?>">
+                                    <input type="text" class="form-control" id="form-kk_ya_3" name="dt[kk_ya_3]" value="<?= $kecelakaan_detail_ekternal['kk_ya_3'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_apkh_4">Apakah saat kejadian yang bersangkutan menggunakan alat keselamatan(mis:safety helmet, seat belt, dll) secara benar ?</label>
                                     <!-- <input type="text" class="form-control" id="form-kk_apkh_4" placeholder="Masukan Kk Apkh 4" name="dt[kk_apkh_4]" value="<?= $kecelakaan_detail_ekternal['kk_apkh_4'] ?>"> -->
                                     <?php
-                                        $ya = 'unchecked';
-                                        $tidak = 'unchecked';
-                                        $tidakperlu = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_4'];
-                                        if ($selected_radio == 'ya') {
-                                            $ya = 'checked';
-                                        } else if ($selected_radio == 'tidak') {
-                                            $tidak = 'checked';
-                                        } else if ($selected_radio == 'tidak perlu') {
-                                            $tidakperlu = 'checked';
-                                        }
-                                        ?>
+                                    $ya = 'unchecked';
+                                    $tidak = 'unchecked';
+                                    $tidakperlu = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_4'];
+                                    if ($selected_radio == 'ya') {
+                                        $ya = 'checked';
+                                    } else if ($selected_radio == 'tidak') {
+                                        $tidak = 'checked';
+                                    } else if ($selected_radio == 'tidak perlu') {
+                                        $tidakperlu = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" onclick="javascript:yesnoCheck4();" id="yesCheck4" name="dt[kk_apkh_4]" value="ya" <?PHP print $ya; ?>>
                                     <label for="Ya">Ya</label><br>
                                     <input type="radio" onclick="javascript:yesnoCheck4();" id="noCheck4" name="dt[kk_apkh_4]" value="tidak" <?PHP print $tidak; ?>>
@@ -317,21 +317,21 @@
                                 </div>
                                 <div class="form-group" id="ifNo4" style="display:none">
                                     <label for="form-kk_tidak_4">Jelaskan mengapa alat keselamatan tidak dipakai secara benar.</label>
-                                    <input type="text" class="form-control" id="form-kk_tidak_4"  name="dt[kk_tidak_4]" value="<?= $kecelakaan_detail_ekternal['kk_tidak_4'] ?>">
+                                    <input type="text" class="form-control" id="form-kk_tidak_4" name="dt[kk_tidak_4]" value="<?= $kecelakaan_detail_ekternal['kk_tidak_4'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-kk_apkh_5">Apakah saat kejadian kondisi kendaraan yang digunakan layak pakai dan kelengkapan kendaraan memenuhi persyaratan ?(termasuk lampu, rem, lampu sign dll)</label>
                                     <!-- <input type="text" class="form-control" id="form-kk_apkh_5" placeholder="Masukan Kk Apkh 5" name="dt[kk_apkh_5]" value="<?= $kecelakaan_detail_ekternal['kk_apkh_5'] ?>"> -->
                                     <?php
-                                        $ya = 'unchecked';
-                                        $tidak = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_5'];
-                                        if ($selected_radio == 'ya') {
-                                            $ya = 'checked';
-                                        } else if ($selected_radio == 'tidak') {
-                                            $tidak = 'checked';
-                                        }
-                                        ?>
+                                    $ya = 'unchecked';
+                                    $tidak = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['kk_apkh_5'];
+                                    if ($selected_radio == 'ya') {
+                                        $ya = 'checked';
+                                    } else if ($selected_radio == 'tidak') {
+                                        $tidak = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" onclick="javascript:yesnoCheck5();" id="yesCheck5" name="dt[kk_apkh_5]" value="ya" <?PHP print $ya; ?>>
                                     <label for="Ya">Ya</label><br>
                                     <input type="radio" onclick="javascript:yesnoCheck5();" id="noCheck5" name="dt[kk_apkh_5]" value="tidak" <?PHP print $tidak; ?>>
@@ -339,7 +339,7 @@
                                 </div>
                                 <div class="form-group" id="ifNo5" style="display:none">
                                     <label for="form-kk_tidak_5">Mengapa belum dilakukan perbaikan ?</label>
-                                    <input type="text" class="form-control" id="form-kk_tidak_5"  name="dt[kk_tidak_5]" value="<?= $kecelakaan_detail_ekternal['kk_tidak_5'] ?>">
+                                    <input type="text" class="form-control" id="form-kk_tidak_5" name="dt[kk_tidak_5]" value="<?= $kecelakaan_detail_ekternal['kk_tidak_5'] ?>">
                                 </div>
                                 <!-- JAGA JARAK -->
                                 <div class="form-group">
@@ -365,15 +365,15 @@
                                     <label for="form-wp_apbl_1">Apabila pada saat kejadian yang bersangkutan menggunakan kendaraan dinas perusahaan ,Apakah yang bersangkutan mempunyai kewenangan untuk menjalankan/mengoprasikan kendaraan dinas tersebut ?</label>
                                     <!-- <input type="text" class="form-control" id="form-wp_apbl_1" placeholder="Masukan Wp Apbl 1" name="dt[wp_apbl_1]" value="<?= $kecelakaan_detail_ekternal['wp_apbl_1'] ?>"> -->
                                     <?php
-                                        $ya = 'unchecked';
-                                        $tidak = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['wp_apbl_1'];
-                                        if ($selected_radio == 'ya') {
-                                            $ya = 'checked';
-                                        } else if ($selected_radio == 'tidak') {
-                                            $tidak = 'checked';
-                                        }
-                                        ?>
+                                    $ya = 'unchecked';
+                                    $tidak = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['wp_apbl_1'];
+                                    if ($selected_radio == 'ya') {
+                                        $ya = 'checked';
+                                    } else if ($selected_radio == 'tidak') {
+                                        $tidak = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" onclick="javascript:yesnoCheck6();" id="yesCheck6" name="dt[wp_apbl_1]" value="ya" <?PHP print $ya; ?>>
                                     <label for="Ya">Ya</label><br>
                                     <input type="radio" onclick="javascript:yesnoCheck6();" id="noCheck6" name="dt[wp_apbl_1]" value="tidak" <?PHP print $tidak; ?>>
@@ -381,19 +381,19 @@
                                 </div>
                                 <div class="form-group" id="ifYes6" style="display:none">
                                     <label for="form-wp_ya_q1">Siapa yang memerintahkan untuk menjalankan/mengoprasikan ?</label>
-                                    <input type="text" class="form-control" id="form-wp_ya_q1"  name="dt[wp_ya_q1]" value="<?= $kecelakaan_detail_ekternal['wp_ya_q1'] ?>">
+                                    <input type="text" class="form-control" id="form-wp_ya_q1" name="dt[wp_ya_q1]" value="<?= $kecelakaan_detail_ekternal['wp_ya_q1'] ?>">
                                 </div>
                                 <div class="form-group" id="ifYes7" style="display:none">
                                     <label for="form-wp_ya_q2">Tugas dan instruksi apa yang telah diberikan kepada penderita ?</label>
-                                    <input type="text" class="form-control" id="form-wp_ya_q2"  name="dt[wp_ya_q2]" value="<?= $kecelakaan_detail_ekternal['wp_ya_q2'] ?>">
+                                    <input type="text" class="form-control" id="form-wp_ya_q2" name="dt[wp_ya_q2]" value="<?= $kecelakaan_detail_ekternal['wp_ya_q2'] ?>">
                                 </div>
                                 <div class="form-group" id="ifYes8" style="display:none">
                                     <label for="form-wp_ya_q3">Pada saat terjadi kecelakaan, dimana atasan yang bersangkutan berada ?</label>
-                                    <input type="text" class="form-control" id="form-wp_ya_q3"  name="dt[wp_ya_q3]" value="<?= $kecelakaan_detail_ekternal['wp_ya_q3'] ?>">
+                                    <input type="text" class="form-control" id="form-wp_ya_q3" name="dt[wp_ya_q3]" value="<?= $kecelakaan_detail_ekternal['wp_ya_q3'] ?>">
                                 </div>
                                 <div class="form-group" id="ifNo6" style="display:none">
                                     <label for="form-wp_tidak_q1">Siapa yang memperintahkan ?</label>
-                                    <input type="text" class="form-control" id="form-wp_tidak_q1"  name="dt[wp_tidak_q1]" value="<?= $kecelakaan_detail_ekternal['wp_tidak_q1'] ?>">
+                                    <input type="text" class="form-control" id="form-wp_tidak_q1" name="dt[wp_tidak_q1]" value="<?= $kecelakaan_detail_ekternal['wp_tidak_q1'] ?>">
                                 </div>
                                 <div class="form-group" id="ifNo7" style="display:none">
                                     <label for="form-wp_tidak_q2">Siapa yang memperintahkan ?</label>
@@ -403,26 +403,26 @@
                                     <label for="form-wp_persyaratan_administrasi">Persyaratan administrasi apa yang di bawa penderita saat terjadi kecelakaan ?</label>
                                     <!-- <input type="text" class="form-control" id="form-wp_persyaratan_administrasi" placeholder="Masukan Wp Persyaratan Administrasi" name="dt[wp_persyaratan_administrasi]" value="<?= $kecelakaan_detail_ekternal['wp_persyaratan_administrasi'] ?>"> -->
                                     <?php
-                                        $simpol = '';
-                                        $simper = '';
-                                        $sio = '';
-                                        $simper1 = '';
-                                        $stnk = '';
-                                        foreach (json_decode($kecelakaan_detail_ekternal['wp_persyaratan_administrasi']) as $wp) {
-                                            if ($wp->persyaratan == 'simpol') {
-                                                $simpol = 'checked';
-                                            } else if ($wp->persyaratan == 'simper') {
-                                                $simper = 'checked';
-                                            } else if ($wp->persyaratan == 'sio') {
-                                                $sio = 'checked';
-                                            } else if ($wp->persyaratan == 'simper1') {
-                                                $simper1 = 'checked';
-                                            } else if ($wp->persyaratan == 'stnk') {
-                                                $stnk = 'checked';
-                                            }
+                                    $simpol = '';
+                                    $simper = '';
+                                    $sio = '';
+                                    $simper1 = '';
+                                    $stnk = '';
+                                    foreach (json_decode($kecelakaan_detail_ekternal['wp_persyaratan_administrasi']) as $wp) {
+                                        if ($wp->persyaratan == 'simpol') {
+                                            $simpol = 'checked';
+                                        } else if ($wp->persyaratan == 'simper') {
+                                            $simper = 'checked';
+                                        } else if ($wp->persyaratan == 'sio') {
+                                            $sio = 'checked';
+                                        } else if ($wp->persyaratan == 'simper1') {
+                                            $simper1 = 'checked';
+                                        } else if ($wp->persyaratan == 'stnk') {
+                                            $stnk = 'checked';
                                         }
-                                        $selected_radio = $kecelakaan_detail_ekternal['wp_persyaratan_administrasi'];
-                                        ?>
+                                    }
+                                    $selected_radio = $kecelakaan_detail_ekternal['wp_persyaratan_administrasi'];
+                                    ?>
                                     <br>
                                     <input type="checkbox" id="vehicle1" name="wp_persyaratan_administrasi[]" value="simpol" <?PHP print $simpol; ?>>
                                     <label for="vehicle1"> SIMPOL sesuai dengan kendaraan yang dikemudikan</label><br>
@@ -445,21 +445,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="form-wp_bgmn_1">Bagaimana kondisi tempat kejadian?</label>
-                                    <input type="text" class="form-control" id="form-wp_bgmn_1"  name="dt[wp_bgmn_1]" value="<?= $kecelakaan_detail_ekternal['wp_bgmn_1'] ?>">
+                                    <input type="text" class="form-control" id="form-wp_bgmn_1" name="dt[wp_bgmn_1]" value="<?= $kecelakaan_detail_ekternal['wp_bgmn_1'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-wp_usaha_pencegahan_1">Dapatkah ditentukan usaha pencegahan lebih lanjut agar kejadian serupa tidak terulang ?</label>
                                     <!-- <input type="text" class="form-control" id="form-wp_usaha_pencegahan_1" placeholder="Masukan Wp Usaha Pencegahan 1" name="dt[wp_usaha_pencegahan_1]" value="<?= $kecelakaan_detail_ekternal['wp_usaha_pencegahan_1'] ?>"> -->
                                     <?php
-                                        $ya = 'unchecked';
-                                        $tidak = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['wp_usaha_pencegahan_1'];
-                                        if ($selected_radio == 'ya') {
-                                            $ya = 'checked';
-                                        } else if ($selected_radio == 'tidak') {
-                                            $tidak = 'checked';
-                                        }
-                                        ?>
+                                    $ya = 'unchecked';
+                                    $tidak = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['wp_usaha_pencegahan_1'];
+                                    if ($selected_radio == 'ya') {
+                                        $ya = 'checked';
+                                    } else if ($selected_radio == 'tidak') {
+                                        $tidak = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" onclick="javascript:yesnoCheck7();" id="yesCheck7" name="dt[wp_usaha_pencegahan_1]" value="ya" <?PHP print $ya; ?>>
                                     <label for="Ya">Ya</label><br>
                                     <input type="radio" onclick="javascript:yesnoCheck7();" id="noCheck7" name="dt[wp_usaha_pencegahan_1]" value="tidak" <?PHP print $tidak; ?>>
@@ -477,15 +477,15 @@
                                     <label for="form-sp_apkh_1">Apakah yang bersangkutan masih perlu menambahkan keterampilan dalam menjalankan/mengoprasikan kendaraan yang digunakan ?</label>
                                     <!-- <input type="text" class="form-control" id="form-sp_apkh_1" placeholder="Masukan Sp Apkh 1" name="dt[sp_apkh_1]" value="<?= $kecelakaan_detail_ekternal['sp_apkh_1'] ?>"> -->
                                     <?php
-                                        $ya = 'unchecked';
-                                        $tidak = 'unchecked';
-                                        $selected_radio = $kecelakaan_detail_ekternal['sp_apkh_1'];
-                                        if ($selected_radio == 'ya') {
-                                            $ya = 'checked';
-                                        } else if ($selected_radio == 'tidak') {
-                                            $tidak = 'checked';
-                                        }
-                                        ?>
+                                    $ya = 'unchecked';
+                                    $tidak = 'unchecked';
+                                    $selected_radio = $kecelakaan_detail_ekternal['sp_apkh_1'];
+                                    if ($selected_radio == 'ya') {
+                                        $ya = 'checked';
+                                    } else if ($selected_radio == 'tidak') {
+                                        $tidak = 'checked';
+                                    }
+                                    ?>
                                     <br><input type="radio" onclick="javascript:yesnoCheck8();" id="yesCheck8" name="dt[sp_apkh_1]" value="ya" <?PHP print $ya; ?>>
                                     <label for="Ya">Ya</label><br>
                                     <input type="radio" onclick="javascript:yesnoCheck8();" id="noCheck8" name="dt[sp_apkh_1]" value="tidak" <?PHP print $tidak; ?>>
@@ -493,7 +493,7 @@
                                 </div>
                                 <div class="form-group" id="ifYes10" style="display:none">
                                     <label for="form-sp_ya_1">Pelatihan apa yang diperlukan ?</label>
-                                    <input type="text" class="form-control" id="form-sp_ya_1"  name="dt[sp_ya_1]" value="<?= $kecelakaan_detail_ekternal['sp_ya_1'] ?>">
+                                    <input type="text" class="form-control" id="form-sp_ya_1" name="dt[sp_ya_1]" value="<?= $kecelakaan_detail_ekternal['sp_ya_1'] ?>">
                                 </div>
                                 <!-- JAGA JARAK -->
                                 <div class="form-group">
@@ -503,41 +503,32 @@
                                     <label for="form-pttk_kondisi_lingkungan">Bagaimana kondisi lingkungan pada saat itu ?</label>
                                     <!-- <input type="text" class="form-control" id="form-pttk_kondisi_lingkungan" placeholder="Masukan Pttk Kondisi Lingkungan" name="dt[pttk_kondisi_lingkungan]" value="<?= $kecelakaan_detail_ekternal['pttk_kondisi_lingkungan'] ?>"> -->
                                     <?php
-                                        $jawaban = json_decode($kecelakaan_detail_ekternal['pttk_kondisi_lingkungan']);
-                                        foreach ($jawaban as $j) {
-                                              if ($j->keadaan == 'Hujan') {
-                                                $hujan = 'checked';
-                                              } 
-                                              elseif($j->keadaan == 'Licin') {
-                                                $licin = 'checked';
-                                              } 
-                                              elseif($j->keadaan == 'Panas') {
-                                                $panas = 'checked';
-                                              } 
-                                              elseif($j->keadaan == 'Jalan Ramai') {
-                                                $jalanramai = 'checked';
-                                              } 
-                                              elseif($j->keadaan == 'Dingin') {
-                                                $dingin = 'checked';
-                                              } 
-                                              elseif($j->keadaan == 'Kabut') {
-                                                $kabut = 'checked';
-                                              } 
-                                              elseif($j->keadaan == 'Jalan Jelek') {
-                                                $jalanjelek = 'checked';
-                                              } 
-                                              elseif($j->keadaan == 'Gelap') {
-                                                $gelap = 'checked';
-                                              } 
-                                              elseif($j->keadaan == 'Jalan Macet') {
-                                                $jalanmacet = 'checked';
-                                              } 
-                                              else {
-                                                $lainya = 'checked';
-                                                $hasil_text = $j->keadaan;
-                                              }
-                                            }
-                                        ?>
+                                    $jawaban = json_decode($kecelakaan_detail_ekternal['pttk_kondisi_lingkungan']);
+                                    foreach ($jawaban as $j) {
+                                        if ($j->keadaan == 'Hujan') {
+                                            $hujan = 'checked';
+                                        } elseif ($j->keadaan == 'Licin') {
+                                            $licin = 'checked';
+                                        } elseif ($j->keadaan == 'Panas') {
+                                            $panas = 'checked';
+                                        } elseif ($j->keadaan == 'Jalan Ramai') {
+                                            $jalanramai = 'checked';
+                                        } elseif ($j->keadaan == 'Dingin') {
+                                            $dingin = 'checked';
+                                        } elseif ($j->keadaan == 'Kabut') {
+                                            $kabut = 'checked';
+                                        } elseif ($j->keadaan == 'Jalan Jelek') {
+                                            $jalanjelek = 'checked';
+                                        } elseif ($j->keadaan == 'Gelap') {
+                                            $gelap = 'checked';
+                                        } elseif ($j->keadaan == 'Jalan Macet') {
+                                            $jalanmacet = 'checked';
+                                        } else {
+                                            $lainya = 'checked';
+                                            $hasil_text = $j->keadaan;
+                                        }
+                                    }
+                                    ?>
                                     <table>
                                         <tr>
                                             <td style="padding-right: 50px">
@@ -609,7 +600,7 @@
                                 <!-- JAGA JARAK -->
                             <?php
                             } else {
-                                ?>
+                            ?>
                                 <div class="form-group">
                                     <label for="form-id_kecelakaan" style="font-size:20px">SARAN</label>
                                     <textarea id="summernote_saran" name="dta[saran]" class="form-control"><?= $kecelakaan_main['saran'] ?></textarea>
@@ -618,47 +609,23 @@
                             }
                             ?>
                         </div>
-
                         <div class="box-footer">
-
                             <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>
-
                             <button type="reset" class="btn btn-danger"><i class="fa fa-refresh"></i> Reset</button>
-
-
-
                         </div>
-
                         <!-- /.box-body -->
-
                     </div>
-
                     <!-- /.box -->
-
-
-
                     <!-- /.box -->
-
                 </div>
-
                 <!-- /.col -->
-
             </div>
-
             <!-- /.row -->
-
         </form>
-
-
-
     </section>
-
     <!-- /.content -->
-
 </div>
-
 <!-- /.content-wrapper -->
-
 <script type="text/javascript">
     $('#summernote_saran').summernote();
     $('#summernote_surat').summernote();
@@ -761,7 +728,9 @@
     yesnoCheck6();
     yesnoCheck7();
     yesnoCheck8();
+</script>
 
+<script type="text/javascript">
     $("#upload-create").submit(function() {
 
         var form = $(this);
@@ -825,22 +794,11 @@
             },
 
             error: function(xhr, textStatus, errorThrown) {
-
                 console.log(xhr);
-
                 $(".btn-send").removeClass("disabled").html('<i class="fa fa-save"></i> Save').attr('disabled', false);
-
                 form.find(".show_error").hide().html(xhr).slideDown("fast");
-
-
-
             }
-
         });
-
         return false;
-
-
-
     });
 </script>

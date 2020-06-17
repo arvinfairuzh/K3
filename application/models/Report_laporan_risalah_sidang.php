@@ -9,10 +9,23 @@ class Report_laporan_risalah_sidang extends CI_Model
     {
 
         $this->load->database();
-        $kompartemen = '';
-        if (!$_SESSION['role_id'] == 0) {
-            $kompartemen = $_SESSION['id_kompartemen'];
-            $kompartemen = "AND ketua.id_kompartemen = '$kompartemen'";
+        $qry = " ";
+        $kompartemen = $_SESSION['id_kompartemen'];
+        $bagian = $_SESSION['id_bagian'];
+        if (!$_SESSION['role_id'] == 1) {
+            $qry = " AND ketua.id_kompartemen = '$kompartemen'";
+        } else if ($_SESSION['role_id'] == 2) {
+            $qry = " AND ketua.id_kompartemen = '$kompartemen'";
+        } else if ($_SESSION['role_id'] == 3) {
+            if ($bagian == 16) {
+                $qry = " ";
+            } else {
+                $qry = " AND ketua.id_kompartemen = '$kompartemen'";
+            }
+        } else if ($_SESSION['role_id'] == 5) {
+            $qry = " ";
+        } else if ($_SESSION['role_id'] == 6) {
+            $qry = " ";
         }
 
         $this->column_order = array(null, 'id_jadwal', 'pimpinan_sidang', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'id_notulis', 'nama_status'); //field yang ada di table user
