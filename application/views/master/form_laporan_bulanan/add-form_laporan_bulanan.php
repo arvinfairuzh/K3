@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group col-md-12">
                   <label for="form-tanggal">Tanggal</label>
-                  <input type="text" class="form-control tgl" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]">
+                  <input type="datetime-local" class="form-control" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]">
                 </div>
               </div>
               <div class="col-md-4">
