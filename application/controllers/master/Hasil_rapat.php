@@ -230,6 +230,18 @@ class Hasil_rapat extends MY_Controller
 		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'hasil_rapat'));
 		$data['page_name'] = "hasil_rapat";
 		$data['master_status_sidang'] = $this->mymodel->selectDataone('master_status_sidang', array('id' => $data['hasil_rapat']['status_sidang']));
+		$data['pimpinan_rapat'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['master_jadwal_rapat']['id_ketua']));
+		$data['notulis'] = $this->mymodel->selectDataone('pegawai', array('id' => $data['hasil_rapat']['id_notulis']));
+		$data['pimpinan_rapat_role'] = $this->mymodel->selectDataone('master_kompartemen', array('id' => $data['pimpinan_rapat']['id_kompartemen']));
+
+		$data['notulis_jabatan'] = $this->mymodel->selectDataone('role', array('id' => $data['notulis']['id_role']));
+		if ($data['notulis']['id_role'] == 4) {
+			$data['notulis_role'] = $this->mymodel->selectDataone('master_departemen', array('id' => $data['notulis']['id_departemen']));
+		} else if ($data['notulis']['id_role'] == 3) {
+			$data['notulis_role'] = $this->mymodel->selectDataone('master_departemen', array('id' => $data['notulis']['id_bagian']));
+		} else if ($data['notulis']['id_role'] == 1) {
+			$data['notulis_role'] = $this->mymodel->selectDataone('master_departemen', array('id' => $data['notulis']['id_bagian']));
+		}
 
 		$this->template->load('template/template', 'master/hasil_rapat/detail-hasil_rapat', $data);
 	}

@@ -169,6 +169,28 @@
                             <label for="form-materi_kesehatan">Materi Kesehatan</label>
                             <?= $hasil_rapat['materi_kesehatan'] ?>
                         </div>
+                        <div class="col-md-12" align="center">
+                            <div class="col-xs-6">
+                                Pimpinan Rapat
+                            </div>
+                            <div class="col-xs-6">
+                                Notulis
+                            </div>
+                        </div>
+                        <div class="col-md-12" align="center" style="margin-top: 50px;">
+                            <div class="col-xs-6">
+                                <?= $hasil_rapat['pimpinan_sidang'] ?>
+                            </div>
+                            <div class="col-xs-6">
+                                <?= $notulis['nama'] ?>
+                            </div>
+                            <div class="col-xs-6">
+                                GM <?= $pimpinan_rapat_role['nama'] ?>
+                            </div>
+                            <div class="col-xs-6">
+                                <?= $notulis_jabatan['role'] ?> <?= $notulis_role['nama'] ?>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>
