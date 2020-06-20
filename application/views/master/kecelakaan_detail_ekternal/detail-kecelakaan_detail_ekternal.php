@@ -887,7 +887,7 @@
                                             <?= $k3['nip'] ?>
                                         </th>
                                         <th><br>
-                                            Penderita <br><br><br><br><br><br>
+                                            SR <br><br><br><br><br><br>
                                             <?= $penderita['nama'] ?><br>
                                             <?= $penderita['nip'] ?>
                                         </th>

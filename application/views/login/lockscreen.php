@@ -61,7 +61,7 @@ if($file['dir']!=""){
     z-index: 1;">
   <div class="lockscreen-wrapper" style="<?= LOGIN_BOX  ?>;padding: 20px;color: #607d8b; margin-top: 0;border-radius: 5px;">
     <div class="lockscreen-logo">
-      <a href="<?= base_url('login/lockscreen') ?>" style="color:#607d8b !important"><b><?= APPLICATION ?></b></a>
+      <a href="<?= base_url('login/lockscreen') ?>" style="color:#607d8b !important"><b>PETROKIMIA</b></a>
     </div>
     <!-- User name -->
         <div class="show_error"></div>
