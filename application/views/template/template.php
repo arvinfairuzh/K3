@@ -162,19 +162,19 @@ if ($this->session->userdata('session_sop') == "") {
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">PG</span>
         <!-- logo for regular state and mobile devices -->
-        <div style="margin-left:-20px"> 
+        <div style="margin-left:-20px">
           <table>
             <tr>
               <td>
-              <img src=" <?= LOGO ?>" width="95">
+                <img src=" <?= LOGO ?>" width="95">
               </td>
               <td>
-              <span class="logo-lg" style="margin-top:-10px">PETROKIMIA</span>
+                <span class="logo-lg" style="margin-top:-10px">PETROKIMIA</span>
               </td>
             </tr>
           </table>
         </div>
-        
+
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
@@ -204,7 +204,8 @@ if ($this->session->userdata('session_sop') == "") {
 
               $notification = $this->mymodel->selectWithQuery("SELECT form_laporan_bulanan.id,lokasi,master_departemen.nama as departemen,
               master_bagian.nama as bagian,tanggal,value,kabag.nama as id_kabag,
-              form_laporan_bulanan.status_bulanan,sr.nama as created_by, master_status_bulanan.nama as nama_status
+              form_laporan_bulanan.status_bulanan,sr.nama as created_by, master_status_bulanan.nama as nama_status,
+              form_laporan_bulanan.keterangan
               FROM form_laporan_bulanan
               LEFT JOIN master_departemen on form_laporan_bulanan.departemen = master_departemen.id
               LEFT JOIN master_bagian on form_laporan_bulanan.bagian = master_bagian.id
@@ -243,7 +244,17 @@ if ($this->session->userdata('session_sop') == "") {
                           <div class="col-md-12">
                             <i class="fa fa-clock-o"></i><?= $date ?><br>
                             Laporan Bulanan Nomor <?= $notif['id'] ?> <br>
-                            (<?= $notif['nama_status'] ?>)
+                            <?php
+                            if ($notif['status_bulanan'] == 2) {
+                            ?>
+                              Keterangan : <?= $notif['nama_status'] ?>(<?= $notif['keterangan'] ?>)
+                            <?php
+                            } else {
+                            ?>
+                              Keterangan : <?= $notif['nama_status'] ?>
+                            <?php
+                            }
+                            ?>
                             <hr style="padding:5px;margin:5px;">
                           </div>
                         </li>
@@ -272,7 +283,10 @@ if ($this->session->userdata('session_sop') == "") {
                 $kompartemen = "AND ketua.id_kompartemen = '$kompartemen'";
               }
 
-              $notification = $this->mymodel->selectWithQuery("SELECT hasil_rapat.id,master_jadwal_rapat.nama as id_jadwal,hasil_rapat.pimpinan_sidang,hasil_rapat.tanggal,hasil_rapat.jam_mulai,hasil_rapat.jam_selesai,hasil_rapat.lokasi,pendahuluan,review,tindak_lanjut,materi_tambahan,materi_kesehatan,pegawai.nama as id_notulis,hasil_rapat.status_sidang, master_status_sidang.nama as nama_status
+              $notification = $this->mymodel->selectWithQuery("SELECT hasil_rapat.id,master_jadwal_rapat.nama as id_jadwal,
+              hasil_rapat.pimpinan_sidang,hasil_rapat.tanggal,hasil_rapat.jam_mulai,hasil_rapat.jam_selesai,
+              hasil_rapat.lokasi,pendahuluan,review,tindak_lanjut,materi_tambahan,materi_kesehatan,
+              pegawai.nama as id_notulis,hasil_rapat.status_sidang, master_status_sidang.nama as nama_status, hasil_rapat.keterangan
               FROM hasil_rapat
               LEFT JOIN master_jadwal_rapat on hasil_rapat.id_jadwal = master_jadwal_rapat.id
               LEFT JOIN pegawai on hasil_rapat.id_notulis = pegawai.id
@@ -310,7 +324,17 @@ if ($this->session->userdata('session_sop') == "") {
                           <div class="col-md-12">
                             <i class="fa fa-clock-o"></i><?= $date ?><br>
                             Laporan Notulensi Sidang Nomor <?= $notif['id'] ?> <br>
-                            (<?= $notif['nama_status'] ?>)
+                            <?php
+                            if ($notif['status_sidang'] == 1) {
+                            ?>
+                              Keterangan : <?= $notif['nama_status'] ?>(<?= $notif['keterangan'] ?>)
+                            <?php
+                            } else {
+                            ?>
+                              Keterangan : <?= $notif['nama_status'] ?>
+                            <?php
+                            }
+                            ?>
                             <hr style="padding:5px;margin:5px;">
                           </div>
                         </li>
@@ -359,7 +383,7 @@ if ($this->session->userdata('session_sop') == "") {
               $notification = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, 
               kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, 
               penderita.nama as nama_penderita, kecelakaan_main.status_kecelakaan, 
-              master_status_kecelakaan.nama as nama_status, kecelakaan_detail_internal.kk_tanggal_jam as tanggal
+              master_status_kecelakaan.nama as nama_status, kecelakaan_detail_internal.kk_tanggal_jam as tanggal, kecelakaan_main.keterangan
               FROM kecelakaan_main
               LEFT JOIN kecelakaan_detail_internal on kecelakaan_main.id = kecelakaan_detail_internal.id_kecelakaan
               LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id
@@ -372,7 +396,7 @@ if ($this->session->userdata('session_sop') == "") {
               $notification2 = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, 
               kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, kecelakaan_main.ip_bagian_seksi, 
               se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, 
-              kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status , kecelakaan_detail_ekternal.kk_tanggal_jam as tanggal
+              kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status , kecelakaan_detail_ekternal.kk_tanggal_jam as tanggal, kecelakaan_main.keterangan
               FROM kecelakaan_main 
               LEFT JOIN kecelakaan_detail_ekternal on kecelakaan_main.id = kecelakaan_detail_ekternal.id_kecelakaan 
               LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id 
@@ -418,7 +442,17 @@ if ($this->session->userdata('session_sop') == "") {
                           <div class="col-md-12">
                             <i class="fa fa-clock-o"></i><?= $date ?><br>
                             Laporan Kecelakaan Internal Nomor <?= $notif['id'] ?> <br>
-                            (<?= $notif['nama_status'] ?>)
+                            <?php
+                            if ($notif['status_kecelakaan'] == 1 || $notif['status_kecelakaan'] == 4 || $notif['status_kecelakaan'] == 7 || $notif['status_kecelakaan'] == 9) {
+                            ?>
+                              Keterangan : <?= $notif['nama_status'] ?>(<?= $notif['keterangan'] ?>)
+                            <?php
+                            } else {
+                            ?>
+                              Keterangan : <?= $notif['nama_status'] ?>
+                            <?php
+                            }
+                            ?>
                             <hr style="padding:5px;margin:5px;">
                           </div>
                         </li>
@@ -438,7 +472,17 @@ if ($this->session->userdata('session_sop') == "") {
                           <div class="col-md-12">
                             <i class="fa fa-clock-o"></i><?= $date ?><br>
                             Laporan Kecelakaan Eksternal Nomor <?= $notif2['id'] ?> <br>
-                            (<?= $notif2['nama_status'] ?>)
+                            <?php
+                            if ($notif2['status_kecelakaan'] == 1 || $notif2['status_kecelakaan'] == 4 || $notif2['status_kecelakaan'] == 7 || $notif2['status_kecelakaan'] == 9) {
+                            ?>
+                              Keterangan : <?= $notif2['nama_status'] ?>(<?= $notif2['keterangan'] ?>)
+                            <?php
+                            } else {
+                            ?>
+                              Keterangan : <?= $notif2['nama_status'] ?>
+                            <?php
+                            }
+                            ?>
                             <hr style="padding:5px;margin:5px;">
                           </div>
                         </li>
@@ -460,15 +504,14 @@ if ($this->session->userdata('session_sop') == "") {
                 <object data="<?= base_url('webfile/default.png') ?>" type="image/png" class="user-image" alt="User Image">
                   <img src="<?= base_url('webfile/default.png') ?>" class="user-image" alt="User Image">
                 </object>
-                <?php 
-                if ( $role[0]['role'] = "0"){
+                <?php
+                if ($role[0]['role'] = "0") {
                 ?>
-                <span class="hidden-xs"><?= $this->session->userdata('name'); ?></span>
-                <?php }
-                else{?>
+                  <span class="hidden-xs"><?= $this->session->userdata('name'); ?></span>
+                <?php } else { ?>
                   <span class="hidden-xs"><?= $this->session->userdata('name'); ?> - <?php $role = $this->mymodel->selectWhere('role', array('id' => $this->session->userdata('role_id')));
-                echo $role[0]['role']; ?></span></span>
-                  <?php }?>
+                                                                                      echo $role[0]['role']; ?></span></span>
+                <?php } ?>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
