@@ -90,14 +90,14 @@
                                     if ($kecelakaan_main['status_kecelakaan'] == 0 || $kecelakaan_main['status_kecelakaan'] == 5 || $kecelakaan_main['status_kecelakaan'] == 7) {
                                 ?>
                                         <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                        <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                                        <!-- <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button> -->
                                     <?php
                                     }
                                 } else {
                                     if ($kecelakaan_main['status_kecelakaan'] == 3 || $kecelakaan_main['status_kecelakaan'] == 8) {
                                     ?>
                                         <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                        <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                                        <!-- <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $kecelakaan_main['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button> -->
                                 <?php
                                     }
                                 }
