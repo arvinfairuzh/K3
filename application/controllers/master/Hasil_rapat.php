@@ -80,6 +80,7 @@ class Hasil_rapat extends MY_Controller
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['id_notulis'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
+			$dt['updated_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
 
 			$str = $this->mymodel->insertData('hasil_rapat', $dt);
@@ -291,17 +292,26 @@ class Hasil_rapat extends MY_Controller
 	{
 		if ($status == 'terima') {
 			if ($_SESSION['role_id'] == 2) {
-				$dt['status_sidang'] = 2;
+				$status_sidang = 2;
 			} else if ($_SESSION['role_id'] == 3) {
-				$dt['status_sidang'] = 0;
+				$status_sidang = 0;
 			}
 		} else {
 			$dt['keterangan'] = $_POST['keterangan'];
 			if ($_SESSION['role_id'] == 2) {
-				$dt['status_sidang'] = 1;
+				$status_sidang = 1;
 			}
 		}
+		$dt['status_sidang'] = $status_sidang;
+		$dt['updated_at'] = date('Y-m-d H:i:s');
 		$str = $this->db->update('hasil_rapat', $dt, array('id' => $id));
+
+		$dta['status'] = $status_sidang;
+		$dta['id_laporan'] = $id;
+		$dta['jenis'] = "Sidang";
+		$dta['id_user'] = $_SESSION['id'];
+		$dta['tanggal'] = date('Y-m-d H:i:s');
+		$this->mymodel->insertData('history_validasi', $dta);
 		header('Location: ' . base_url('master/hasil_rapat/'));
 	}
 

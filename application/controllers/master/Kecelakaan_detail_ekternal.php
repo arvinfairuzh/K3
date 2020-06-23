@@ -88,6 +88,7 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 			$dta['id_penderita'] = $_SESSION['id'];
 			$dta['jenis_form'] = 2;
 			$dta['id_kabag'] = $kabag['id'];
+			$dta['updated_at'] = date('Y-m-d H:i:s');
 			$this->mymodel->insertData('kecelakaan_main', $dta);
 			$last_id = $this->db->insert_id();
 
@@ -106,20 +107,20 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
-			
+
 
 			$keadaan = $_POST['keadaan'];
 			$dt['pttk_kondisi_lingkungan'] = implode(',', $dt['pttk_kondisi_lingkungan']);
 			if ($keadaan == 'Lainya') {
 				$dt['pttk_kondisi_lingkungan'] = $_POST['pttk_kondisi_lingkungan_lainnya'];
 			}
-			for ($i=0; $i < count($keadaan); $i++) { 
+			for ($i = 0; $i < count($keadaan); $i++) {
 				$keadaan_arr[$i] = array(
 					'keadaan' => $keadaan[$i]
-			 );
+				);
 			}
-		   
-		   $dt['pttk_kondisi_lingkungan'] = json_encode($keadaan_arr);
+
+			$dt['pttk_kondisi_lingkungan'] = json_encode($keadaan_arr);
 
 
 			if (!empty($_FILES['kk_gambar_lokasi']['name'])) {
@@ -145,8 +146,42 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 	public function update()
 	{
 		$id = $this->input->post('id', TRUE);
+		$saran = $_POST['saran'];
+		$hasil = $_POST['hasil'];
+		$hasil_file_old = $_POST['hasil_file_old'];
+		$keterangan = $_POST['keterangan'];
 		$dta = $_POST['dta'];
 		$dta['id_se'] = $_SESSION['id'];
+		for ($i = 0; $i < count($saran); $i++) {
+			if ($_FILES['hasil_file']['name'][$i]) {
+				echo 'oke';
+				$path = $_SERVER['DOCUMENT_ROOT'] . "/k3/webfile/saran/";
+				$dir  = "webfile/saran/";
+				// $path = base_url()."webfile/document/my_document-$last_agenda/";
+				// print_r($path);
+				// die();
+
+				$file_ext = $_FILES['hasil_file']['name'][$i];
+				$ext = pathinfo($file_ext, PATHINFO_EXTENSION);
+				$file_name = 'ftl-' . $i . '.' . $ext;
+				$file_size = $_FILES['hasil_file']['size'][$i];
+				$file_tmp = $_FILES['hasil_file']['tmp_name'][$i];
+				$file_type = $_FILES['hasil_file']['type'][$i];
+
+				move_uploaded_file($file_tmp, $path . $file_name);
+				$upload = $dir . $file_name;
+				$gambar = $upload;
+			} else {
+				$gambar = $hasil_file_old[$i];
+			}
+			$json[$i] = array(
+				'saran' => $saran[$i],
+				'hasil' => $hasil[$i],
+				'keterangan' => $keterangan[$i],
+				'gambar' => $gambar,
+			);
+		}
+		$dta['tindak_lanjut'] = json_encode($json);
 		$this->db->update('kecelakaan_main', $dta, array('id' => $id));
 
 		$dt = $_POST['dt'];
@@ -162,18 +197,17 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 		$dt['wp_persyaratan_administrasi'] = $persyaratan;
 		$dt['updated_at'] = date('Y-m-d H:i:s');
 		$keadaan = $_POST['keadaan'];
-			
-			for ($i=0; $i < count($keadaan); $i++) { 
-				if ($keadaan[$i] == 'Lainya') {
-					$keadaan[$i] = $_POST['pttk_kondisi_lingkungan_lainnya'];
-				}
-				$keadaan_arr[$i] = array(
-					'keadaan' => $keadaan[$i]
-			 );
-			 
+
+		for ($i = 0; $i < count($keadaan); $i++) {
+			if ($keadaan[$i] == 'Lainya') {
+				$keadaan[$i] = $_POST['pttk_kondisi_lingkungan_lainnya'];
 			}
-		   
-		   $dt['pttk_kondisi_lingkungan'] = json_encode($keadaan_arr);
+			$keadaan_arr[$i] = array(
+				'keadaan' => $keadaan[$i]
+			);
+		}
+
+		$dt['pttk_kondisi_lingkungan'] = json_encode($keadaan_arr);
 
 		if (!empty($_FILES['kk_gambar_lokasi']['name'])) {
 			$dir  = "webfile/kecelakaan/";
@@ -275,33 +309,33 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 		$status_sekarang = $kecelakaan_main['status_kecelakaan'];
 		if ($status == 'terima') {
 			if ($_SESSION['role_id'] == 1) {
-				$dt['status_kecelakaan'] = 0;
+				$status_kecelakaan = 0;
 			} else if ($_SESSION['role_id'] == 3) {
 				if ($_SESSION['id_bagian'] == 16) {
 					if ($status_sekarang == 3) {
-						$dt['status_kecelakaan'] = 5;
+						$status_kecelakaan = 5;
 						$dt['id_k3'] = $_SESSION['id'];
 					} else if ($status_sekarang == 8) {
-						$dt['status_kecelakaan'] = 10;
+						$status_kecelakaan = 10;
 						$dt['id_k3'] = $_SESSION['id'];
 					}
 				} else {
 					if ($status_sekarang == 0) {
-						$dt['status_kecelakaan'] = 2;
+						$status_kecelakaan = 2;
 					} else if ($status_sekarang == 5 || $status_sekarang == 7) {
-						$dt['status_kecelakaan'] = 6;
+						$status_kecelakaan = 6;
 					}
 				}
 			} else if ($_SESSION['role_id'] == 6) {
 				$dt['id_se'] = $_SESSION['id'];
 				if ($status_sekarang == 2) {
-					$dt['status_kecelakaan'] = 3;
+					$status_kecelakaan = 3;
 				} else if ($status_sekarang == 4) {
-					$dt['status_kecelakaan'] = 3;
+					$status_kecelakaan = 3;
 				} else if ($status_sekarang == 6) {
-					$dt['status_kecelakaan'] = 8;
+					$status_kecelakaan = 8;
 				} else if ($status_sekarang == 9) {
-					$dt['status_kecelakaan'] = 8;
+					$status_kecelakaan = 8;
 				}
 			}
 		} else {
@@ -309,25 +343,34 @@ class Kecelakaan_detail_ekternal extends MY_Controller
 			if ($_SESSION['role_id'] == 3) {
 				if ($_SESSION['id_bagian'] == 16) {
 					if ($status_sekarang == 3) {
-						$dt['status_kecelakaan'] = 4;
+						$status_kecelakaan = 4;
 						$dt['id_k3'] = $_SESSION['id'];
 					} else if ($status_sekarang == 8) {
-						$dt['status_kecelakaan'] = 9;
+						$status_kecelakaan = 9;
 						$dt['id_k3'] = $_SESSION['id'];
 					}
 				} else {
 					if ($status_sekarang == 0) {
-						$dt['status_kecelakaan'] = 1;
+						$status_kecelakaan = 1;
 					}
 				}
 			} else if ($_SESSION['role_id'] == 6) {
 				if ($status_sekarang == 6) {
-					$dt['status_kecelakaan'] = 7;
+					$status_kecelakaan = 7;
 					$dt['id_se'] = $_SESSION['id'];
 				}
 			}
 		}
-		$str = $this->db->update('kecelakaan_main', $dt, array('id' => $id));
+		$dt['status_kecelakaan'] = $status_kecelakaan;
+		$dt['updated_at'] = date('Y-m-d H:i:s');
+		$this->db->update('kecelakaan_main', $dt, array('id' => $id));
+
+		$dta['status'] = $status_kecelakaan;
+		$dta['id_laporan'] = $id;
+		$dta['jenis'] = "Eksternal";
+		$dta['id_user'] = $_SESSION['id'];
+		$dta['tanggal'] = date('Y-m-d H:i:s');
+		$this->mymodel->insertData('history_validasi', $dt);
 		header('Location: ' . base_url('master/kecelakaan_detail_ekternal/'));
 	}
 

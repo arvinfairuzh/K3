@@ -268,7 +268,7 @@
                                             ?>
                                                 <tr>
                                                     <td></td>
-                                                    <td  align="center" style="border-right: 0px;"><span  style="font-weight:700"><?= $hasil_temuan ?> <?= $kosong ?></span></th>
+                                                    <td align="center" style="border-right: 0px;"><span style="font-weight:700"><?= $hasil_temuan ?> <?= $kosong ?></span></th>
                                                 </tr>
                                                 <?php
                                                 $no = 0;
@@ -280,8 +280,8 @@
                                                         <td>
                                                             <?= $ftl['hasil_temuan'] ?>
                                                         </td>
-                                                        <td> 
-                                                            &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp <?= $ftl['ke'] ?>
+                                                        <td>
+                                                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp <?= $ftl['ke'] ?>
                                                         </td>
                                                         <td align="center">
                                                             <?php
@@ -316,6 +316,56 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xs-12">
+                <h1 style="margin-bottom:15px;font-weight: 400;font-size: 24px;">
+                    History Laporan Bulanan
+                </h1>
+                <div class="row">
+                    <ul class="timeline">
+                        <?php
+                        $history = $this->mymodel->selectWhere('history_validasi', array('id_laporan' => $form_laporan_bulanan['id'], 'jenis' => 'Bulanan'));
+                        foreach ($history as $hs) {
+                            $status_history = $this->mymodel->selectDataone('master_status_bulanan', array('id' => $hs['status']));
+                            $user_history = $this->mymodel->selectDataOne('pegawai', array('id' => $hs['id_user']));
+                            $bg = '';
+                            $icon = '';
+                            if ($hs['status'] == 0) {
+                                $bg = 'bg-yellow';
+                                $icon = 'fa fa-check';
+                            } else if ($hs['status'] == 1) {
+                                $bg = 'bg-blue';
+                                $icon = 'fa fa-check';
+                            } else if ($hs['status'] == 2) {
+                                $bg = 'bg-red';
+                                $icon = 'fa fa-times';
+                            } else {
+                                $bg = 'bg-green';
+                                $icon = 'fa fa-check';
+                            }
+                            $date = date_create($hs['tanggal']);
+                            $date = date_format($date, "d-m-Y h:i:s");
+                        ?>
+                            <style>
+
+                            </style>
+                            <li>
+                                <i class="<?= $icon ?> <?= $bg ?>"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header <?= $bg ?>">
+                                        <?= $status_history['nama'] ?></h3>
+                                    <div class="timeline-body">
+                                        <p>Pegawai : <?= $user_history['nama'] ?></p>
+                                        <p>Tanggal : <?= $date ?></p>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- /.content -->
 </div>

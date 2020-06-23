@@ -1067,6 +1067,76 @@
                 </div>
 
             </div>
+            <div class="col-xs-12">
+                <h1 style="margin-bottom:15px;font-weight: 400;font-size: 24px;">
+                    History Laporan Kecelakaan Eksternal
+                </h1>
+                <div class="row">
+                    <ul class="timeline">
+                        <?php
+                        $history = $this->mymodel->selectWhere('history_validasi', array('id_laporan' => $hasil_rapat['id'], 'jenis' => 'Eksternal'));
+                        foreach ($history as $hs) {
+                            $status_history = $this->mymodel->selectDataone('master_status_kecelakaan', array('id' => $hs['status']));
+                            $user_history = $this->mymodel->selectDataOne('pegawai', array('id' => $hs['id_user']));
+                            $bg = '';
+                            $icon = '';
+                            if ($hs['status'] == 0) {
+                                $bg = 'bg-yellow';
+                                $icon = 'fa fa-check';
+                            } else if ($hs['status'] == 1) {
+                                $bg = 'bg-red';
+                                $icon = 'fa fa-times';
+                            } else if ($hs['status'] == 2) {
+                                $bg = 'bg-yellow';
+                                $icon = 'fa fa-check';
+                            } else if ($hs['status'] == 3) {
+                                $bg = 'bg-yellow';
+                                $icon = 'fa fa-check';
+                            } else if ($hs['status'] == 4) {
+                                $bg = 'bg-red';
+                                $icon = 'fa fa-times';
+                            } else if ($hs['status'] == 5) {
+                                $bg = 'bg-yellow';
+                                $icon = 'fa fa-check';
+                            } else if ($hs['status'] == 6) {
+                                $bg = 'bg-yellow';
+                                $icon = 'fa fa-check';
+                            } else if ($hs['status'] == 7) {
+                                $bg = 'bg-red';
+                                $icon = 'fa fa-times';
+                            } else if ($hs['status'] == 8) {
+                                $bg = 'bg-yellow';
+                                $icon = 'fa fa-check';
+                            } else if ($hs['status'] == 9) {
+                                $bg = 'bg-red';
+                                $icon = 'fa fa-times';
+                            } else {
+                                $bg = 'bg-green';
+                                $icon = 'fa fa-check';
+                            }
+                            $date = date_create($hs['tanggal']);
+                            $date = date_format($date, "d-m-Y h:i:s");
+                        ?>
+                            <style>
+
+                            </style>
+                            <li>
+                                <i class="<?= $icon ?> <?= $bg ?>"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header <?= $bg ?>">
+                                        <?= $status_history['nama'] ?></h3>
+                                    <div class="timeline-body">
+                                        <p>Pegawai : <?= $user_history['nama'] ?></p>
+                                        <p>Tanggal : <?= $date ?></p>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
     <!-- /.content -->

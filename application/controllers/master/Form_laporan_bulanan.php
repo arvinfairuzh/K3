@@ -81,6 +81,7 @@ class Form_laporan_bulanan extends MY_Controller
 			$dt['value'] = $datajson;
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
+			$dt['updated_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
 
 			$kabag = $this->mymodel->selectDataOne("pegawai", array('id_bagian' => $_SESSION['id_bagian'], 'id_role' => 3));
@@ -304,16 +305,26 @@ class Form_laporan_bulanan extends MY_Controller
 		if ($status == 'terima') {
 			if ($_SESSION['role_id'] == 1) {
 				$dt['status_bulanan'] = 3;
+				$dta['status'] = 3;
 			} else if ($_SESSION['role_id'] == 3) {
 				$dt['status_bulanan'] = 1;
+				$dta['status'] = 1;
 			}
 		} else {
 			$dt['keterangan'] = $_POST['keterangan'];
 			if ($_SESSION['role_id'] == 1) {
 				$dt['status_bulanan'] = 2;
+				$dta['status'] = 2;
 			}
 		}
-		$str = $this->db->update('form_laporan_bulanan', $dt, array('id' => $id));
+		$dt['updated_at'] = date('Y-m-d H:i:s');
+		$this->db->update('form_laporan_bulanan', $dt, array('id' => $id));
+
+		$dta['id_laporan'] = $id;
+		$dta['jenis'] = "Bulanan";
+		$dta['id_user'] = $_SESSION['id'];
+		$dta['tanggal'] = date('Y-m-d H:i:s');
+		$this->mymodel->insertData('history_validasi', $dta);
 		header('Location: ' . base_url('master/form_laporan_bulanan/'));
 	}
 

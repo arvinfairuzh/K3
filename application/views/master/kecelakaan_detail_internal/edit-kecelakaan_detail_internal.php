@@ -692,8 +692,75 @@
                             } else {
                             ?>
                                 <div class="form-group">
-                                    <label for="form-id_kecelakaan" style="font-size:20px">SARAN</label>
-                                    <textarea id="summernote_saran" name="dta[saran]" class="form-control"><?= $kecelakaan_main['saran'] ?></textarea>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
+                                            <tr>
+                                                <th>
+                                                    Saran Tindak Lanjut
+                                                </th>
+                                                <th>
+                                                    Hasil Tindak Lanjut
+                                                </th>
+                                                <th>
+                                                    Keterangan
+                                                </th>
+                                                <th>
+                                                </th>
+                                            </tr>
+                                            <?php
+                                            $i = 100;
+                                            foreach (json_decode($kecelakaan_main['tindak_lanjut']) as $ftl) {
+                                                $i++;
+                                            ?>
+                                                <tr id="rowinvoice<?= $i ?>">
+                                                    <td>
+                                                        <textarea class="form-control" name="saran[]" rows="1"><?= $ftl->saran ?></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        if ($ftl->gambar != "") {
+                                                        ?>
+                                                            <img src="<?= base_url($ftl->gambar) ?>" style="width: 200px" class="img img-thumbnail">
+                                                            <br>
+                                                        <?php } ?>
+                                                        <textarea class="form-control" name="hasil[]" rows="1" style="margin-bottom: 10px;"><?= $ftl->hasil ?></textarea>
+                                                        <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="hasil_file[]">
+                                                        <input type="hidden" value="<?= $ftl->gambar ?>" class="form-control" id="form-file" placeholder="Masukan File" name="hasil_file_old[]">
+                                                    </td>
+                                                    <td>
+                                                        <textarea class="form-control" name="keterangan[]" rows="1"><?= $ftl->keterangan ?></textarea>
+                                                    </td>
+                                                    <td style="width:5%;" align="right"><button type="button" name="remove" id="<?= $i ?>" data-toggle="modal" data-target="#modal-delete-file-<?= $i ?>" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+                                                    <div class="modal modal-default fade" id="modal-delete-file-<?= $i ?>" style="display: none;">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-red">
+                                                                    <h4 class="modal-title" align="center"> Hapus Data</h4>
+                                                                </div>
+                                                                <div class="modal-body" align="center">
+                                                                    <h3>Anda Yakin Ingin Menghapus data Data ini?</h3>
+                                                                    <div class="box-footer" align="center">
+                                                                        <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-close"></i> Tutup</button>
+                                                                        <button type="button" id="<?= $i ?>" class="btn btn-danger btn_remove"><i class="mdi mdi-delete"></i> Hapus</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            <?php
+                                            } ?>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="3">
+                                                    </td>
+                                                    <td style="width:5%;">
+                                                        <button type="button" name="addinvoice" id="addinvoice" class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
                                 </div>
                             <?php
                             }
@@ -717,6 +784,35 @@
 </div>
 <!-- /.content-wrapper -->
 <script type="text/javascript">
+    $(document).ready(function() {
+        var i = 1;
+        $('#addinvoice').click(function() {
+            i++;
+            $('#dynamic_fieldinvoice').append('<tr id="rowinvoice' + i + '">' +
+                '<td>' +
+                '<textarea class="form-control" name="saran[]" rows="1"></textarea>' +
+                '</td>' +
+                '<td>' +
+                '<textarea class="form-control" name="hasil[]" rows="1"></textarea>' +
+                '<input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="hasil_file[]">' +
+                '</td>' +
+                '<td>' +
+                '<textarea class="form-control" name="keterangan[]" rows="1"></textarea>' +
+                '</td>' +
+                '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove pull-right"><i class="fa fa-trash"></i></button></td>' +
+                '</tr>');
+            $('.select2').select2();
+
+        });
+
+        $(document).on('click', '.btn_remove', function() {
+            var button_id = $(this).attr("id");
+            $("#modal-delete-file-" + button_id).modal('hide');
+            $('#rowinvoice' + button_id + '').remove();
+        });
+
+    });
+
     $('#summernote_saran').summernote();
 
     function yesnoCheck() {

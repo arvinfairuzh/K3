@@ -205,7 +205,7 @@ if ($this->session->userdata('session_sop') == "") {
               $notification = $this->mymodel->selectWithQuery("SELECT form_laporan_bulanan.id,lokasi,master_departemen.nama as departemen,
               master_bagian.nama as bagian,tanggal,value,kabag.nama as id_kabag,
               form_laporan_bulanan.status_bulanan,sr.nama as created_by, master_status_bulanan.nama as nama_status,
-              form_laporan_bulanan.keterangan
+              form_laporan_bulanan.keterangan, form_laporan_bulanan.updated_at
               FROM form_laporan_bulanan
               LEFT JOIN master_departemen on form_laporan_bulanan.departemen = master_departemen.id
               LEFT JOIN master_bagian on form_laporan_bulanan.bagian = master_bagian.id
@@ -234,7 +234,7 @@ if ($this->session->userdata('session_sop') == "") {
                   <ul class="menu">
                     <?php
                     foreach ($notification as $notif) {
-                      $date = date_create($notif['tanggal']);
+                      $date = date_create($notif['updated_at']);
                       $date = date_format($date, "d M Y h:i:s");
                     ?>
                       <a class="notifikasi" href="<?= base_url('master/form_laporan_bulanan/detail/' . $notif['id']) ?>" style="color: black;">
@@ -286,7 +286,8 @@ if ($this->session->userdata('session_sop') == "") {
               $notification = $this->mymodel->selectWithQuery("SELECT hasil_rapat.id,master_jadwal_rapat.nama as id_jadwal,
               hasil_rapat.pimpinan_sidang,hasil_rapat.tanggal,hasil_rapat.jam_mulai,hasil_rapat.jam_selesai,
               hasil_rapat.lokasi,pendahuluan,review,tindak_lanjut,materi_tambahan,materi_kesehatan,
-              pegawai.nama as id_notulis,hasil_rapat.status_sidang, master_status_sidang.nama as nama_status, hasil_rapat.keterangan
+              pegawai.nama as id_notulis,hasil_rapat.status_sidang, master_status_sidang.nama as nama_status, 
+              hasil_rapat.keterangan, hasil_rapat.updated_at
               FROM hasil_rapat
               LEFT JOIN master_jadwal_rapat on hasil_rapat.id_jadwal = master_jadwal_rapat.id
               LEFT JOIN pegawai on hasil_rapat.id_notulis = pegawai.id
@@ -314,7 +315,7 @@ if ($this->session->userdata('session_sop') == "") {
                   <ul class="menu">
                     <?php
                     foreach ($notification as $notif) {
-                      $date = date_create($notif['tanggal']);
+                      $date = date_create($notif['updated_at']);
                       $date = date_format($date, "d M Y h:i:s");
                     ?>
                       <a class="notifikasi" href="<?= base_url('master/hasil_rapat/detail/' . $notif['id']) ?>" style="color: black;">
@@ -383,7 +384,8 @@ if ($this->session->userdata('session_sop') == "") {
               $notification = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, 
               kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, 
               penderita.nama as nama_penderita, kecelakaan_main.status_kecelakaan, 
-              master_status_kecelakaan.nama as nama_status, kecelakaan_detail_internal.kk_tanggal_jam as tanggal, kecelakaan_main.keterangan
+              master_status_kecelakaan.nama as nama_status, kecelakaan_detail_internal.kk_tanggal_jam as tanggal, 
+              kecelakaan_main.keterangan, kecelakaan_main.updated_at
               FROM kecelakaan_main
               LEFT JOIN kecelakaan_detail_internal on kecelakaan_main.id = kecelakaan_detail_internal.id_kecelakaan
               LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id
@@ -396,7 +398,8 @@ if ($this->session->userdata('session_sop') == "") {
               $notification2 = $this->mymodel->selectWithQuery("SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, 
               kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, kecelakaan_main.ip_bagian_seksi, 
               se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, 
-              kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status , kecelakaan_detail_ekternal.kk_tanggal_jam as tanggal, kecelakaan_main.keterangan
+              kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status , 
+              kecelakaan_detail_ekternal.kk_tanggal_jam as tanggal, kecelakaan_main.keterangan, kecelakaan_main.updated_at
               FROM kecelakaan_main 
               LEFT JOIN kecelakaan_detail_ekternal on kecelakaan_main.id = kecelakaan_detail_ekternal.id_kecelakaan 
               LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id 
@@ -432,7 +435,7 @@ if ($this->session->userdata('session_sop') == "") {
                   <ul class="menu">
                     <?php
                     foreach ($notification as $notif) {
-                      $date = date_create($notif['tanggal']);
+                      $date = date_create($notif['updated_at']);
                       $date = date_format($date, "d M Y h:i:s");
                     ?>
                       <a class="notifikasi" href="<?= base_url('master/kecelakaan_detail_internal/detail/' . $notif['id']) ?>" style="color: black;">
