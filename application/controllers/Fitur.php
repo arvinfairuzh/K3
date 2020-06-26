@@ -216,8 +216,9 @@ class Fitur extends MY_Controller {
 	}
 	function exportreport()
 	{
-		$data = $this->session->flashdata('report');
+		$data = $this->session->keep_flashdata('report');
 		// print_r($data);
+		// die();
 		$this->excel->to_file($data['judul'],$data['head'],$data['data']);
 	}
 	public function toPdf()

@@ -69,8 +69,7 @@ class Laporan_bulanan extends MY_Controller
     foreach ($list as $u) {
 
 
-
-      $data[] = array($i, $u->lokasi, $u->departemen, $u->bagian, $u->tanggal, $u->id_kabag, $u->created_by, $u->nama_status);
+      $data[] = array($i, $u->nik_kabag . '-' . $u->id_kabag, $u->nik_sr . '-' . $u->created_by, $u->lokasi, $u->departemen, $u->bagian, $u->tanggal, $u->nama_status);
 
       $i++;
     }
