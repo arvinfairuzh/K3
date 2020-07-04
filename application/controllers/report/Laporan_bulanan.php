@@ -76,7 +76,7 @@ class Laporan_bulanan extends MY_Controller
 
     $judul = "Report Laporan_bulanan";
 
-    $head = array('No', 'lokasi', 'departemen', 'bagian', 'tanggal', 'kabag', 'sr', 'status');
+    $head = array('No', 'kabag', 'sr', 'lokasi', 'departemen', 'bagian', 'tanggal', 'status');
 
     $json = [
       'judul' => $judul,
