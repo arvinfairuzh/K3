@@ -37,7 +37,11 @@ class Report_kecelakaan_internal extends CI_Model
         $this->column_order = array(null, 'ip_nama', 'ip_nomor_induk', 'ip_dep_birobid', 'ip_bagian_seksi', 'nama_se', 'nama_kabag', 'nama_k3', 'nama_penderita', 'status_kecelakaan', 'nama_status'); //field yang ada di table user
         $this->column_search = array(null, 'ip_nama', 'ip_nomor_induk', 'ip_dep_birobid', 'ip_bagian_seksi', 'nama_se', 'nama_kabag', 'nama_k3', 'nama_penderita', 'status_kecelakaan', 'nama_status'); //field yang ada di table user
         $this->order = array('id' => 'desc'); // default order 
-        $this->table = "(SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status
+        $this->table = "(SELECT kecelakaan_main.id, kecelakaan_main.ip_nama, kecelakaan_main.ip_nomor_induk, kecelakaan_main.ip_dep_birobid, 
+        kecelakaan_main.ip_bagian_seksi, se.nama as nama_se, kabag.nama as nama_kabag, k3.nama as nama_k3, penderita.nama as nama_penderita, 
+        kecelakaan_main.status_kecelakaan, master_status_kecelakaan.nama as nama_status, kecelakaan_detail_internal.kk_tanggal_jam, kecelakaan_detail_internal.kk_lokasi, 
+        kecelakaan_detail_internal.kk_penjelasan_kecelakaan, kecelakaan_detail_internal.kk_bagian_tubuh_cedera,
+        kecelakaan_main.lpp_di_rs_petro, kecelakaan_main.lpp_di_rs_luar, kecelakaan_main.lpp_istirahat_dokter, kecelakaan_main.tindak_lanjut
         FROM kecelakaan_main
         LEFT JOIN kecelakaan_detail_internal on kecelakaan_main.id = kecelakaan_detail_internal.id_kecelakaan
         LEFT JOIN pegawai se on kecelakaan_main.id_se = se.id

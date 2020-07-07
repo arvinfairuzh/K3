@@ -88,14 +88,19 @@ class Kecelakaan_internal extends MY_Controller
     $list = $this->rKecelakaan_internal->get_data();
     $data = array();
     $i = 1;
+    $saran = '';
+
     foreach ($list as $u) {
-      $data[] = array($i, $u->ip_nama, $u->ip_nomor_induk, $u->ip_dep_birobid, $u->ip_bagian_seksi, $u->nama_se, $u->nama_kabag, $u->nama_k3, $u->nama_status);
+      foreach (json_decode($u->tindak_lanjut) as $s) {
+        $saran .= $s->saran;
+      }
+      $data[] = array($i, $u->ip_nama . '-' . $u->ip_nomor_induk, $u->kk_tanggal_jam, $u->kk_lokasi, $u->kk_penjelasan_kecelakaan, $u->kk_bagian_tubuh_cedera, $u->lpp_di_rs_petro, $u->lpp_di_rs_luar, $u->lpp_istirahat_dokter, $saran);
       $i++;
     }
 
     $judul = "Report Kecelakaan_internal";
 
-    $head = array('No', 'nama', 'nik', 'departemen', 'bagian', 'nama_se', 'nama_kabag', 'nama_k3', 'status');
+    $head = array('No', 'Identitas Penderita', 'Tanggal', 'Lokasi', 'Deskripsi Kecelakaan', 'Bagian Cedera', 'Lama Pengobatan di RS Petrokimia Gresik', 'Lama Pengobatan di RS Luar', 'Lama Pengobatan Istirahat Dokter', 'Saran');
 
     $json = [
       'judul' => $judul,

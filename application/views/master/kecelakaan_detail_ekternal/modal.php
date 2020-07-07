@@ -20,7 +20,7 @@ if ($_SESSION['role_id'] == 1) {
             </div>
             <hr>
             <a href="<?= base_url('master/kecelakaan_detail_ekternal/validasi_act/' . $id . '/terima') ?>" class="btn btn-primary btn-sm btn-send">Terima</a>
-            <a href="<?= base_url('master/kecelakaan_detail_ekternal/validasi_act/' . $id . '/tolak') ?>" class="btn btn-danger btn-sm btn-send">Tolak</a>
+            <button class="btn btn-danger btn-sm btn-send" onclick="tolak(<?= $id ?>)">Tolak</button>
         <?php
         } else {
         ?>
